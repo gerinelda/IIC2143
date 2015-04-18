@@ -1,0 +1,11 @@
+import java.util.*;
+
+
+public class contexto {
+	private ArrayList<proyecto> proyectos;
+	
+	public void nuevoProyecto(proyecto p)
+	{
+		proyectos.add(p);
+	}
+}

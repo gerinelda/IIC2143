@@ -1,0 +1,6 @@
+import java.util.*;
+
+public class Tarea {
+	private String nombre;
+	private Date fecha_inicio;
+}

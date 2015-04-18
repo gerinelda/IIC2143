@@ -1,0 +1,6 @@
+
+
+public class Tarea {
+	private String nombre;
+	private fecha fecha_inicio;
+}

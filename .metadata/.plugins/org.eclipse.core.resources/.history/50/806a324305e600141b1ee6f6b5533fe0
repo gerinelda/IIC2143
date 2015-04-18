@@ -1,0 +1,11 @@
+
+
+public class Tarea {
+	private String nombre;
+	private fecha fi;
+	private fecha ff;
+	private hora hi;
+	private hora hf;
+	
+	
+}
