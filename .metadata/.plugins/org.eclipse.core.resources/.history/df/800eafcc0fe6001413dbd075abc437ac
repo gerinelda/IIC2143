@@ -10,6 +10,6 @@ public class usuario {
 	private String email; //usar regex para validar correo
 	
 	//MANEJO DE TAREAS
-	private ArrayList<calendario> calendarios;
+	
 	
 }

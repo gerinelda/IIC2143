@@ -10,7 +10,6 @@ public class tarea {
 	private String descripcion;
 	private estado estado;
 	private int color;
-	private contexto contexto;
 	
 	/*posibilidades de creación de tareas:
 	 -Con fecha final, nombre
