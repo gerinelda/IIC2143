@@ -1,0 +1,26 @@
+import java.awt.Color;
+
+import javax.swing.*;
+
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame frame = new JFrame("nombre ventana ejemplo");
+		
+		JButton b = new JButton("hola");
+		frame.add(b);
+		b.setSize(50, 10);
+		b.setAlignmentX(0);
+		b.setBackground(new Color(0,0,0,0));
+		frame.setSize(1200, 600);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);	
+		b.setVisible(true);
+	
+
+	}
+
+}
