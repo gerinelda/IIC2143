@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.*;
 
 
-public class contexto {
+public class contexto implements Serializable{
 	
 	private String nombre;
 

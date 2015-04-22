@@ -1,7 +1,9 @@
+import java.io.Serializable;
 
-public class tarea {
+
+public class tarea implements Serializable {
 	
-	public enum estado{activo, pausado, terminado}
+	public enum estado implements Serializable{activo, pausado, terminado}
 	private int id;
 	private String nombre;
 	private fecha fi;
@@ -114,7 +116,7 @@ public class tarea {
 	public tarea(int id)
 	{
 		this.id = id;
-		this.nombre = null;
+		this.nombre = "Tarea"+Integer.toString(id);
 		this.fi = null;
 		this.ff = null;
 		this.hi = null;
@@ -125,4 +127,16 @@ public class tarea {
 		this.contexto = null;
 	}
 	
+	public tarea(tarea t)
+	{
+		this.nombre = t.getNombre();
+		this.fi = t.getFi();
+		this.ff = t.getFf();
+		this.hi = t.getHi();
+		this.hf = t.getHf();
+		this.descripcion = t.getDescripcion();
+		this.estado = t.getEstado();
+		this.color = t.getColor();
+		this.contexto = t.getContexto();
+	}
 }

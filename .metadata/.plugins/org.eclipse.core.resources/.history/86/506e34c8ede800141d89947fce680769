@@ -1,0 +1,16 @@
+import java.io.*;
+import 
+public class xml {
+
+	public bool exportarTare()
+	{
+		try
+		{
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+}

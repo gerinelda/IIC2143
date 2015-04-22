@@ -1,1 +1,1 @@
-[[{"location":"/usr/lib/jvm/java-7-openjdk-amd64","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.7"}},"jre:jre:1.7.0"]]
+[[{"location":"/usr/lib/jvm/java-7-openjdk-amd64","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.7"}},"jre:jre:1.7.0"],[{"location":"/home/gerinelda/IIC2143/Gestor_tareas","type":"PROJECT","hints":{"PROJECT_NAME":"Gestor_tareas"}},"ABSENT"]]

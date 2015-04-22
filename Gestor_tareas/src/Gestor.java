@@ -1,4 +1,4 @@
-import java.text.BreakIterator;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -11,6 +11,11 @@ public class Gestor {
 	private ArrayList<proyecto> proyectos;
 	private contexto[] contextos;
 	
+	
+	public Gestor()
+	{
+		proyectos = new ArrayList<>();
+	}
 	
 	public int getContador_proyectos() {
 		return contador_proyectos;
@@ -88,6 +93,7 @@ public class Gestor {
 		}	
 	}
 
+	
 	public void agregarProyecto(proyecto p)
 	{
 		p.setId(id_proyectos);
@@ -117,6 +123,7 @@ public class Gestor {
 		}
 	}
 	
+	
 	public void eliminarProyecto(int id)
 	{
 		for (int i = 0; i < contador_proyectos; i++) 
@@ -129,6 +136,7 @@ public class Gestor {
 			}
 		}
 	}
+	
 	
 	public tarea getTarea(int id)
 	{
@@ -149,6 +157,7 @@ public class Gestor {
 		return null;
 	}
 	
+	
 	public proyecto getProyecto(int id)
 	{
 		proyecto actual_proyecto;
@@ -162,6 +171,7 @@ public class Gestor {
 		}
 		return null;
 	}
+	
 	
 	public int indiceTarea(int id)
 	{
@@ -180,6 +190,7 @@ public class Gestor {
 		return -1;
 	}
 	
+	
 	public int indiceProyecto(int id)
 	{
 		for (int i = 0; i < contador_proyectos; i++) {
@@ -189,5 +200,39 @@ public class Gestor {
 			}
 		}
 		return -1;
+	}
+
+	
+	public boolean exportarTarea(int id, String path_destino)
+	{
+		tarea t = new tarea(getTarea(id));
+		t.setId(-1);
+		try{
+			FileOutputStream fos = new FileOutputStream(path_destino);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			out.writeObject(t);
+			out.close();
+			fos.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	
+	
+	public tarea importarTarea(String path)
+	{
+		try
+		{
+			 FileInputStream fis = new FileInputStream(path);
+			 ObjectInputStream in = new ObjectInputStream(fis);
+			 return (tarea)in.readObject();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 	}
 }

@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public class hora {
+
+public class hora implements Serializable{
 	int h;
 	int m;
 	int s;
@@ -20,16 +22,21 @@ public class hora {
 		this.s = 0;
 	}
 
-	// falta corregir que muestre 2 numeros. (08 envez de 8)
+	// falta corregir que muestre 2 numeros. (08 en vez de 8)
 	@Override
 	public String toString() {
-		return new String(
-				Integer.toString(h)+
-						":"+
-						Integer.toString(m)+
-						":"+
-						Integer.toString(s)
-		);
+		return new String(atToString(h)+":"+atToString(m)+":"+atToString(s));
 
+	}
+	public String atToString(int i)
+	{
+		if (i<10)
+		{
+			return new String("0"+Integer.toString(i));
+		}
+		else
+		{
+			return new String(Integer.toString(i));
+		}
 	}
 }

@@ -43,7 +43,16 @@ public class proyecto {
 	public proyecto(int id)
 	{
 		this.id = id;
+		this.nombre = "proyecto"+Integer.toString(id);
+		this.tareas = new ArrayList<tarea>();
+		this.estado = estado.activo;
+	}
+	
+	public proyecto(int id, String nombre, estado activo)
+	{
+		this.id = id;
 		this.nombre = nombre;
+		this.estado = estado;
 		this.tareas = new ArrayList<tarea>();
 	}
 }

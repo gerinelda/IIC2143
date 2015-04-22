@@ -1,4 +1,4 @@
-import com.sun.javafx.geom.AreaOp;
+
 
 import javax.swing.*;
 import java.util.*;
@@ -28,7 +28,7 @@ public class calendarioFrame extends JFrame {
     }
 
 
-    // escuchar botones bSiguiente y bAnterior y cambiar mes(o año) del calendario
+    // escuchar botones bSiguiente y bAnterior y cambiar mes(o aï¿½o) del calendario
 }
 
 
