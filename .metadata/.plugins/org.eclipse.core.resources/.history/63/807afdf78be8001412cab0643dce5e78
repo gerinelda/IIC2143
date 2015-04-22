@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+
+
+public class Gestor {
+	
+	private int contador_proyectos;
+	private int contador_tareas;
+	private ArrayList<proyecto> proyectos;
+	private contexto[] contextos;
+	
+	public void agregarTarea(tarea t, String p)
+	{
+		t.setId(contador_tareas);
+		for (int i = 0; i < contador_proyectos; i++) {
+			proyecto actual_proyecto = proyectos.get(i);
+			if(actual_proyecto.getNombre().equals(p))
+			{
+				actual_proyecto.getTareas().add(t);
+				contador_tareas++;
+			}
+		}
+	}
+	public void eliminarTarea(String s)
+	{
+		
+	}
+	
+}

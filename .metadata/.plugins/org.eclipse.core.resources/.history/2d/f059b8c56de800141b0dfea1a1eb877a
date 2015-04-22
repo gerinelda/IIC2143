@@ -1,0 +1,6 @@
+
+public class Gestor {
+	
+	private proyecto[] proy;
+	private contexto[] cont;
+}

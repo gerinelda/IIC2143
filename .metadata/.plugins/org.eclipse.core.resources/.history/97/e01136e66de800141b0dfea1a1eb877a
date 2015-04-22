@@ -1,0 +1,17 @@
+
+public class Gestor {
+	
+	private int contador_proyectos;
+	private proyecto[] proyectos;
+	private contexto[] contextos;
+	
+	public void agregarTarea(tarea t, String p)
+	{
+		for (int i = 0; i < contador_proyectos; i++) {
+			if(proyectos[i].nombre==p)
+			{
+			}
+			}
+		}
+	}
+}

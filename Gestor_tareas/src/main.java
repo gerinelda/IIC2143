@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -14,6 +15,7 @@ public class main {
 		placeComponents(panel);
 
 		frame.setVisible(true);
+		
 	}
 
 	private static void placeComponents(JPanel panel) {

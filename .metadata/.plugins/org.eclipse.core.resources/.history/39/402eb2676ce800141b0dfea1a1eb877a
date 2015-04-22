@@ -1,0 +1,45 @@
+
+public class tarea {
+	
+	public enum estado{activo, pausado, terminado}
+	private String nombre;
+	private fecha fi;
+	private fecha ff;
+	private hora hi;
+	private hora hf;
+	private String descripcion;
+	private estado estado;
+	private int color;
+	private contexto contexto;
+	
+	/*posibilidades de creación de tareas:
+	 -Con fecha final, nombre
+	 -Con fecha final, nombre, descripción
+	 */
+	public tarea(String nombre, fecha fi, fecha ff, hora hi, hora hf, String descripcion, estado estado, int color, contexto contexto)
+	{
+		this.nombre = nombre;
+		this.fi = fi;
+		this.ff = ff;
+		this.hi = hi;
+		this hf = hf;
+		this.descripcion = descripcion;
+		this.estado = estado.activo;
+		this.color = color;
+		this.contexto = contexto;
+	}
+	
+	public tarea()
+	{
+		this.nombre = null;
+		this.fi = null;
+		this.ff = null;
+		this.hi = null;
+		this hf = null;
+		this.descripcion = null;
+		this.estado = estado.activo;
+		this.color = color;
+		this.contexto = contexto;
+	}
+	
+}
