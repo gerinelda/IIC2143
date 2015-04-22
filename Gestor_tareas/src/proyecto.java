@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class proyecto {
-	public enum estado{activo, pausado, terminado}
+	//public enum estado
 	private int id;
 	private String nombre;
 	private ArrayList<tarea> tareas;

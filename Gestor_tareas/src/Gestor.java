@@ -12,9 +12,17 @@ public class Gestor {
 	private contexto[] contextos;
 	
 	
+	CreadorProyectos cp;
+	CreadorTareas ct;
+	
 	public Gestor()
 	{
 		proyectos = new ArrayList<>();
+		cp = new CreadorProyectos(this);
+		ct = new CreadorTareas(this);	
+		ct.frame.setVisible(false);
+		cp.frame.setVisible(false);
+		
 	}
 	
 	public int getContador_proyectos() {
