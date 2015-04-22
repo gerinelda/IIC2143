@@ -97,7 +97,7 @@ public class tarea {
 	
 	//Creación: se crea completa o vacía y se modifican los datos individualmente con los setters
 
-	public tarea(int id, String nombre, fecha fi, fecha ff, hora hi, hora hf, String descripcion, estado estado, int color, contexto contexto)
+	public tarea(int id, String nombre, fecha fi, fecha ff, hora hi, hora hf, String descripcion, int color, contexto contexto)
 	{
 		this.id = id;
 		this.nombre = nombre;
@@ -120,7 +120,7 @@ public class tarea {
 		this.hi = null;
 		this.hf = null;
 		this.descripcion = null;
-		this.estado = estado.activo;
+		this.estado = estado.pausado;
 		this.color = 0;
 		this.contexto = null;
 	}
