@@ -8,16 +8,23 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class CreadorProyectos {
 
-	CreadorProyectos(){
+
+public class CreadorProyectos {
+	
+	JFrame frame;
+	JTextField nombreText;
+	Gestor g;
+	
+	CreadorProyectos(Gestor g){
 		initUI();
+		this.g = g;
 		}
 	
 
 	private void initUI(){
 		
-		JFrame frame = new JFrame("Crear Proyecto");
+		frame = new JFrame("Crear Proyecto");
 		frame.setSize(300, 150);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -30,7 +37,7 @@ public class CreadorProyectos {
 	}
 	
 
-	private static void placeComponents(JPanel panel) {
+	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
 
@@ -38,7 +45,7 @@ public class CreadorProyectos {
 		nombreLabel.setBounds(10, 20, 80, 25);
 		panel.add(nombreLabel);
 
-		JTextField nombreText = new JTextField(20);
+		nombreText = new JTextField(20);
 		nombreText.setBounds(100, 20, 160, 25);
 		nombreText.setText("");
 		panel.add(nombreText);
@@ -53,16 +60,31 @@ public class CreadorProyectos {
 		crearButton.setBounds(170, 70, 100, 25);
 		panel.add(crearButton);
 		
+		String asdf = nombreText.getText();
+		
 		crearButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("funciona !");
 				
+				
+				proyecto p = new proyecto(g.getId_proyectos(),nombreText.getText(), estado.activo);
+				g.agregarProyecto(p);
+				
+				System.out.println(p.getNombre());
+				frame.setVisible(false);
 			}
 		});
 		
-		
+		cancelarButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.setVisible(false);
+				
+			}
+		});
 		
 		String n1 = nombreText.getText();
 		System.out.println("text: "+n1);

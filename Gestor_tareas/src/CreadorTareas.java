@@ -8,15 +8,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CreadorTareas extends JFrame {
+public class CreadorTareas /*extends JFrame*/ {
 
-		CreadorTareas(){
+	
+		JFrame frame;
+		JTextField nombreText;
+		JTextField fiText;
+		JTextField ffText;
+		JTextField hiText;
+		JTextField hfText;
+		JTextField contextoText;
+		JTextField proyectoText;
+		JTextField descripcionText;
+	
+		Gestor g;
+		
+		public CreadorTareas(Gestor g){
 		initUI();
+		this.g = g;
 		}
 		
 		private void initUI(){
 			
-			JFrame frame = new JFrame("Crear Tarea");
+			frame = new JFrame("Crear Tarea");
 			frame.setSize(300, 400);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -29,7 +43,7 @@ public class CreadorTareas extends JFrame {
 		}
 		
 
-		private static void placeComponents(JPanel panel) {
+		private void placeComponents(JPanel panel) {
 
 			panel.setLayout(null);
 
@@ -37,7 +51,7 @@ public class CreadorTareas extends JFrame {
 			nombreLabel.setBounds(10, 10, 80, 25);
 			panel.add(nombreLabel);
 
-			JTextField nombreText = new JTextField(20);
+			nombreText = new JTextField(20);
 			nombreText.setBounds(100, 10, 160, 25);
 			nombreText.setText("");
 			panel.add(nombreText);
@@ -47,7 +61,7 @@ public class CreadorTareas extends JFrame {
 			fiLabel.setBounds(10, 40, 80, 25);
 			panel.add(fiLabel);
 
-			JTextField fiText = new JTextField(20);
+			fiText = new JTextField(20);
 			fiText.setBounds(100, 40, 160, 25);
 			panel.add(fiText);
 
@@ -56,7 +70,7 @@ public class CreadorTareas extends JFrame {
 			ffLabel.setBounds(10, 70, 80, 25);
 			panel.add(ffLabel);
 			
-			JTextField ffText = new JTextField(20);
+			ffText = new JTextField(20);
 			ffText.setBounds(100, 70, 160, 25);
 			panel.add(ffText);
 			
@@ -64,7 +78,7 @@ public class CreadorTareas extends JFrame {
 			hiLabel.setBounds(10, 100, 80, 25);
 			panel.add(hiLabel);
 			
-			JTextField hiText = new JTextField(20);
+			hiText = new JTextField(20);
 			hiText.setBounds(100, 100, 160, 25);
 			panel.add(hiText);
 			
@@ -72,7 +86,7 @@ public class CreadorTareas extends JFrame {
 			hfLabel.setBounds(10, 130, 80, 25);
 			panel.add(hfLabel);
 			
-			JTextField hfText = new JTextField(20);
+			hfText = new JTextField(20);
 			hfText.setBounds(100, 130, 160, 25);
 			panel.add(hfText);
 			
@@ -80,7 +94,7 @@ public class CreadorTareas extends JFrame {
 			contextoLabel.setBounds(10, 160, 80, 25);
 			panel.add(contextoLabel);
 			
-			JTextField contextoText = new JTextField(20);
+			contextoText = new JTextField(20);
 			contextoText.setBounds(100, 160, 160, 25);
 			panel.add(contextoText);
 			
@@ -88,7 +102,7 @@ public class CreadorTareas extends JFrame {
 			proyectoLabel.setBounds(10, 190, 80, 25);
 			panel.add(proyectoLabel);
 			
-			JTextField proyectoText = new JTextField(20);
+			proyectoText = new JTextField(20);
 			proyectoText.setBounds(100, 190, 160, 25);
 			panel.add(proyectoText);
 			
@@ -96,7 +110,7 @@ public class CreadorTareas extends JFrame {
 			descripcionLabel.setBounds(10, 220, 80, 25);
 			panel.add(descripcionLabel);
 			
-			JTextField descripcionText = new JTextField(20);
+			descripcionText = new JTextField(20);
 			descripcionText.setBounds(100, 220, 160, 50);
 			panel.add(descripcionText);
 			
@@ -113,15 +127,29 @@ public class CreadorTareas extends JFrame {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("funciona !");
+
+				tarea t = new tarea(g.getId_tareas(),nombreText.getText(),new fecha(),new fecha(), new hora(), new hora(), descripcionText.getText(),0, new contexto(contextoText.getText())); 
+					g.agregarTarea(t, Integer.parseInt(proyectoText.getText()));
+					frame.setVisible(false);
+					
+					
+					System.out.println(g.getId_tareas());
+					System.out.println(nombreText.getText());
 					
 				}
 			});
 			
 			
 			
-			String n1 = nombreText.getText();
-			System.out.println("text: "+n1);
+			cancelarButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					frame.setVisible(false);
+					
+				}
+			});
 					
 			
 		

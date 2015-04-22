@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,22 +11,28 @@ import javax.swing.JTextField;
 
 public class Resumen extends JFrame{
 	
-	tarea t;
-	Resumen(tarea _t){
-		t = _t;
-		initUI(t);
+	Gestor g;
+	ArrayList<proyecto> proyectos;
+	JFrame frame;
+	
+	Resumen(Gestor g){
+		this.g = g;
+		this.proyectos = g.getProyectos();
+		initUI();
 	}
 	
 	
-	private void initUI(tarea t){
+	private void initUI(){
 		
-		JFrame frame = new JFrame("Vista Resumen");
+		frame = new JFrame("Vista Resumen");
 		frame.setSize(450, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		frame.add(panel);
-		placeComponents(panel,t);
+		
+		
+		placeComponents(panel);
 
 		frame.setVisible(true);
 		
@@ -33,29 +40,33 @@ public class Resumen extends JFrame{
 	}
 	
 
-	private static void placeComponents(JPanel panel, tarea t) {
+	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
 
 		JLabel nombreLabel = new JLabel("Nombre | Fecha inicio | Fecha Fin | Estado");
 		nombreLabel.setBounds(140, 10, 250, 25);
 		panel.add(nombreLabel);
-
 		
-		int largo = 1;
-		for(int i = 0;i<largo;i++){
+		
+		
+		
+		
+		for(int i = 0; i< g.getContador_proyectos(); i++){
 			
-			
-			
-		//	JLabel auxLabel = new JLabel(t.nombre + " | " + t.fi + " | " + t.ff + " | " + t.estado);
-			//auxLabel.setBounds(140, 40 + i*30, 250, 25);
-			//panel.add(auxLabel);
-			
+			for(int j = 0 ; j < proyectos.get(i).getTareas().size();j++){
+				tarea t = proyectos.get(i).getTareas().get(j);
+				
+				JLabel auxLabel = new JLabel(t.getNombre() + " | " + t.getFi().toString() + " | " + t.getFf().toString() + " | " + t.getEstado().toString());
+				auxLabel.setBounds(140, 40 + j*30, 250, 25);
+				panel.add(auxLabel);
+				
+				
+			}
 		}
+			
+			
 
-		
-		
-		
 		
 		//Botones
 		JButton crearTareaButton = new JButton("Crear T");
@@ -76,7 +87,9 @@ public class Resumen extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CreadorTareas g1 = new CreadorTareas();
+				
+				g.ct.frame.setVisible(true);
+			//	frame.setVisible(false);
 				
 			}
 		});
@@ -86,7 +99,10 @@ public class Resumen extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CreadorProyectos p1 = new CreadorProyectos();
+			
+				g.cp.frame.setVisible(true);
+				//frame.setVisible(false);
+				
 			}
 		});
 		
@@ -95,7 +111,7 @@ public class Resumen extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("funciona !");
+				
 				
 			}
 		});

@@ -21,6 +21,7 @@ public class hora implements Serializable{
 		this.m = 0;
 		this.s = 0;
 	}
+	hora(){}
 
 	// falta corregir que muestre 2 numeros. (08 en vez de 8)
 	@Override
