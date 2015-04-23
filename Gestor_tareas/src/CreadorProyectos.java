@@ -32,7 +32,7 @@ public class CreadorProyectos {
 		frame.add(panel);
 		placeComponents(panel);
 
-		frame.setVisible(true);
+		//frame.setVisible(true);
 					
 	}
 	
@@ -49,7 +49,7 @@ public class CreadorProyectos {
 		nombreText.setBounds(100, 20, 160, 25);
 		nombreText.setText("");
 		panel.add(nombreText);
-		
+
 		
 		//Botones
 		JButton cancelarButton = new JButton("Cancelar");

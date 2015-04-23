@@ -23,9 +23,9 @@ public class CreadorTareas /*extends JFrame*/ {
 	
 		Gestor g;
 		
-		public CreadorTareas(Gestor g){
-		initUI();
-		this.g = g;
+		public CreadorTareas(Gestor g) {
+			initUI();
+			this.g = g;
 		}
 		
 		private void initUI(){
@@ -38,7 +38,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			frame.add(panel);
 			placeComponents(panel);
 
-			frame.setVisible(true);
+			//frame.setVisible(true);
 						
 		}
 		

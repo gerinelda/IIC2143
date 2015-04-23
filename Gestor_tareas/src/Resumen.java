@@ -26,7 +26,7 @@ public class Resumen extends JFrame{
 	private void initUI(){
 		
 		frame = new JFrame("Vista Resumen");
-		frame.setSize(450, 350);
+		frame.setSize(500, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
 		frame.add(panel);
@@ -49,7 +49,7 @@ public class Resumen extends JFrame{
 				tarea t = proyectos.get(i).getTareas().get(j);
 				
 				JLabel auxLabel = new JLabel(t.getNombre() + " | " + t.getFi().toString() + " | " + t.getFf().toString() + " | " + t.getEstado().toString());
-				auxLabel.setBounds(140, 40 + j*30, 250, 25);
+				auxLabel.setBounds(140, 40 + j*30, 450, 25);
 				panel.add(auxLabel);
 				
 				
