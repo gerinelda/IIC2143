@@ -1,5 +1,0 @@
-
-public class calendario {
-
-	private ArrayList<proyecto> proyectos;
-}

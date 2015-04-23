@@ -1,6 +1,0 @@
-
-public class usuario {
-	private String name;
-	private String email; //usar regex para validar correo
-	private ArrayList<contexto> misContextos;
-}

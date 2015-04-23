@@ -14,7 +14,8 @@ public class Resumen extends JFrame{
 	Gestor g;
 	ArrayList<proyecto> proyectos;
 	JFrame frame;
-	
+	calendarioFrame calendario;
+
 	Resumen(Gestor g){
 		this.g = g;
 		this.proyectos = g.getProyectos();
@@ -27,16 +28,10 @@ public class Resumen extends JFrame{
 		frame = new JFrame("Vista Resumen");
 		frame.setSize(450, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		JPanel panel = new JPanel();
 		frame.add(panel);
-		
-		
 		placeComponents(panel);
-
 		frame.setVisible(true);
-		
-		
 	}
 	
 
@@ -47,10 +42,6 @@ public class Resumen extends JFrame{
 		JLabel nombreLabel = new JLabel("Nombre | Fecha inicio | Fecha Fin | Estado");
 		nombreLabel.setBounds(140, 10, 250, 25);
 		panel.add(nombreLabel);
-		
-		
-		
-		
 		
 		for(int i = 0; i< g.getContador_proyectos(); i++){
 			
@@ -111,8 +102,8 @@ public class Resumen extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				calendario = new calendarioFrame(g);
+				calendario.setVisible(true);
 			}
 		});
 		

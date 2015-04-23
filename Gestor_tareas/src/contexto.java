@@ -9,6 +9,10 @@ public class contexto implements Serializable{
 	public contexto(String contexto) {
 		nombre = contexto;
 	}
-	
-	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
 }

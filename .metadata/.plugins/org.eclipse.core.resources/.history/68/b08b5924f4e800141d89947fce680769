@@ -1,9 +1,0 @@
-
-public class prueba {
-
-	public static void main(String[] args) {
-		Gestor g = new Gestor();
-		proyecto p1 = new proyecto(g.getId_proyectos());
-	}
-
-}

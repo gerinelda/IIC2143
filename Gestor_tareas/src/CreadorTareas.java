@@ -32,7 +32,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			
 			frame = new JFrame("Crear Tarea");
 			frame.setSize(300, 400);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 			JPanel panel = new JPanel();
 			frame.add(panel);

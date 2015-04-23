@@ -10,8 +10,20 @@ public class fecha implements Serializable {
 		this.m = m;
 		this.y = y;
 	}
-	
+
 	fecha(){}
+
+	public int getD() {
+		return d;
+	}
+
+	public int getM() {
+		return m;
+	}
+
+	public int getY() {
+		return y;
+	}
 
 	@Override
 	public String toString() {

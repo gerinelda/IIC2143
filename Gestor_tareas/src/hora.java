@@ -23,7 +23,6 @@ public class hora implements Serializable{
 	}
 	hora(){}
 
-	// falta corregir que muestre 2 numeros. (08 en vez de 8)
 	@Override
 	public String toString() {
 		return new String(atToString(h)+":"+atToString(m)+":"+atToString(s));
