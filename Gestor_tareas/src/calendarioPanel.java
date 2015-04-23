@@ -53,9 +53,6 @@ public class calendarioPanel extends JPanel {
                     //System.out.print("   ");
                     //System.out.println(Integer.toString(t.getFf().getD())+"/"+Integer.toString(t.getFf().getM())+"/"+Integer.toString(t.getFf().getY()));
                     if (diapanel.mismaFecha(t.getFf())) {
-                        System.out.println("SUCCESS?");
-
-
                         diapanel.addTarea(t);
                     }
                 }
