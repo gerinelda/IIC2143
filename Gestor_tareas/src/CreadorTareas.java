@@ -98,7 +98,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			contextoText.setBounds(100, 160, 160, 25);
 			panel.add(contextoText);
 			
-			JLabel proyectoLabel = new JLabel("Proyecto");
+			JLabel proyectoLabel = new JLabel("Proyecto (numero)");
 			proyectoLabel.setBounds(10, 190, 80, 25);
 			panel.add(proyectoLabel);
 			

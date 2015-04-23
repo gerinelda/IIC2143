@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -11,8 +12,10 @@ public class calendarioPanel extends JPanel {
     private List<tarea> listaTareas;
     ArrayList<diaPanel> diasPanel;
     Gestor g;
+    calendarioFrame cF;
 
-    public calendarioPanel(Calendar calendario, Gestor g) {
+    public calendarioPanel(Calendar calendario, Gestor g, calendarioFrame cF) {
+        this.cF = cF;
         this.g = g;
         diasPanel = new ArrayList<diaPanel>();
         Calendar c = new GregorianCalendar();
@@ -35,7 +38,7 @@ public class calendarioPanel extends JPanel {
             add(new diaPanel());
         }
         for (int i = 1; i <= diasEnMes; i++) {
-            diaPanel diapanel = new diaPanel(i,mes,year);
+            diaPanel diapanel = new diaPanel(i,mes,year,g);
             //lo agregamos a calendarioPanel
             add(diapanel);
             //lo agregamos al array de dias

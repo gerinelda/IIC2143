@@ -21,10 +21,9 @@ public class calendarioFrame extends JFrame implements ActionListener {
         this.g = g;
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-
         calendario.setTime(new Date());
         menu = new menuPanel(calendario);
-        content = new calendarioPanel(calendario, g);
+        content = new calendarioPanel(calendario, g, this);
         add(container);
         menu.setListener(this);
         container.add(menu);
@@ -43,12 +42,18 @@ public class calendarioFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("siguiente")) {
             siguienteMes();
+            updateCalendario(calendario);
         }
         else if (e.getActionCommand().equals("anterior")) {
             anteriorMes();
+            updateCalendario(calendario);
         }
-        //else if (e.getActionCommand()
-        updateCalendario(calendario);
+        else if (e.getActionCommand().equals("eliminar")) {
+            System.out.println("eliminando tarea");
+            tareaPanel tP = (tareaPanel) e.getSource();
+            tarea t = tP.getTarea();
+            System.out.println(t.getDescripcion());
+        }
     }
 
     private void siguienteMes() {

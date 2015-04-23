@@ -21,7 +21,9 @@ public class tareaFrame extends JFrame{
 		descripcion.setBorder(BorderFactory.createEtchedBorder());
 		contexto = new JLabel("contexto: "+t.getContexto().getNombre());
 
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		content = new JPanel();
+		content.setBorder(BorderFactory.createTitledBorder("Detalle tarea"));
 		content.setLayout(new BoxLayout(content,BoxLayout.Y_AXIS));
 		setSize(300,300);
 		content.add(id);

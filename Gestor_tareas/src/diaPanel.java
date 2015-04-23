@@ -9,12 +9,14 @@ public class diaPanel extends JPanel {
     int mes;
     int dia;
     int year;
+    ArrayList<tarea> tareas;
+    Gestor g;
 
-    public diaPanel(int dia, int mes, int year) {
+    public diaPanel(int dia, int mes, int year, Gestor g) {
         this.dia = dia;
         this.mes = mes;
         this.year = year;
-        setPreferredSize(new Dimension(180, 140));
+        setPreferredSize(new Dimension(220, 140));
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createCompoundBorder(
@@ -30,7 +32,7 @@ public class diaPanel extends JPanel {
      * empty panel *
      */
     public diaPanel() {
-        setPreferredSize(new Dimension(70, 70));
+        setPreferredSize(new Dimension(220,140));
         setVisible(true);
     }
 
@@ -38,8 +40,9 @@ public class diaPanel extends JPanel {
      * agrega tareas al dia *
      */
     public void addTarea(tarea tarea) {
+        tareaPanel tP = new tareaPanel(tarea, g);
+        add(tP);
 
-        add(new tareaPanel(tarea));
     }
 
     public boolean mismaFecha(fecha fecha) {

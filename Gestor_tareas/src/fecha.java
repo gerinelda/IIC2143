@@ -1,9 +1,12 @@
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class fecha implements Serializable {
-	int d;
-	int m;
-	int y;
+
+	Calendar calendar = Calendar.getInstance();
+	int d = calendar.get(Calendar.DAY_OF_MONTH);
+	int m = calendar.get(Calendar.MONTH)+1; // Calendar.Month va de 0 a 11
+	int y = calendar.get(Calendar.YEAR);
 
 	public fecha(int d, int m, int y) {
 		this.d = d;
