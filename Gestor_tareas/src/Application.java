@@ -1,5 +1,5 @@
 
-public class prueba {
+public class Application {
 
 	public static void main(String[] args) {
 		Gestor g = new Gestor();

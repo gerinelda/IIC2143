@@ -1,12 +1,17 @@
+package Model;
+
+import Controller.Estado;
+import Controller.Tarea;
+
 import java.util.ArrayList;
 
 
 public class proyecto {
-	//public enum estado
+	//public enum Controller.Estado
 	private int id;
 	private String nombre;
-	private ArrayList<tarea> tareas;
-	private estado estado;
+	private ArrayList<Tarea> tareas;
+	private Estado estado;
 	
 	public int getId() {
 		return id;
@@ -24,35 +29,35 @@ public class proyecto {
 		this.nombre = nombre;
 	}
 	
-	public ArrayList<tarea> getTareas() {
+	public ArrayList<Tarea> getTareas() {
 		return tareas;
 	}
 	
-	public void setTareas(ArrayList<tarea> tareas) {
+	public void setTareas(ArrayList<Tarea> tareas) {
 		this.tareas = tareas;
 	}
 	
-	public estado getEstado(){
+	public Estado getEstado(){
 		return estado;
 	}
 	
-	public void setEstado(estado estado){
+	public void setEstado(Estado estado){
 		this.estado = estado;
 	}
 	
 	public proyecto(int id)
 	{
 		this.id = id;
-		this.nombre = "proyecto"+Integer.toString(id);
-		this.tareas = new ArrayList<tarea>();
+		this.nombre = "Model.proyecto"+Integer.toString(id);
+		this.tareas = new ArrayList<Tarea>();
 		this.estado = estado.activo;
 	}
 	
-	public proyecto(int id, String nombre, estado activo)
+	public proyecto(int id, String nombre, Estado activo)
 	{
 		this.id = id;
 		this.nombre = nombre;
 		this.estado = estado;
-		this.tareas = new ArrayList<tarea>();
+		this.tareas = new ArrayList<Tarea>();
 	}
 }

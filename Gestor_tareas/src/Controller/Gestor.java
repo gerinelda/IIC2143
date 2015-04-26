@@ -1,3 +1,5 @@
+package Controller;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -9,20 +11,12 @@ public class Gestor {
 	private int contador_tareas;
 	private int id_proyectos;
 	private ArrayList<proyecto> proyectos;
-	private contexto[] contextos;
-	
-	
-	CreadorProyectos cp;
-	CreadorTareas ct;
+	private Contexto[] contextos;
 	
 	public Gestor()
 	{
 		proyectos = new ArrayList<>();
-		cp = new CreadorProyectos(this);
-		ct = new CreadorTareas(this);	
-		ct.frame.setVisible(false);
-		cp.frame.setVisible(false);
-		
+
 	}
 	
 	public int getContador_proyectos() {
@@ -75,17 +69,17 @@ public class Gestor {
 	}
 
 
-	public contexto[] getContextos() {
+	public Contexto[] getContextos() {
 		return contextos;
 	}
 
 
-	public void setContextos(contexto[] contextos) {
+	public void setContextos(Contexto[] contextos) {
 		this.contextos = contextos;
 	}
 
 	
-	public void agregarTarea(tarea t, int id_proyecto)
+	public void agregarTarea(Tarea t, int id_proyecto)
 	{
 		proyecto actual_proyecto;
 		t.setId(contador_tareas);
@@ -114,7 +108,7 @@ public class Gestor {
 	public void eliminarTarea(int id)
 	{
 		proyecto actual_proyecto;
-		tarea actual_tarea;
+		Tarea actual_tarea;
 		for (int i = 0; i < contador_proyectos; i++) 
 		{
 			actual_proyecto = proyectos.get(i);
@@ -146,10 +140,10 @@ public class Gestor {
 	}
 	
 	
-	public tarea getTarea(int id)
+	public Tarea getTarea(int id)
 	{
 		proyecto actual_proyecto;
-		tarea actual_tarea;
+		Tarea actual_tarea;
 		for (int i = 0; i < contador_proyectos; i++) 
 		{
 			actual_proyecto = proyectos.get(i);
@@ -213,7 +207,7 @@ public class Gestor {
 	
 	public boolean exportarTarea(int id, String path_destino)
 	{
-		tarea t = new tarea(getTarea(id));
+		Tarea t = new Tarea(getTarea(id));
 		t.setId(-1);
 		try{
 			FileOutputStream fos = new FileOutputStream(path_destino);
@@ -230,13 +224,13 @@ public class Gestor {
 	}
 	
 	
-	public tarea importarTarea(String path)
+	public Tarea importarTarea(String path)
 	{
 		try
 		{
 			 FileInputStream fis = new FileInputStream(path);
 			 ObjectInputStream in = new ObjectInputStream(fis);
-			 return (tarea)in.readObject();
+			 return (Tarea)in.readObject();
 		}
 		catch(Exception e)
 		{
