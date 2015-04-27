@@ -1,5 +1,7 @@
 package View;
 
+import Model.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,16 +16,15 @@ import javax.swing.JTextField;
 
 public class CreadorProyectos {
 	
-	JFrame frame;
-	JTextField nombreText;
-	Gestor g;
-	
-	CreadorProyectos(Gestor g){
+	private JFrame frame;
+	private JTextField nombreText;
+	private Model model;
+
+	public CreadorProyectos(Model model){
 		initUI();
-		this.g = g;
+		this.model = model;
 		}
 	
-
 	private void initUI(){
 		
 		frame = new JFrame("Crear Proyecto");
@@ -53,7 +54,7 @@ public class CreadorProyectos {
 		panel.add(nombreText);
 
 		
-		//Botones
+		//TransparentButton
 		JButton cancelarButton = new JButton("Cancelar");
 		cancelarButton.setBounds(10, 70, 100, 25);
 		panel.add(cancelarButton);
@@ -70,8 +71,8 @@ public class CreadorProyectos {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				proyecto p = new proyecto(g.getId_proyectos(),nombreText.getText(), Estado.activo);
-				g.agregarProyecto(p);
+				Proyecto p = new Proyecto(model.getId_proyectos(),nombreText.getText(), Estado.activo);
+				model.agregarProyecto(p);
 				
 				System.out.println(p.getNombre());
 				frame.setVisible(false);

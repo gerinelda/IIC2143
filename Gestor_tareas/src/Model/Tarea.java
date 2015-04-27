@@ -1,15 +1,11 @@
 package Model;
 
-import Controller.Contexto;
-import Controller.Fecha;
-import Controller.Hora;
-
 import java.io.Serializable;
 
 
 public class Tarea implements Serializable {
 	
-	public enum estado implements Serializable{activo, pausado, terminado}
+	//public enum estado implements Serializable{activo, pausado, terminado}
 	private int id;
 	private String nombre;
 	private Fecha fi;
@@ -17,7 +13,7 @@ public class Tarea implements Serializable {
 	private Hora hi;
 	private Hora hf;
 	private String descripcion;
-	private estado estado;
+	private Estado estado;
 	private int color;
 	private Contexto contexto;
 	
@@ -77,11 +73,11 @@ public class Tarea implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public estado getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(estado estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 

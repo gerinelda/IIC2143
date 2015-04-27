@@ -1,13 +1,10 @@
 package Model;
 
-import Controller.Estado;
-import Controller.Tarea;
-
 import java.util.ArrayList;
 
 
-public class proyecto {
-	//public enum Controller.Estado
+public class Proyecto {
+	//public enum Model.Estado
 	private int id;
 	private String nombre;
 	private ArrayList<Tarea> tareas;
@@ -45,15 +42,15 @@ public class proyecto {
 		this.estado = estado;
 	}
 	
-	public proyecto(int id)
+	public Proyecto(int id)
 	{
 		this.id = id;
-		this.nombre = "Model.proyecto"+Integer.toString(id);
+		this.nombre = "Model.Proyecto"+Integer.toString(id);
 		this.tareas = new ArrayList<Tarea>();
 		this.estado = estado.activo;
 	}
 	
-	public proyecto(int id, String nombre, Estado activo)
+	public Proyecto(int id, String nombre, Estado activo)
 	{
 		this.id = id;
 		this.nombre = nombre;

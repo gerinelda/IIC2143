@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.text.DateFormatSymbols;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends JMenuBar {
 
     private JButton bVolver;
     private JButton bSiguiente;
@@ -28,11 +28,12 @@ public class MenuPanel extends JPanel {
         add(bSiguiente);
         bSiguiente.setActionCommand("siguiente");
 
+        //setBackground(Color.getHSBColor(0.191F,0.3F,0.21F));
         /*
         TODO: agregar botones:
         * cambio de mes
         * volver a otra vista
-        * agregar Tarea (posiblemente agregar un boton a cada dia? aunque
+        * agregar Model.Tarea (posiblemente agregar un boton a cada dia? aunque
                          me parece que esta forma es mejor para no llenar de botones)
          */
     }

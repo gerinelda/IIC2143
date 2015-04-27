@@ -1,7 +1,6 @@
 package View;
 
-import Logic.*;
-import View.CalendarioFrame;
+import Model.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,21 +14,20 @@ import javax.swing.JPanel;
 
 public class VistaResumen extends JFrame{
 	
-	private Gestor g;
+	private Model model;
 	private CalendarioFrame calendario;
-	private ArrayList<proyecto> proyectos;
+	private ArrayList<Proyecto> proyectos;
 	private JFrame frame;
 
-	public VistaResumen(Gestor g){
-		this.g = g;
-		this.proyectos = g.getProyectos();
+	public VistaResumen(Model model) {
+		this.model = model;
+		this.proyectos = model.getProyectos();
 		initUI();
 	}
-	
-	
+
 	private void initUI(){
 		
-		frame = new JFrame("Vista VistaResumen.VistaResumen");
+		frame = new JFrame("Vista Resumen");
 		frame.setSize(500, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
@@ -43,11 +41,11 @@ public class VistaResumen extends JFrame{
 
 		panel.setLayout(null);
 
-		JLabel nombreLabel = new JLabel("Nombre | Logic.Fecha inicio | Logic.Fecha Fin | Logic.Estado");
+		JLabel nombreLabel = new JLabel("Nombre | Model.Fecha inicio | Model.Fecha Fin | Model.Estado");
 		nombreLabel.setBounds(140, 10, 250, 25);
 		panel.add(nombreLabel);
 		
-		for(int i = 0; i< g.getContador_proyectos(); i++){
+		for(int i = 0; i< model.getContador_proyectos(); i++){
 			
 			for(int j = 0 ; j < proyectos.get(i).getTareas().size();j++){
 				Tarea t = proyectos.get(i).getTareas().get(j);
@@ -63,7 +61,7 @@ public class VistaResumen extends JFrame{
 			
 
 		
-		//Botones
+		//TransparentButton
 		JButton crearTareaButton = new JButton("Crear T");
 		crearTareaButton.setBounds(10, 10, 100, 25);
 		panel.add(crearTareaButton);
@@ -83,7 +81,7 @@ public class VistaResumen extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				g.ct.frame.setVisible(true);
+				//model.ct.frame.setVisible(true);
 			//	frame.setVisible(false);
 				
 			}
@@ -95,7 +93,7 @@ public class VistaResumen extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 			
-				g.cp.frame.setVisible(true);
+				//model.cp.frame.setVisible(true);
 				//frame.setVisible(false);
 				
 			}
@@ -106,7 +104,7 @@ public class VistaResumen extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				calendario = new CalendarioFrame(g);
+				calendario = new CalendarioFrame(model);
 				calendario.setVisible(true);
 			}
 		});

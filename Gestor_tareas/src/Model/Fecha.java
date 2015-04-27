@@ -16,7 +16,9 @@ public class Fecha implements Serializable {
 		this.y = y;
 	}
 
-	Fecha(){}
+	public Fecha() {
+
+	}
 
 	public int getD() {
 		return d;

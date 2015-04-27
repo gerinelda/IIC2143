@@ -1,7 +1,22 @@
 package View;
+import Model.*;
 
-/**
- * Created by lucas on 25-04-2015.
- */
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+
 public class View {
+
+    private Model model;
+
+    public View(Model model) {
+        this.model = model;
+        //VistaResumen vistaResumen = new VistaResumen(model);
+        //vistaResumen.setVisible(true);
+        CalendarioFrame vistaCalendario = new CalendarioFrame(model);
+        vistaCalendario.setVisible(true);
+
+
+    }
+
 }

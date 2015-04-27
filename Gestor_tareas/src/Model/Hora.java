@@ -23,7 +23,13 @@ public class Hora implements Serializable{
 		this.m = 0;
 		this.s = 0;
 	}
-	Hora(){}
+
+	public Hora() {
+		this.h = 0;
+		this.m = 0;
+		this.s = 0;
+
+	}
 
 	@Override
 	public String toString() {

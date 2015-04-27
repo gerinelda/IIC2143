@@ -1,5 +1,9 @@
 package Controller;
 
+import Model.Contexto;
+import Model.Proyecto;
+import Model.Tarea;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -10,7 +14,7 @@ public class Gestor {
 	private int id_tareas;
 	private int contador_tareas;
 	private int id_proyectos;
-	private ArrayList<proyecto> proyectos;
+	private ArrayList<Proyecto> proyectos;
 	private Contexto[] contextos;
 	
 	public Gestor()
@@ -59,12 +63,12 @@ public class Gestor {
 	}
 
 
-	public ArrayList<proyecto> getProyectos() {
+	public ArrayList<Proyecto> getProyectos() {
 		return proyectos;
 	}
 
 
-	public void setProyectos(ArrayList<proyecto> proyectos) {
+	public void setProyectos(ArrayList<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
 
@@ -81,7 +85,7 @@ public class Gestor {
 	
 	public void agregarTarea(Tarea t, int id_proyecto)
 	{
-		proyecto actual_proyecto;
+		Proyecto actual_proyecto;
 		t.setId(contador_tareas);
 		for (int i = 0; i < contador_proyectos; i++) {
 			actual_proyecto = proyectos.get(i);
@@ -96,7 +100,7 @@ public class Gestor {
 	}
 
 	
-	public void agregarProyecto(proyecto p)
+	public void agregarProyecto(Proyecto p)
 	{
 		p.setId(id_proyectos);
 		proyectos.add(p);
@@ -107,7 +111,7 @@ public class Gestor {
 	
 	public void eliminarTarea(int id)
 	{
-		proyecto actual_proyecto;
+		Proyecto actual_proyecto;
 		Tarea actual_tarea;
 		for (int i = 0; i < contador_proyectos; i++) 
 		{
@@ -142,7 +146,7 @@ public class Gestor {
 	
 	public Tarea getTarea(int id)
 	{
-		proyecto actual_proyecto;
+		Proyecto actual_proyecto;
 		Tarea actual_tarea;
 		for (int i = 0; i < contador_proyectos; i++) 
 		{
@@ -160,9 +164,9 @@ public class Gestor {
 	}
 	
 	
-	public proyecto getProyecto(int id)
+	public Proyecto getProyecto(int id)
 	{
-		proyecto actual_proyecto;
+		Proyecto actual_proyecto;
 		for (int i = 0; i < contador_proyectos; i++) 
 		{
 			actual_proyecto =proyectos.get(i);
@@ -177,7 +181,7 @@ public class Gestor {
 	
 	public int indiceTarea(int id)
 	{
-		proyecto actual_proyecto;
+		Proyecto actual_proyecto;
 		for (int i = 0; i < contador_proyectos; i++) 
 		{
 			actual_proyecto = proyectos.get(i);

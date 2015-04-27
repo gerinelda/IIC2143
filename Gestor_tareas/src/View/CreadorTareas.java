@@ -1,5 +1,6 @@
 package View;
 
+import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,17 +22,16 @@ public class CreadorTareas /*extends JFrame*/ {
 		JTextField contextoText;
 		JTextField proyectoText;
 		JTextField descripcionText;
-	
-		Gestor g;
+		private Model model;
 		
-		public CreadorTareas(Gestor g) {
+		public CreadorTareas(Model model) {
 			initUI();
-			this.g = g;
+			this.model = model;
 		}
 		
 		private void initUI(){
 			
-			frame = new JFrame("Crear Tarea");
+			frame = new JFrame("Crear Model.Tarea");
 			frame.setSize(300, 400);
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -58,7 +58,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			panel.add(nombreText);
 			
 
-			JLabel fiLabel = new JLabel("Fecha inicio");
+			JLabel fiLabel = new JLabel("Model.Fecha inicio");
 			fiLabel.setBounds(10, 40, 80, 25);
 			panel.add(fiLabel);
 
@@ -67,7 +67,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			panel.add(fiText);
 
 			
-			JLabel ffLabel = new JLabel("Fecha fin");
+			JLabel ffLabel = new JLabel("Model.Fecha fin");
 			ffLabel.setBounds(10, 70, 80, 25);
 			panel.add(ffLabel);
 			
@@ -75,7 +75,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			ffText.setBounds(100, 70, 160, 25);
 			panel.add(ffText);
 			
-			JLabel hiLabel = new JLabel("Hora inicio");
+			JLabel hiLabel = new JLabel("Model.Hora inicio");
 			hiLabel.setBounds(10, 100, 80, 25);
 			panel.add(hiLabel);
 			
@@ -83,7 +83,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			hiText.setBounds(100, 100, 160, 25);
 			panel.add(hiText);
 			
-			JLabel hfLabel = new JLabel("Hora fin");
+			JLabel hfLabel = new JLabel("Model.Hora fin");
 			hfLabel.setBounds(10, 130, 80, 25);
 			panel.add(hfLabel);
 			
@@ -91,7 +91,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			hfText.setBounds(100, 130, 160, 25);
 			panel.add(hfText);
 			
-			JLabel contextoLabel = new JLabel("Contexto");
+			JLabel contextoLabel = new JLabel("Model.Contexto");
 			contextoLabel.setBounds(10, 160, 80, 25);
 			panel.add(contextoLabel);
 			
@@ -115,7 +115,7 @@ public class CreadorTareas /*extends JFrame*/ {
 			descripcionText.setBounds(100, 220, 160, 50);
 			panel.add(descripcionText);
 			
-			//Botones
+			//TransparentButton
 			JButton cancelarButton = new JButton("Cancelar");
 			cancelarButton.setBounds(10, 290, 100, 25);
 			panel.add(cancelarButton);
@@ -129,12 +129,12 @@ public class CreadorTareas /*extends JFrame*/ {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
-				Tarea t = new Tarea(g.getId_tareas(),nombreText.getText(),new Fecha(),new Fecha(), new Hora(), new Hora(), descripcionText.getText(),0, new Contexto(contextoText.getText()));
-					g.agregarTarea(t, Integer.parseInt(proyectoText.getText()));
+				Tarea t = new Tarea(model.getId_tareas(),nombreText.getText(),new Fecha(),new Fecha(), new Hora(), new Hora(), descripcionText.getText(),0, new Contexto(contextoText.getText()));
+					model.agregarTarea(t, Integer.parseInt(proyectoText.getText()));
 					frame.setVisible(false);
 					
 					
-					System.out.println(g.getId_tareas());
+					System.out.println(model.getId_tareas());
 					System.out.println(nombreText.getText());
 					
 				}
