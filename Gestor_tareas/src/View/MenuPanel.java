@@ -1,6 +1,7 @@
 package View;
 
 import javax.swing.*;
+import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,22 +10,25 @@ import java.text.DateFormatSymbols;
 
 public class MenuPanel extends JMenuBar {
 
-    private JButton bVolver;
-    private JButton bSiguiente;
-    private JButton bAnterior;
+    private TransparentButton bVolver;
+    private TransparentButton bSiguiente;
+    private TransparentButton bAnterior;
     private JLabel fechaLabel;
 
     public MenuPanel(Calendar calendario) {
+        setBackground(new Color(10, 19, 13, 230));
         setLayout(new FlowLayout());
         setVisible(true);
         setBorder(BorderFactory.createLineBorder(Color.black));
-
-        bAnterior = new JButton("Mes anterior");
+        bAnterior = new TransparentButton(" Mes anterior ");
         add(bAnterior);
         bAnterior.setActionCommand("anterior");
         fechaLabel = new JLabel(getFecha(calendario));
+        fechaLabel.setForeground(Color.WHITE);
+        Font font = new Font("Centhury Gothic",Font.PLAIN,20);
+        fechaLabel.setFont(font);
         add(fechaLabel);
-        bSiguiente = new JButton("Siguiente mes");
+        bSiguiente = new TransparentButton(" Siguiente mes ");
         add(bSiguiente);
         bSiguiente.setActionCommand("siguiente");
 
@@ -36,6 +40,13 @@ public class MenuPanel extends JMenuBar {
         * agregar Model.Tarea (posiblemente agregar un boton a cada dia? aunque
                          me parece que esta forma es mejor para no llenar de botones)
          */
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+
     }
 
     public void setListener(ActionListener listener) {

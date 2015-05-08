@@ -60,6 +60,10 @@ public class CalendarioPanel extends JPanel {
 
     }
 
+    public void setListener(ActionListener listener) {
+        //diaPanel
+    }
+
     private void addDays(Calendar calendario) {
         int diasEnMes = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);
         int mes = calendario.get(Calendar.MONTH);

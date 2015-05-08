@@ -44,6 +44,11 @@ public class CalendarioFrame extends JFrame implements ActionListener {
 
     }
 
+    public void setListener(ActionListener listener) {
+        content.setListener(listener);
+        menu.setListener(listener);
+    }
+
     private void updateCalendario(Calendar calendario) {
         content.update(calendario);
         menu.updateFecha(calendario);

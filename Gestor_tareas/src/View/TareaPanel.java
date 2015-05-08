@@ -24,9 +24,9 @@ public class TareaPanel extends JPanel implements ActionListener {
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
         estado = new TransparentButton(tarea.getEstado());
-        estado.setBorder(new LineBorder(Color.BLACK,3));
+        estado.setBorder(new LineBorder(Color.white,1));
         nombre = new TransparentButton(" "+tarea.getNombre());
-        delete = new TransparentButton("X ");
+        delete = new TransparentButton(" X ");
 
         add(delete);
         add(estado);

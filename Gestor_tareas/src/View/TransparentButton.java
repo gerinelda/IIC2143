@@ -40,7 +40,7 @@ public class TransparentButton extends JButton {
 
         setBackground(bgColor);
 
-        setBorder(new LineBorder(Color.white, 0));
+        setBorder(new LineBorder(Color.white, 1));
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

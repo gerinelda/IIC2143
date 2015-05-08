@@ -17,6 +17,7 @@ public class DiaPanel extends JPanel  {
 
     public DiaPanel(int dia, int mes, int year, Model model) {
 
+
         setPreferredSize(new Dimension(200, 140));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  this.dia = dia;
 
@@ -48,7 +49,6 @@ public class DiaPanel extends JPanel  {
         //lFecha.setFont(new Font("Eras Light ITC",Font.PLAIN,28));
         lFecha.setFont(new Font("Century Gothic", Font.PLAIN, 28));
         lFecha.setForeground(Color.white);
-
 
         setBackground(getColor(diaSemana, dia, diaActual));
 
