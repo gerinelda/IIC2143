@@ -12,8 +12,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import Model.*;
+import javafx.scene.layout.Border;
 
 import javax.imageio.ImageIO;
+import javax.swing.border.LineBorder;
 import java.io.File;
 
 public class CalendarioPanel extends JPanel {
@@ -43,9 +45,7 @@ public class CalendarioPanel extends JPanel {
             setBackground(Color.getHSBColor(0.191F, 0.3F, 0.21F));
             System.out.println("Background image loading failed.");
         }
-
-        // margenes
-        //setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         setOpaque(false);
         setVisible(true);
     }
@@ -56,15 +56,17 @@ public class CalendarioPanel extends JPanel {
         g.drawImage(BGimage, 0, 0, this);
 
         g.setColor(new Color(119, 2, 20, 160));
-        g.fillRect(0,0,getWidth(),getHeight());
+        g.fillRect(0, 0, getWidth(), getHeight());
 
     }
 
-    public void setListener(ActionListener listener) {
-        //diaPanel
+    public void setEliminarTareaListener(EliminarTareaListener listener) {
+        for (DiaPanel diaPanel : diasPanel) {
+            diaPanel.setEliminarTareaListener(listener);
+        }
     }
 
-    private void addDays(Calendar calendario) {
+     private void addDays(Calendar calendario) {
         int diasEnMes = calendario.getActualMaximum(Calendar.DAY_OF_MONTH);
         int mes = calendario.get(Calendar.MONTH);
         int year = calendario.get(Calendar.YEAR);
@@ -90,9 +92,6 @@ public class CalendarioPanel extends JPanel {
             for (Proyecto p : proyectos) {
                 tareas = p.getTareas();
                 for (Tarea t : tareas) {
-                    //System.out.print(Integer.toString(i)+"/"+Integer.toString(mes+1)+"/"+Integer.toString(year));
-                    //System.out.print("   ");
-                    //System.out.println(Integer.toString(t.getFf().getD())+"/"+Integer.toString(t.getFf().getM())+"/"+Integer.toString(t.getFf().getY()));
                     if (diaPanel.mismaFecha(t.getFf())) {
                         diaPanel.addTarea(t);
                     }

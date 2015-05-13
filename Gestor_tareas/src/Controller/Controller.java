@@ -5,7 +5,7 @@ import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Controller implements ActionListener {
+public class Controller implements ActionListener, EliminarTareaListener {
 
     View view;
     Model model;
@@ -14,8 +14,8 @@ public class Controller implements ActionListener {
         this.view = view;
         this.model = model;
         view.setListener(this);
-
-
+        view.setEliminarTareaListener(this);
+        //view.setDeleteTareaListener(this);
     }
 
 
@@ -23,7 +23,15 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("eliminar")) {
-            //model.eliminarTarea();
+            //int id = ((TransparentButton) e.getSource()).getId();
+            //model.eliminarTarea(id);
+            //System.out.println("eliminando tarea " + id);
         }
+    }
+
+    @Override
+    public void EliminarTarea(int id) {
+        System.out.println("eliminando tarea "+id);
+        model.eliminarTarea(id);
     }
 }

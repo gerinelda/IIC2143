@@ -3,6 +3,7 @@ import Model.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -11,7 +12,7 @@ public class DiaPanel extends JPanel  {
     private int mes;
     private int dia;
     private int year;
-    private ArrayList<Tarea> tareas;
+    private ArrayList<TareaPanel> tareas = new ArrayList<>();
     private Model model;
     int diaSemana;
 
@@ -30,6 +31,8 @@ public class DiaPanel extends JPanel  {
         diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
 
         int diaActual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int mesActual = Calendar.getInstance().get(Calendar.MONTH);
+        int yearActual = Calendar.getInstance().get(Calendar.YEAR);
 
         /*
         setBorder(BorderFactory.createCompoundBorder(
@@ -50,7 +53,7 @@ public class DiaPanel extends JPanel  {
         lFecha.setFont(new Font("Century Gothic", Font.PLAIN, 28));
         lFecha.setForeground(Color.white);
 
-        setBackground(getColor(diaSemana, dia, diaActual));
+        setBackground(getColor(diaSemana, dia, diaActual, mes, mesActual, year, yearActual));
 
         setBorder(new EtchedBorder());
 
@@ -62,65 +65,48 @@ public class DiaPanel extends JPanel  {
 
     }
 
+
     public DiaPanel() {
         setVisible(false);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        // efecto sombra
-        // int dx = 6;
-        // int dy = 6;
-
         super.paintComponent(g);
-        //setBackground(new Color(10, 19, 13, 200));
-
-        /*
-        Polygon p1 = new Polygon(new int[]{0,getWidth()/3,getWidth()*2/3,0},new int[]{0,0,getHeight(),getHeight()},4);
-        Polygon p2 = new Polygon(new int[]{getWidth()/3,getWidth(),getWidth(),getWidth()*2/3},new int[]{0,0,getHeight(),getHeight()},4);
-        g.setColor(getBackground());
-        g.fillPolygon(p1);
-        g.setColor(getBackground().brighter());
-        g.fillPolygon(p2);
-        */
         int d = 5;
         g.setColor(getBackground());
         g.fillRect(d,d,getWidth(),getHeight());
         g.setColor(getBackground().brighter());
         g.fillRect(0,0,d,getHeight());
-        g.fillRect(d,0,getWidth(),d);
-        //g.fillRect(0,0,getWidth()-dx,getHeight()-dy);
-        /*
-        for (int i = 0; i < 10; i++) {
-        }
-            setBackground(new Color(10, 19, 13,25));
-            g.setColor(getBackground());
-            g.fillRect(dx,dy,getWidth()-dx-i, getHeight()-dy-i);
-        }
-        */
+        g.fillRect(d, 0, getWidth(), d);
     }
 
-    private Color getColor(int diaSemana, int dia, int diaActual) {
-         if (diaSemana == 1 || diaSemana == 7) {
-            //fin de semanas
-            return new Color(36, 1, 9,230);
-        } else if (dia < diaActual) {
+    private Color getColor(int diaSemana, int dia, int diaActual, int mes, int mesActual,int year, int yearActual) {
+        Color color;
+        if (year < yearActual || (year==yearActual && mes < mesActual) || (dia < diaActual && mes == mesActual && year==yearActual)) {
             //dias cumplidos
-            return new Color(47, 0, 8, 230);
-        } else if (dia == diaActual) {
+            color = new Color(47, 0, 8, 230);
+        } else if (dia == diaActual && mes == mesActual && year == yearActual) {
             //dia actual
-            return new Color(80, 0, 15, 230);
+            color = new Color(80, 0, 15, 230);
         } else if (dia < 1) {
             //mes anterior
-            return new Color(35, 35, 35,230);
+            color = new Color(35, 35, 35,230);
         } else {
             //futuros dias
-            return new Color(10, 19, 13, 230);
+            color = new Color(10, 19, 13, 230);
         }
+        if (diaSemana == 1 || diaSemana == 7) {
+            //fin de semanas
+            color = color.darker().darker();
+        }
+        return color;
+        //return new Color(36, 1, 9,230);
     }
 
     public void addTarea(Tarea tarea) {
         TareaPanel tP = new TareaPanel(tarea, model);
+        tareas.add(tP);
         add(tP);
     }
 
@@ -131,5 +117,12 @@ public class DiaPanel extends JPanel  {
         } else return false;
     }
 
+    public void setEliminarTareaListener(EliminarTareaListener listener) {
+        if (tareas != null) {
+            for (TareaPanel tarea : tareas) {
+                tarea.setEliminarTareaListener(listener);
+            }
+        }
+    }
 }
 

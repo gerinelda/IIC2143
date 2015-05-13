@@ -11,7 +11,6 @@ public class View {
     private Model model;
     CalendarioFrame vistaCalendario;
 
-
     public View(Model model) {
         this.model = model;
         //VistaResumen vistaResumen = new VistaResumen(model);
@@ -22,6 +21,10 @@ public class View {
 
     public void setListener(ActionListener listener) {
         vistaCalendario.setListener(listener);
+    }
+
+    public void setEliminarTareaListener(EliminarTareaListener listener) {
+        vistaCalendario.setEliminarTareaListener(listener);
     }
 
 

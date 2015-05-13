@@ -11,6 +11,7 @@ import java.text.DateFormatSymbols;
 public class MenuPanel extends JMenuBar {
 
     private TransparentButton bVolver;
+    private TransparentButton bActual;
     private TransparentButton bSiguiente;
     private TransparentButton bAnterior;
     private JLabel fechaLabel;
@@ -20,6 +21,13 @@ public class MenuPanel extends JMenuBar {
         setLayout(new FlowLayout());
         setVisible(true);
         setBorder(BorderFactory.createLineBorder(Color.black));
+
+        bVolver = new TransparentButton("Volver");
+        bActual = new TransparentButton("Dia Actual");
+        bVolver.setActionCommand("volver");
+        bActual.setActionCommand("actual");
+        add(bVolver);
+        add(bActual);
         bAnterior = new TransparentButton(" Mes anterior ");
         add(bAnterior);
         bAnterior.setActionCommand("anterior");
@@ -32,18 +40,12 @@ public class MenuPanel extends JMenuBar {
         add(bSiguiente);
         bSiguiente.setActionCommand("siguiente");
 
-        //setBackground(Color.getHSBColor(0.191F,0.3F,0.21F));
-        /*
-        TODO: agregar botones:
-        * cambio de mes
-        * volver a otra vista
-        * agregar Model.Tarea (posiblemente agregar un boton a cada dia? aunque
-                         me parece que esta forma es mejor para no llenar de botones)
-         */
+        setOpaque(false);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+
         g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -52,15 +54,22 @@ public class MenuPanel extends JMenuBar {
     public void setListener(ActionListener listener) {
         bSiguiente.addActionListener(listener);
         bAnterior.addActionListener(listener);
+        bVolver.addActionListener(listener);
+        bActual.addActionListener(listener);
     }
 
     private String getFecha(Calendar calendario) {
-        String fecha =
-                Integer.toString(calendario.get(Calendar.DAY_OF_MONTH))
-                + " de "
-                +  new DateFormatSymbols().getMonths()[calendario.get(Calendar.MONTH)]
-                + " del "
-                + Integer.toString(calendario.get(Calendar.YEAR));
+        String fecha = "";
+        if (
+                        calendario.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH)
+                        && calendario.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)
+                ) {
+            fecha += Integer.toString(calendario.get(Calendar.DAY_OF_MONTH)) + " de ";
+        }
+        fecha +=
+                new DateFormatSymbols().getMonths()[calendario.get(Calendar.MONTH)]
+                        + " del "
+                        + Integer.toString(calendario.get(Calendar.YEAR));
         return fecha;
     }
 

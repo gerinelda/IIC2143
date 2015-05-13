@@ -14,6 +14,7 @@ public class CalendarioFrame extends JFrame implements ActionListener {
     private MenuPanel menu;
     private CalendarioPanel content;
     private Model model;
+    private EliminarTareaListener eliminarTareaListener;
 
 
     public CalendarioFrame(Model model) {
@@ -38,20 +39,32 @@ public class CalendarioFrame extends JFrame implements ActionListener {
         JMenu menu2 = new JMenu();
         menu2.add(new JMenuItem("MenuItem"));
         menu2.setVisible(true);
-        container.add(content);
+        setContentPane(content);
+        //container.add(content);
         setJMenuBar(menu);
         pack();
-
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
     public void setListener(ActionListener listener) {
-        content.setListener(listener);
         menu.setListener(listener);
+    }
+
+    public void setEliminarTareaListener(EliminarTareaListener listener) {
+        eliminarTareaListener = listener;
+        content.setEliminarTareaListener(listener);
     }
 
     private void updateCalendario(Calendar calendario) {
         content.update(calendario);
         menu.updateFecha(calendario);
+        setAllListeners();
+    }
+
+    private void setAllListeners() {
+        if (eliminarTareaListener!=null) {
+            content.setEliminarTareaListener(eliminarTareaListener);
+        }
     }
 
     // escuchar botones bSiguiente y bAnterior y cambiar mes(o a�o) del calendario
@@ -65,10 +78,16 @@ public class CalendarioFrame extends JFrame implements ActionListener {
             updateCalendario(calendario);
         }
         else if (e.getActionCommand().equals("eliminar")) {
-            System.out.println("eliminando Model.Tarea");
             TareaPanel tP = (TareaPanel) e.getSource();
             Tarea t = tP.getTarea();
             System.out.println(t.getDescripcion());
+        } else if (e.getActionCommand().equals("actual")) {
+            calendario = Calendar.getInstance();
+            updateCalendario(calendario);
+        } else if (e.getActionCommand().equals("volver")) {
+            // vuelve a vista resumen
+            // no implementado
+            System.out.println("no implementado, implementar para sprint 2!!");
         }
     }
 
@@ -81,20 +100,3 @@ public class CalendarioFrame extends JFrame implements ActionListener {
     }
 }
 
-
-/*
-    ||||||||CalendarioFrame|||||||||
-    || ||||||||||MenuPanel||||||| ||
-    || ||                      || ||
-    || |||||||||||||||||||||||||| ||
-    ||                            ||
-    || ||||||CalendarioPanel||||| ||
-    || ||                      || ||
-    || ||                      || ||
-    || ||                      || ||
-    || ||                      || ||
-    || ||                      || ||
-    || ||                      || ||
-    || |||||||||||||||||||||||||| ||
-    ||||||||||||||||||||||||||||||||
- */

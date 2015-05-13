@@ -1,6 +1,7 @@
 package View;
 
 import Model.Estado;
+import Model.Tarea;
 
 import javax.swing.*;
 
@@ -62,6 +63,5 @@ public class TransparentButton extends JButton {
         g.setColor(getBackground());
         g.fillRect(0,0,getWidth(),getHeight());
     }
-
 
 }

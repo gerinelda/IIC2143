@@ -27,10 +27,11 @@ public class Application {
 	private static void agregarDatosPrueba(Model model) {
 		Proyecto p1 = new Proyecto(model.getId_proyectos());
 		model.agregarProyecto(p1);
-		Tarea t1 = new Tarea(1,"i1 sistemas operativos",new Fecha(2,4,2015), new Fecha(4,4,2015), new Hora(12,0,0), new Hora(12,0,0),"estudiar para la interrogacion 1 de sistemas operativos! no olvidar!", 0, new Contexto("Model.Contexto"));
-		Tarea t2 = new Tarea(1,"examen calculo 9",new Fecha(2,4,2015), new Fecha(3,3,2015), new Hora(11,1,0), new Hora(12,2,10),"lim 2+2 = 4. e = mc..", 0, new Contexto("Model.Contexto"));
-		Tarea t4 = new Tarea(1,"examen ing. soft",new Fecha(2,4,2015), new Fecha(3,3,2015), new Hora(11,1,0), new Hora(12,2,10),"no estudiar, esta facil", 0, new Contexto("Model.Contexto"));
-		Tarea t3 = new Tarea(1,"terminar tesis",new Fecha(2,4,2015), new Fecha(6,4,2015), new Hora(10,39,39), new Hora(12,20,3),"Terminar la tesis de computacion quantica", 0, new Contexto("Model.Contexto"));
+		Tarea t1 = new Tarea(1,"i1 sistemas operativos",new Fecha(2,4,2015), new Fecha(4,4,2015), new Hora(12,0,0), new Hora(12,0,0),"estudiar para la interrogacion 1 de sistemas operativos! no olvidar!", 0, new Contexto("Contexto"));
+		Tarea t2 = new Tarea(1,"examen calculo 9",new Fecha(2,4,2015), new Fecha(3,3,2015), new Hora(11,1,0), new Hora(12,2,10),"lim 2+2 = 4. e = mc..", 0, new Contexto("Contexto"));
+		Tarea t4 = new Tarea(1,"examen ing. soft",new Fecha(2,4,2015), new Fecha(3,3,2015), new Hora(11,1,0), new Hora(12,2,10),"no estudiar, esta facil", 0, new Contexto("Contexto"));
+		Tarea t3 = new Tarea(1,"terminar tesis",new Fecha(2,4,2015), new Fecha(6,4,2015), new Hora(10,39,39), new Hora(12,20,3),"Terminar la tesis de computacion quantica", 0, new Contexto("Contexto"));
+		Tarea t5 = new Tarea(1,"terminar sprint2",new Fecha(19,5,2015), new Fecha(19,5,2015), new Hora(10,39,39), new Hora(12,20,3),"Terminar el Sprint 2 con todos los features originales", 0, new Contexto("Contexto"));
 		t3.setEstado(Estado.terminado);
 		t2.setEstado(Estado.pausado);
 
@@ -38,5 +39,6 @@ public class Application {
 		model.agregarTarea(t2, p1.getId());
 		model.agregarTarea(t3, p1.getId());
 		model.agregarTarea(t4, p1.getId());
+		model.agregarTarea(t5, p1.getId());
 	}
 }
