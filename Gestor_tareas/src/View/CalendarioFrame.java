@@ -1,27 +1,25 @@
 package View;
 import Model.*;
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class CalendarioFrame extends JFrame implements ActionListener {
+public class CalendarioFrame extends JFrame implements ActionListener, ModificarTareaListener {
 
     private Calendar calendario = Calendar.getInstance();
     private JPanel container;
     private MenuPanel menu;
     private CalendarioPanel content;
     private Model model;
-    private EliminarTareaListener eliminarTareaListener;
-
+    private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
     public CalendarioFrame(Model model) {
         super("Calendario");
 
         this.model = model;
 
+        modificarTareaListeners = new ArrayList<>();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         container = new JPanel();
@@ -48,11 +46,12 @@ public class CalendarioFrame extends JFrame implements ActionListener {
 
     public void setListener(ActionListener listener) {
         menu.setListener(listener);
+        content.setListener(listener);
     }
 
-    public void setEliminarTareaListener(EliminarTareaListener listener) {
-        eliminarTareaListener = listener;
-        content.setEliminarTareaListener(listener);
+    public void addModificarTareaListener(ModificarTareaListener listener) {
+        modificarTareaListeners.add(listener);
+        setAllListeners();
     }
 
     private void updateCalendario(Calendar calendario) {
@@ -62,25 +61,23 @@ public class CalendarioFrame extends JFrame implements ActionListener {
     }
 
     private void setAllListeners() {
-        if (eliminarTareaListener!=null) {
-            content.setEliminarTareaListener(eliminarTareaListener);
+        if (modificarTareaListeners !=null) {
+            for (ModificarTareaListener listener : modificarTareaListeners) {
+                content.addModificarTareaListener(listener);
+            }
+            content.addModificarTareaListener(this);
         }
     }
 
     // escuchar botones bSiguiente y bAnterior y cambiar mes(o a�o) del calendario
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("siguiente")) {
-            siguienteMes();
+            cambiarMes(1);
             updateCalendario(calendario);
         }
         else if (e.getActionCommand().equals("anterior")) {
-            anteriorMes();
+            cambiarMes(-1);
             updateCalendario(calendario);
-        }
-        else if (e.getActionCommand().equals("eliminar")) {
-            TareaPanel tP = (TareaPanel) e.getSource();
-            Tarea t = tP.getTarea();
-            System.out.println(t.getDescripcion());
         } else if (e.getActionCommand().equals("actual")) {
             calendario = Calendar.getInstance();
             updateCalendario(calendario);
@@ -91,12 +88,13 @@ public class CalendarioFrame extends JFrame implements ActionListener {
         }
     }
 
-    private void siguienteMes() {
-        calendario.add(Calendar.MONTH, 1);
+    private void cambiarMes(int n) {
+        calendario.add(Calendar.MONTH, n);
     }
 
-    private void anteriorMes() {
-        calendario.add(Calendar.MONTH, -1);
+    @Override
+    public void ModificarTarea(ActionEvent e, int id) {
+        updateCalendario(calendario);
     }
 }
 

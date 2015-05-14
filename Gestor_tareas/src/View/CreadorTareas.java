@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 
 public class CreadorTareas /*extends JFrame*/ {
 
-	
 		JFrame frame;
 		JTextField nombreText;
 		JTextField fiText;

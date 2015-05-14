@@ -18,7 +18,6 @@ public class DiaPanel extends JPanel  {
 
     public DiaPanel(int dia, int mes, int year, Model model) {
 
-
         setPreferredSize(new Dimension(200, 140));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  this.dia = dia;
 
@@ -34,32 +33,15 @@ public class DiaPanel extends JPanel  {
         int mesActual = Calendar.getInstance().get(Calendar.MONTH);
         int yearActual = Calendar.getInstance().get(Calendar.YEAR);
 
-        /*
-        setBorder(BorderFactory.createCompoundBorder(
-                new LineBorder(Color.black , 2),
-                new TitledBorder(new LineBorder(Color.orange,1),Integer.toString(dia))
-        ));
-
-        */
-        //setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.orange, 2), Integer.toString(dia)));
-        String emptyOrZero = "";
-        if (dia < 10) {
-            emptyOrZero = "0";
-        }
+        String emptyOrZero = (dia < 10) ? "0" : "";
         String dia_string = emptyOrZero.concat(Integer.toString(dia));
         JLabel lFecha = new JLabel(" " + dia_string);
-        Font labelFont = lFecha.getFont();
-        //lFecha.setFont(new Font("Eras Light ITC",Font.PLAIN,28));
         lFecha.setFont(new Font("Century Gothic", Font.PLAIN, 28));
         lFecha.setForeground(Color.white);
-
         setBackground(getColor(diaSemana, dia, diaActual, mes, mesActual, year, yearActual));
-
         setBorder(new EtchedBorder());
-
         add(lFecha);
         lFecha.setAlignmentX(Component.LEFT_ALIGNMENT);
-
         setVisible(true);
         setOpaque(false);
 
@@ -101,7 +83,6 @@ public class DiaPanel extends JPanel  {
             color = color.darker().darker();
         }
         return color;
-        //return new Color(36, 1, 9,230);
     }
 
     public void addTarea(Tarea tarea) {
@@ -117,10 +98,18 @@ public class DiaPanel extends JPanel  {
         } else return false;
     }
 
-    public void setEliminarTareaListener(EliminarTareaListener listener) {
+    public void addModificarTareaListener(ModificarTareaListener listener) {
         if (tareas != null) {
             for (TareaPanel tarea : tareas) {
-                tarea.setEliminarTareaListener(listener);
+                tarea.addModificarTareaListener(listener);
+            }
+        }
+    }
+
+    public void addListener(ActionListener listener) {
+        if (tareas != null) {
+            for (TareaPanel tarea : tareas) {
+                tarea.addListener(listener);
             }
         }
     }

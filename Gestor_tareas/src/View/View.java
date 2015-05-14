@@ -23,8 +23,8 @@ public class View {
         vistaCalendario.setListener(listener);
     }
 
-    public void setEliminarTareaListener(EliminarTareaListener listener) {
-        vistaCalendario.setEliminarTareaListener(listener);
+    public void addModificarTareaListener(ModificarTareaListener listener) {
+        vistaCalendario.addModificarTareaListener(listener);
     }
 
 

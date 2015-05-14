@@ -13,9 +13,11 @@ import java.awt.event.MouseEvent;
 public class TransparentButton extends JButton {
 
     private Color bgColor;
+    private boolean estado;
 
     public TransparentButton(Estado estado) {
         setup();
+        this.estado = true;
         this.setText("   ");
         if (estado == Estado.activo) {
             bgColor = Color.GREEN;
@@ -28,6 +30,7 @@ public class TransparentButton extends JButton {
     }
 
     public TransparentButton(String text) {
+        this.estado = false;
         bgColor = new Color(1,1,1,10);
         this.setText(text);
         setup();
@@ -45,7 +48,9 @@ public class TransparentButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBackground(new Color(88, 2, 20, 220));
+                if (!estado) {
+                    setBackground(new Color(88, 2, 20, 220));
+                }
                 super.mouseEntered(e);
             }
 

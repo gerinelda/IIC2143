@@ -6,6 +6,7 @@ import Model.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TareaPanel extends JPanel implements ActionListener {
 
@@ -15,11 +16,12 @@ public class TareaPanel extends JPanel implements ActionListener {
     private TransparentButton estado;
     private Tarea tarea;
     private Model model;
-    private EliminarTareaListener eliminarTareaListener;
+    private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
     public TareaPanel(Tarea tarea, Model model) {
         this.model = model;
         this.tarea = tarea;
+        modificarTareaListeners = new ArrayList<>();
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setAlignmentX(Component.LEFT_ALIGNMENT);
         estado = new TransparentButton(tarea.getEstado());
@@ -43,11 +45,15 @@ public class TareaPanel extends JPanel implements ActionListener {
             tF.setVisible(true);
         }
         else if (e.getActionCommand().equals("eliminar")) {
-            if (eliminarTareaListener != null) {
-                eliminarTareaListener.EliminarTarea(tarea.getId());
+            if (modificarTareaListeners != null) {
+                for (ModificarTareaListener listener : modificarTareaListeners) {
+                    int id = tarea.getId();
+                    ActionEvent AE = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "eliminar");
+                    listener.ModificarTarea(AE, id);
+                }
             }
             else {
-                System.out.println("error, no existe ningun eliminarTareaListener");
+                System.out.println("error, no existe ningun modificarTareaListeners subscrito a el evento");
             }
         }
     }
@@ -56,8 +62,16 @@ public class TareaPanel extends JPanel implements ActionListener {
         return tarea;
     }
 
-    public void setEliminarTareaListener(EliminarTareaListener listener) {
-        eliminarTareaListener = listener;
+    public void addModificarTareaListener(ModificarTareaListener listener) {
+        for (ModificarTareaListener listenerInList : modificarTareaListeners) {
+            if (listener.equals(listenerInList)) {
+                return;
+            }
+        }
+        modificarTareaListeners.add(listener);
+    }
+    public void addListener(ActionListener listener) {
+        estado.addActionListener(listener);
     }
 
 }
