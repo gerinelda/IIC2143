@@ -47,9 +47,8 @@ public class TareaPanel extends JPanel implements ActionListener {
         else if (e.getActionCommand().equals("eliminar")) {
             if (modificarTareaListeners != null) {
                 for (ModificarTareaListener listener : modificarTareaListeners) {
-                    int id = tarea.getId();
                     ActionEvent AE = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "eliminar");
-                    listener.ModificarTarea(AE, id);
+                    listener.ModificarTarea(AE, tarea, new Proyecto(-1));
                 }
             }
             else {

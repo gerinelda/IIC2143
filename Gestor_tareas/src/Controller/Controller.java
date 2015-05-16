@@ -23,13 +23,16 @@ public class Controller implements ActionListener, ModificarTareaListener {
     }
 
     @Override
-    public void ModificarTarea(ActionEvent e, int id) {
+    public void ModificarTarea(ActionEvent e, Tarea tarea,Proyecto proyecto) {
         if (e.getActionCommand().equals("eliminar")) {
-            model.eliminarTarea(id);
+            /** ELIMINAR TAREA **/
+            model.eliminarTarea(tarea.getId());
         } else if (e.getActionCommand().equals("estado")) {
+            /** CAMBIAR ESTADO **/
             // modificar el estado de la tarea (un loop entre los 3 estados? 1->2->3->1->2...
+        } else if (e.getActionCommand().equals("agregar")) {
+            /** AGREGAR TAREA NUEVA **/
+            System.out.println("agregando tarea de nombre: "+tarea.getNombre());
         }
-
-
     }
 }

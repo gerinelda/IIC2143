@@ -118,7 +118,7 @@ public class Tarea implements Serializable {
 	public Tarea(int id)
 	{
 		this.id = id;
-		this.nombre = "Model.Tarea"+Integer.toString(id);
+		this.nombre = "Tarea"+Integer.toString(id);
 		this.fi = null;
 		this.ff = null;
 		this.hi = null;
@@ -128,6 +128,21 @@ public class Tarea implements Serializable {
 		this.color = 0;
 		this.contexto = null;
 	}
+
+	public Tarea(int id, String nombre)
+	{
+		this.id = id;
+		this.nombre = nombre;
+		this.fi = null;
+		this.ff = null;
+		this.hi = null;
+		this.hf = null;
+		this.descripcion = null;
+		this.estado = estado.pausado;
+		this.color = 0;
+		this.contexto = null;
+	}
+
 	
 	public Tarea(Tarea t)
 	{

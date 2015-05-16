@@ -93,7 +93,7 @@ public class CalendarioFrame extends JFrame implements ActionListener, Modificar
     }
 
     @Override
-    public void ModificarTarea(ActionEvent e, int id) {
+    public void ModificarTarea(ActionEvent e, Tarea tarea, Proyecto proyecto) {
         updateCalendario(calendario);
     }
 }

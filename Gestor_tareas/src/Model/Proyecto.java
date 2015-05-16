@@ -45,8 +45,8 @@ public class Proyecto {
 	public Proyecto(int id)
 	{
 		this.id = id;
-		this.nombre = "Model.Proyecto"+Integer.toString(id);
-		this.tareas = new ArrayList<Tarea>();
+		this.nombre = "Proyecto "+Integer.toString(id);
+		this.tareas = new ArrayList<>();
 		this.estado = estado.activo;
 	}
 	
@@ -55,6 +55,11 @@ public class Proyecto {
 		this.id = id;
 		this.nombre = nombre;
 		this.estado = estado;
-		this.tareas = new ArrayList<Tarea>();
+		this.tareas = new ArrayList<>();
+	}
+
+	@Override
+	public String toString() {
+		return nombre;
 	}
 }

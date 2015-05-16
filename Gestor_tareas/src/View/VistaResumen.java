@@ -41,7 +41,7 @@ public class VistaResumen extends JFrame{
 
 		panel.setLayout(null);
 
-		JLabel nombreLabel = new JLabel("Nombre | Model.Fecha inicio | Model.Fecha Fin | Model.Estado");
+		JLabel nombreLabel = new JLabel("Nombre | Fecha inicio | Fecha Fin | Estado");
 		nombreLabel.setBounds(140, 10, 250, 25);
 		panel.add(nombreLabel);
 		
@@ -53,14 +53,10 @@ public class VistaResumen extends JFrame{
 				JLabel auxLabel = new JLabel(t.getNombre() + " | " + t.getFi().toString() + " | " + t.getFf().toString() + " | " + t.getEstado().toString());
 				auxLabel.setBounds(140, 40 + j*30, 450, 25);
 				panel.add(auxLabel);
-				
-				
 			}
 		}
-			
-			
 
-		
+
 		//TransparentButton
 		JButton crearTareaButton = new JButton("Crear T");
 		crearTareaButton.setBounds(10, 10, 100, 25);
@@ -88,18 +84,18 @@ public class VistaResumen extends JFrame{
 		});
 		
 		crearProyectoButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			
+
 				//model.cp.frame.setVisible(true);
 				//frame.setVisible(false);
-				
+
 			}
 		});
-		
-		
+
+
 		vistaCalendarioButton.addActionListener(new ActionListener() {
 			
 			@Override
