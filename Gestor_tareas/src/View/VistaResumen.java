@@ -110,7 +110,9 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		crearProyectoButton.addActionListener(e -> {
 			creadorProyectos = new CreadorProyectos(model);
-
+			for (ModificarTareaListener listener : modificarTareaListeners) {
+				creadorProyectos.addModificarTareaListener(listener);
+			}
 			creadorProyectos.setVisible(true);
 		});
 
@@ -185,7 +187,6 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		modificarTareaListeners.add(listener);
 		mostrarTareas(listaActualTareas);
 	}
-
 
 	public void updateAll() {
 		mostrarTareas(listaActualTareas);

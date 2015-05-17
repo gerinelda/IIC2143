@@ -4,6 +4,7 @@ import Model.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,17 +12,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
-
 public class CreadorProyectos extends JFrame {
 	
-	private JFrame frame;
 	private JTextField nombreText;
 	private Model model;
+	private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
 	public CreadorProyectos(Model model){
 		this.model = model;
+		modificarTareaListeners = new ArrayList<>();
 		setSize(300, 150);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
@@ -52,36 +51,33 @@ public class CreadorProyectos extends JFrame {
 		panel.add(crearButton);
 		
 		crearButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				Proyecto p = new Proyecto(model.getId_proyectos(),nombreText.getText(), Estado.activo);
-				model.agregarProyecto(p);
-				
-				System.out.println(p.getNombre());
-				frame.setVisible(false);
+				if (!nombreText.getText().isEmpty()) {
+					System.out.println("creando nuevo proyecto");
+					Proyecto p = new Proyecto(model.getId_proyectos(), nombreText.getText(), Estado.activo);
+					for (ModificarTareaListener listener : modificarTareaListeners) {
+						listener.ModificarTarea(e, new Tarea(-1), p);
+					}
+					setVisible(false);
+				}
 			}
 		});
+		crearButton.setActionCommand("agregarProyecto");
 		
-		cancelarButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.setVisible(false);
-				
-			}
-		});
+		cancelarButton.addActionListener(e -> setVisible(false));
 		
 		String n1 = nombreText.getText();
-		System.out.println("text: "+n1);
-				
-		
-	
 	}
 
+	public void addModificarTareaListener(ModificarTareaListener listener) {
+		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
+			if (modificarTareaListener.equals(listener)) {
+				return;
+			}
+		}
+		modificarTareaListeners.add(listener);
+	}
 
 	
 }

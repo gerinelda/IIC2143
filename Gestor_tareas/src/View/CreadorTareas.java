@@ -224,7 +224,7 @@ public class CreadorTareas extends JFrame {
 	public void addModificarTareaListener(ModificarTareaListener listener) {
 		// comprobar si ya estaba el listener en la lista
 		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
-			if (modificarTareaListeners.equals(listener)) {
+			if (modificarTareaListener.equals(listener)) {
 				return;
 			}
 		}
