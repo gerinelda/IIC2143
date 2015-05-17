@@ -1,0 +1,10 @@
+package Model;
+using System.ComponentModel;
+
+
+import java.io.Serializable;
+
+public enum Estado implements Serializable { 
+	[Description("activo")]
+			activo,
+			pausado, terminado}

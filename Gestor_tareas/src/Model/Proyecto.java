@@ -50,7 +50,7 @@ public class Proyecto {
 		this.estado = estado.activo;
 	}
 	
-	public Proyecto(int id, String nombre, Estado activo)
+	public Proyecto(int id, String nombre, Estado estado)
 	{
 		this.id = id;
 		this.nombre = nombre;
