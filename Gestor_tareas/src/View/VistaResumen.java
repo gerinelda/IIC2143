@@ -150,8 +150,10 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		for (int i = 0; i < model.getContador_proyectos(); i++) {
 			for (int j = 0; j < proyectos.get(i).getTareas().size(); j++) {
 				Tarea t = proyectos.get(i).getTareas().get(j);
-				/** devolver solo tareas que vencen en los proximos dias **/
-				if (t.getFf().getD() - Calendar.getInstance().get(Calendar.DAY_OF_MONTH) <= 3) {
+				int m = 3;
+				/** devolver solo tareas que vencen en los m=3 proximos dias **/
+				int n = t.getFf().getCalendario().get(Calendar.DAY_OF_MONTH) - Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+				if ( n >= 0 && n <= m) {
 					lista.add(t);
 				}
 			}

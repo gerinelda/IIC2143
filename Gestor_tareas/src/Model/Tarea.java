@@ -167,6 +167,9 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		calendario1.set(Calendar.SECOND,getHf().getSegundos());
 		calendario2.set(Calendar.SECOND,o.getHf().getSegundos());
 
-		return calendario1.get(Calendar.SECOND) - calendario2.get(Calendar.SECOND);
+		/** hasta el momento solo ordena por dia del año **/
+		int i = calendario1.get(Calendar.DAY_OF_YEAR);
+		int j = calendario2.get(Calendar.DAY_OF_YEAR);
+		return i-j;
 	}
 }
