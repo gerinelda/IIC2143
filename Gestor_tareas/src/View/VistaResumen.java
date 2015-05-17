@@ -169,9 +169,9 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 				lista.add(t);
 			}
 		}
-		/** ordenar lista **/
+		/** ordena lista segun el metodo CompareTo de Tarea,
+		 * eso es porque la lista es de un tipo que implemente la interfaz Comparable **/
 		Collections.sort(lista);
-		/** **/
 		return lista;
 	}
 
@@ -186,6 +186,11 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		mostrarTareas(listaActualTareas);
 	}
 
+
+	public void updateAll() {
+		content.updateUI();
+		calendario.updateUI();
+	}
 
 	@Override
 	public void ModificarTarea(ActionEvent e, Tarea tarea, Proyecto proyecto) {
@@ -211,6 +216,8 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 			/** actualizamos graficamente **/
 			calendario.updateUI();
 			mostrarTareas(listaNueva);
+		}
+		else if (e.getActionCommand().equals("estado")) {
 		}
 	}
 }

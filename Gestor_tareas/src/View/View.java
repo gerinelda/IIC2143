@@ -22,5 +22,9 @@ public class View {
         vistaResumen.addModificarTareaListener(listener);
     }
 
+    public void updateAll() {
+        vistaResumen.updateAll();
+    }
+
 
 }

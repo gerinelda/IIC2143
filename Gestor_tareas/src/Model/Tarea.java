@@ -82,6 +82,16 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		this.estado = estado;
 	}
 
+	public void siguienteEstado() {
+		if (estado.equals(Estado.activo)) {
+			estado = Estado.pausado;
+		} else if (estado.equals(Estado.pausado)) {
+			estado = Estado.terminado;
+		} else if (estado.equals(Estado.terminado)) {
+			estado = Estado.activo;
+		}
+	}
+
 	public int getColor() {
 		return color;
 	}

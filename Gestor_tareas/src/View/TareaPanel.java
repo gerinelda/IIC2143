@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class TareaPanel extends JPanel implements ActionListener {
 
@@ -33,6 +35,8 @@ public class TareaPanel extends JPanel implements ActionListener {
         nombre.addActionListener(this);
         nombre.setActionCommand("detalle");
         delete.setActionCommand("eliminar");
+        estado.setActionCommand("estado");
+        estado.addActionListener(this);
         delete.addActionListener(this);
     }
 
@@ -67,12 +71,20 @@ public class TareaPanel extends JPanel implements ActionListener {
         else if (e.getActionCommand().equals("eliminar")) {
             if (modificarTareaListeners != null) {
                 for (ModificarTareaListener listener : modificarTareaListeners) {
-                    ActionEvent AE = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "eliminar");
-                    listener.ModificarTarea(AE, tarea, new Proyecto(-1));
+                    listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
             }
             else {
                 System.out.println("error, no existe ningun modificarTareaListeners subscrito a el evento");
+            }
+        }
+        else if (e.getActionCommand().equals("estado")) {
+             if (modificarTareaListeners != null) {
+                 Collections.reverse(modificarTareaListeners);
+                for (ModificarTareaListener listener : modificarTareaListeners) {
+                    listener.ModificarTarea(e, tarea, new Proyecto(-1));
+                }
+                estado.setBackground(estado.getColor(tarea.getEstado()));
             }
         }
     }

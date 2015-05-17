@@ -12,24 +12,40 @@ import java.awt.event.MouseEvent;
 public class TransparentButton extends JButton {
 
     private Color bgColor;
-    private boolean estado;
+    private boolean bestado;
+    private Estado estado;
 
     public TransparentButton(Estado estado) {
+        this.estado = estado;
         setup();
-        this.estado = true;
+        this.bestado = true;
         this.setText("   ");
-        if (estado == Estado.activo) {
-            bgColor = Color.GREEN;
-        } else if (estado == Estado.pausado) {
-            bgColor = Color.YELLOW;
-        } else if (estado == Estado.terminado) {
-            bgColor = Color.RED;
-        }
+        bgColor = getColor(estado);
         setBackground(bgColor);
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public Color getColor() {
+        return bgColor;
+    }
+
+    public Color getColor(Estado estado) {
+        Color color = Color.BLACK;
+        if (estado == Estado.activo) {
+            color = Color.GREEN;
+        } else if (estado == Estado.pausado) {
+            color = Color.YELLOW;
+        } else if (estado == Estado.terminado) {
+            color = Color.RED;
+        }
+        return color;
+    }
+
     public TransparentButton(String text) {
-        this.estado = false;
+        this.bestado = false;
         bgColor = new Color(1,1,1,10);
         this.setText(text);
         setup();
@@ -47,7 +63,7 @@ public class TransparentButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!estado) {
+                if (!bestado) {
                     setBackground(new Color(88, 2, 20, 220));
                 }
                 super.mouseEntered(e);
@@ -56,7 +72,9 @@ public class TransparentButton extends JButton {
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                setBackground(bgColor);
+                if (!bestado) {
+                    setBackground(bgColor);
+                }
             }
         });
     }

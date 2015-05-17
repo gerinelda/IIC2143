@@ -25,15 +25,24 @@ public class Controller implements ActionListener, ModificarTareaListener {
     public void ModificarTarea(ActionEvent e, Tarea tarea,Proyecto proyecto) {
         if (e.getActionCommand().equals("eliminar")) {
             /** ELIMINAR TAREA **/
-            System.out.println("eliminando tarea "+tarea.getNombre());
+            System.out.println("eliminando tarea " + tarea.getNombre());
             model.eliminarTarea(tarea.getId());
         } else if (e.getActionCommand().equals("estado")) {
             /** CAMBIAR ESTADO **/
+            System.out.println("cambiando estado");
+            model.siguienteEstado(tarea.getId());
+            System.out.println("estado: "+tarea.getEstado());
             // modificar el estado de la tarea (un loop entre los 3 estados? 1->2->3->1->2...
         } else if (e.getActionCommand().equals("agregar")) {
             /** AGREGAR TAREA NUEVA **/
             System.out.println("agregando tarea");
             model.agregarTarea(tarea, proyecto.getId());
         }
+        updateAll();
+    }
+
+    public void updateAll() {
+        System.out.println("TODO");
+        view.updateAll();
     }
 }
