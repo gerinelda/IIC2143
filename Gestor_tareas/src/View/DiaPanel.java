@@ -42,7 +42,6 @@ public class DiaPanel extends JPanel implements ActionListener {
         /** fondo depende del dia **/
         setBackground(getColor(diaSemana, dia, diaActual, mes, mesActual, year, yearActual));
 
-
         /** Botones **/
         String emptyOrZero = (dia < 10) ? "0" : "";
         String dia_string = emptyOrZero.concat(Integer.toString(dia));

@@ -14,32 +14,22 @@ import javax.swing.JTextField;
 
 
 
-public class CreadorProyectos {
+public class CreadorProyectos extends JFrame {
 	
 	private JFrame frame;
 	private JTextField nombreText;
 	private Model model;
 
 	public CreadorProyectos(Model model){
-		initUI();
 		this.model = model;
-		}
-	
-	private void initUI(){
-		
-		frame = new JFrame("Crear Proyecto");
-		frame.setSize(300, 150);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+		setSize(300, 150);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
-		frame.add(panel);
+		add(panel);
 		placeComponents(panel);
-
-		//frame.setVisible(true);
-					
+		setVisible(true);
 	}
 	
-
 	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
@@ -53,8 +43,6 @@ public class CreadorProyectos {
 		nombreText.setText("");
 		panel.add(nombreText);
 
-		
-		//TransparentButton
 		JButton cancelarButton = new JButton("Cancelar");
 		cancelarButton.setBounds(10, 70, 100, 25);
 		panel.add(cancelarButton);
@@ -62,8 +50,6 @@ public class CreadorProyectos {
 		JButton crearButton = new JButton("Crear");
 		crearButton.setBounds(170, 70, 100, 25);
 		panel.add(crearButton);
-		
-		String asdf = nombreText.getText();
 		
 		crearButton.addActionListener(new ActionListener() {
 			

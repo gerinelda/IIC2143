@@ -11,15 +11,12 @@ import java.util.ArrayList;
 public class TareaPanel extends JPanel implements ActionListener {
 
     private TransparentButton nombre;
-    private JLabel horafinal;
     private TransparentButton delete;
     private TransparentButton estado;
     private Tarea tarea;
-    private Model model;
     private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
     public TareaPanel(Tarea tarea, Model model) {
-        this.model = model;
         this.tarea = tarea;
         modificarTareaListeners = new ArrayList<>();
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));

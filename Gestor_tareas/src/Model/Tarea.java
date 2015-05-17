@@ -16,7 +16,7 @@ public class Tarea implements Serializable {
 	private Estado estado;
 	private int color;
 	private Contexto contexto;
-	
+
 	public int getId() {
 		return id;
 	}

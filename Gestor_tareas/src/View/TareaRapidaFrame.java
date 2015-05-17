@@ -1,6 +1,5 @@
 package View;
 import Model.*;
-import javafx.scene.control.CheckBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,10 +75,25 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Aceptar")) {
-            for ( ModificarTareaListener listener : modificarTareaListeners) {
-                ActionEvent AE = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "agregar");
-                String nombre = textField.getText();
-                listener.ModificarTarea(AE, new Tarea(0, nombre), model.getProyecto(listaProyectos.getSelectedIndex()));
+            if (!textField.getText().isEmpty()) {
+                for (ModificarTareaListener listener : modificarTareaListeners) {
+                    ActionEvent AE = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "agregar");
+                    String nombre = textField.getText();
+                    int id = 0; //??????
+                    Tarea tareaNueva = new Tarea(
+                            id,
+                            nombre,
+                            new Fecha(),
+                            new Fecha(),
+                            new Hora(),
+                            new Hora(),
+                            "",
+                            0,
+                            new Contexto("ejemplo")
+                    );
+                    listener.ModificarTarea(AE, tareaNueva, model.getProyecto(listaProyectos.getSelectedIndex()));
+                }
+                setVisible(false);
             }
 
         }

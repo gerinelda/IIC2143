@@ -5,7 +5,6 @@ import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,30 +16,25 @@ public class VistaResumen extends JFrame{
 	private Model model;
 	private CalendarioFrame calendario;
 	private ArrayList<Proyecto> proyectos;
-	private JFrame frame;
+	private CreadorProyectos creadorProyectos;
+	private CreadorTareas creadorTareas;
+	private JPanel panel;
+	private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
 	public VistaResumen(Model model) {
 		this.model = model;
 		this.proyectos = model.getProyectos();
-		initUI();
-	}
-
-	private void initUI(){
-		
-		frame = new JFrame("Vista Resumen");
-		frame.setSize(500, 350);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel panel = new JPanel();
-		frame.add(panel);
+		modificarTareaListeners = new ArrayList<>();
+		calendario = new CalendarioFrame(model);
+		setSize(500, 350);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		panel = new JPanel();
 		placeComponents(panel);
-		frame.setVisible(true);
+		add(panel);
 	}
-	
 
 	private void placeComponents(JPanel panel) {
-
 		panel.setLayout(null);
-
 		JLabel nombreLabel = new JLabel("Nombre | Fecha inicio | Fecha Fin | Estado");
 		nombreLabel.setBounds(140, 10, 250, 25);
 		panel.add(nombreLabel);
@@ -56,8 +50,6 @@ public class VistaResumen extends JFrame{
 			}
 		}
 
-
-		//TransparentButton
 		JButton crearTareaButton = new JButton("Crear T");
 		crearTareaButton.setBounds(10, 10, 100, 25);
 		panel.add(crearTareaButton);
@@ -69,51 +61,37 @@ public class VistaResumen extends JFrame{
 		JButton vistaCalendarioButton = new JButton("Calendario");
 		vistaCalendarioButton.setBounds(10, 70, 100, 25);
 		panel.add(vistaCalendarioButton);
-		
-	
-		crearTareaButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-				//model.ct.frame.setVisible(true);
-			//	frame.setVisible(false);
-				
+
+		crearTareaButton.addActionListener(e -> {
+            creadorTareas = new CreadorTareas(model);
+			for (ModificarTareaListener listener : modificarTareaListeners) {
+				creadorTareas.addModificarTareaListener(listener);
 			}
-		});
-		
-		crearProyectoButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-				//model.cp.frame.setVisible(true);
-				//frame.setVisible(false);
-
-			}
+			creadorTareas.setVisible(true);
 		});
 
+		crearProyectoButton.addActionListener(e -> {
+			creadorProyectos = new CreadorProyectos(model);
 
-		vistaCalendarioButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				calendario = new CalendarioFrame(model);
-				calendario.setVisible(true);
-			}
+			creadorProyectos.setVisible(true);
 		});
-		
-		
-		
-		
-		
-		
-		
-	
+
+		vistaCalendarioButton.addActionListener(e -> calendario.setVisible(true));
 	}
 
+	public void setListener(ActionListener listener) {
+		calendario.setListener(listener);
+	}
+
+	public void addModificarTareaListener(ModificarTareaListener listener) {
+		calendario.addModificarTareaListener(listener);
+		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
+			if (listener.equals(modificarTareaListener)) {
+				return;
+			}
+		}
+		modificarTareaListeners.add(listener);
+	}
 
 
 }

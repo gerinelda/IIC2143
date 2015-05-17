@@ -9,22 +9,20 @@ import java.awt.event.ActionListener;
 public class View {
 
     private Model model;
-    CalendarioFrame vistaCalendario;
+    private VistaResumen vistaResumen;
 
     public View(Model model) {
         this.model = model;
-        //VistaResumen vistaResumen = new VistaResumen(model);
-        //vistaResumen.setVisible(true);
-        vistaCalendario = new CalendarioFrame(model);
-        vistaCalendario.setVisible(true);
+        vistaResumen = new VistaResumen(model);
+        vistaResumen.setVisible(true);
     }
 
     public void setListener(ActionListener listener) {
-        vistaCalendario.setListener(listener);
+        vistaResumen.setListener(listener);
     }
 
     public void addModificarTareaListener(ModificarTareaListener listener) {
-        vistaCalendario.addModificarTareaListener(listener);
+        vistaResumen.addModificarTareaListener(listener);
     }
 
 

@@ -15,5 +15,8 @@ public class Contexto implements Serializable{
 		return nombre;
 	}
 
-
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

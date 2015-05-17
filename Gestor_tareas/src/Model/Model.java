@@ -9,11 +9,12 @@ public class Model {
 	private int contador_tareas;
 	private int id_proyectos;
 	private ArrayList<Proyecto> proyectos;
-	private Contexto[] contextos;
+	private ArrayList<Contexto> contextos;
 
     // data
     public Model() {
 		proyectos = new ArrayList<>();
+		contextos = new ArrayList<>();
     }
 
 	public int getContador_proyectos() {
@@ -66,12 +67,12 @@ public class Model {
 	}
 
 
-	public Contexto[] getContextos() {
+	public ArrayList<Contexto> getContextos() {
 		return contextos;
 	}
 
 
-	public void setContextos(Contexto[] contextos) {
+	public void setContextos(ArrayList<Contexto> contextos) {
 		this.contextos = contextos;
 	}
 
@@ -92,6 +93,9 @@ public class Model {
 		}
 	}
 
+	public void agregarContexto(Contexto contexto) {
+		contextos.add(contexto);
+	}
 
 	public void agregarProyecto(Proyecto p)
 	{

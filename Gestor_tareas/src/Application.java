@@ -21,7 +21,7 @@ public class Application {
 		Model model = new Model();
 		agregarDatosPrueba(model);
 		View view = new View(model);
-		Controller controller = new Controller(view, model);
+		Controller controller = new Controller(view, model); //singleton?
 	}
 
 	private static void agregarDatosPrueba(Model model) {
@@ -32,6 +32,8 @@ public class Application {
 		Tarea t4 = new Tarea(1,"examen ing. soft",new Fecha(2,4,2015), new Fecha(3,3,2015), new Hora(11,1,0), new Hora(12,2,10),"no estudiar, esta facil", 0, new Contexto("Contexto"));
 		Tarea t3 = new Tarea(1,"terminar tesis",new Fecha(2,4,2015), new Fecha(6,4,2015), new Hora(10,39,39), new Hora(12,20,3),"Terminar la tesis de computacion quantica", 0, new Contexto("Contexto"));
 		Tarea t5 = new Tarea(1,"terminar sprint2",new Fecha(19,5,2015), new Fecha(19,5,2015), new Hora(10,39,39), new Hora(12,20,3),"Terminar el Sprint 2 con todos los features originales", 0, new Contexto("Contexto"));
+		Contexto contexto = new Contexto("contexto ejemplo1");
+		model.agregarContexto(contexto);
 		t3.setEstado(Estado.terminado);
 		t2.setEstado(Estado.pausado);
 
