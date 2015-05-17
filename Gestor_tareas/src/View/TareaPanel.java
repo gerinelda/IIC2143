@@ -16,7 +16,7 @@ public class TareaPanel extends JPanel implements ActionListener {
     private Tarea tarea;
     private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
-    public TareaPanel(Tarea tarea, Model model) {
+    public TareaPanel(Tarea tarea) {
         this.tarea = tarea;
         modificarTareaListeners = new ArrayList<>();
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -34,6 +34,20 @@ public class TareaPanel extends JPanel implements ActionListener {
         nombre.setActionCommand("detalle");
         delete.setActionCommand("eliminar");
         delete.addActionListener(this);
+    }
+
+    public void mostrarTodo() {
+        /** DESCRIPCION **/
+        JLabel descripcion = new JLabel();
+        add(descripcion);
+        descripcion.setText(tarea.getDescripcion());
+
+        /** DIA VENCIMIENTO **/
+        JLabel fechafinal = new JLabel();
+        add(fechafinal);
+        fechafinal.setText(tarea.getFf().toString());
+
+
     }
 
     public void actionPerformed(ActionEvent e) {

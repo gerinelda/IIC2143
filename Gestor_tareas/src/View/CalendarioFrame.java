@@ -33,12 +33,7 @@ public class CalendarioFrame extends JFrame implements ActionListener, Modificar
         menu.setListener(this);
         
         add(container);
-        //container.add(menu);
-        JMenu menu2 = new JMenu();
-        menu2.add(new JMenuItem("MenuItem"));
-        menu2.setVisible(true);
         setContentPane(content);
-        //container.add(content);
         setJMenuBar(menu);
         pack();
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);

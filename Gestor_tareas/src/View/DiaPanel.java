@@ -106,7 +106,7 @@ public class DiaPanel extends JPanel implements ActionListener {
 
     /** agrega la tarea al dia **/
     public void addTarea(Tarea tarea) {
-        TareaPanel tP = new TareaPanel(tarea, model);
+        TareaPanel tP = new TareaPanel(tarea);
         tareas.add(tP);
         add(tP);
     }
