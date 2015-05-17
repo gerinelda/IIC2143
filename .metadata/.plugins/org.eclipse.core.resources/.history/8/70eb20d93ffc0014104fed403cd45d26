@@ -1,0 +1,16 @@
+package Controller;
+
+import Model.Estado;
+import Model.Proyecto;
+
+public class pruea {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Xml xml = new Xml();
+		Proyecto p = new Proyecto(1, "miSuperProyecto", Estado.activo);
+		Tarea t1 = new Tarea();
+		xml.crear(p, ruta)
+	}
+
+}

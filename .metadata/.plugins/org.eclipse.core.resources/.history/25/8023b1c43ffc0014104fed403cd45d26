@@ -1,0 +1,16 @@
+package Controller;
+
+public class pruea {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		mail m = new mail();
+		if(m.comprobarMail("mngatica@uc.cl")){
+			m.send("En esto me he llevado todo el día, intentando abrir mi programa y que envíe un maldito mensaje.\n Y ahora que tu correo es mi conejillo de indias recordé que la n de tu correo era por Nolberta <3", "Ultra secreto. Privado. Solo personal autoriazado. Precaución");
+		}
+		else{
+			System.out.print(":c");
+		}
+	}
+
+}
