@@ -31,7 +31,6 @@ public class Controller implements ActionListener, ModificarTareaListener {
             /** CAMBIAR ESTADO **/
             System.out.println("cambiando estado");
             model.siguienteEstado(tarea.getId());
-            System.out.println("estado: "+tarea.getEstado());
             // modificar el estado de la tarea (un loop entre los 3 estados? 1->2->3->1->2...
         } else if (e.getActionCommand().equals("agregar")) {
             /** AGREGAR TAREA NUEVA **/
@@ -42,7 +41,6 @@ public class Controller implements ActionListener, ModificarTareaListener {
     }
 
     public void updateAll() {
-        System.out.println("TODO");
         view.updateAll();
     }
 }

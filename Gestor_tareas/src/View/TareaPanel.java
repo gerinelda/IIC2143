@@ -74,16 +74,14 @@ public class TareaPanel extends JPanel implements ActionListener {
                     listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
             }
-            else {
-                System.out.println("error, no existe ningun modificarTareaListeners subscrito a el evento");
-            }
         }
         else if (e.getActionCommand().equals("estado")) {
              if (modificarTareaListeners != null) {
-                 Collections.reverse(modificarTareaListeners);
+                 //Collections.reverse(modificarTareaListeners);
                 for (ModificarTareaListener listener : modificarTareaListeners) {
                     listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
+                 System.out.println(modificarTareaListeners);
                 estado.setBackground(estado.getColor(tarea.getEstado()));
             }
         }

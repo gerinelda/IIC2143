@@ -188,7 +188,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 
 	public void updateAll() {
-		content.updateUI();
+		mostrarTareas(listaActualTareas);
 		calendario.updateUI();
 	}
 
