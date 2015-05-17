@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class DiaPanel extends JPanel implements ActionListener {
 
@@ -143,7 +144,7 @@ public class DiaPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("agregar")) {
-            TareaRapidaFrame tareaRapidaFrame = new TareaRapidaFrame(model);
+            TareaRapidaFrame tareaRapidaFrame = new TareaRapidaFrame(model,new GregorianCalendar(year,mes,dia));
             for (ModificarTareaListener listener : modificarTareaListener) {
                 tareaRapidaFrame.addModificarTareaListener(listener);
             }

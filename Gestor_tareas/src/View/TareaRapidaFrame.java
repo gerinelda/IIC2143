@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TareaRapidaFrame extends JFrame implements ActionListener {
     /** abrir nueva ventana **/
@@ -14,10 +15,12 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
     ArrayList<ModificarTareaListener> modificarTareaListeners;
     JComboBox<Proyecto> listaProyectos;
     Model model;
+    Calendar calendario;
 
 
-    public TareaRapidaFrame(Model model) {
+    public TareaRapidaFrame(Model model, Calendar calendario) {
         this.model = model;
+        this.calendario = calendario;
         content = new JPanel();
         content.setOpaque(false);
         add(content);
@@ -84,7 +87,11 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
                             id,
                             nombre,
                             new Fecha(),
-                            new Fecha(),
+                            new Fecha(
+                                    calendario.get(Calendar.DAY_OF_MONTH),
+                                    calendario.get(Calendar.MONTH)+1,
+                                    calendario.get(Calendar.YEAR)
+                            ),
                             new Hora(),
                             new Hora(),
                             "",
