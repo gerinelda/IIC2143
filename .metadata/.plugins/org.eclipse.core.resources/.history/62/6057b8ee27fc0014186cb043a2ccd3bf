@@ -1,8 +1,0 @@
-package Controller;
-
-public class prueba {
-	mail m = new mail();
-	a = m.comprobarmail("mngatica@uc.cl");
-	m.send("En esto he perdido todo el día, en enviar un mensaje desde un maldito programa.\n Bueno y ahora que pude y que tu correo es mi conejillo de indias recordé que la n de tu correo era por Nolberta <3", "Importante. Ultra secreto. No abrir. Solo personal autorizado")
-	
-}

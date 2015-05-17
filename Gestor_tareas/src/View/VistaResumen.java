@@ -28,10 +28,10 @@ public class VistaResumen extends JFrame{
 		setSize(500, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new JPanel();
-		placeComponents(panel);
+		//placeComponents(panel);
 		add(panel);
 	}
-
+/*
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
 		JLabel nombreLabel = new JLabel("Nombre | Fecha inicio | Fecha Fin | Estado");
@@ -78,6 +78,7 @@ public class VistaResumen extends JFrame{
 		vistaCalendarioButton.addActionListener(e -> calendario.setVisible(true));
 	}
 
+	*/
 	public void setListener(ActionListener listener) {
 		calendario.setListener(listener);
 	}

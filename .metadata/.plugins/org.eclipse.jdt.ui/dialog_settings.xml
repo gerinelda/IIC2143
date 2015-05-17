@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="java-7-openjdk-amd64" key="org.eclipse.jdt.ui.last.selected.project.jre"/>
+	<item value="0" key="org.eclipse.jdt.ui.last.selected.jre.kind2"/>
 	<item value="/home/gerinelda/IIC2143/Gestor_tareas" key="org.eclipse.jdt.ui.last.external.project"/>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
@@ -15,10 +17,13 @@
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
-	<section name="NewClassWizardPage">
-		<item value="false" key="create_constructor"/>
-		<item value="true" key="create_unimplemented"/>
+	<section name="BuildPathsPropertyPage">
+		<item value="3" key="pageIndex"/>
 	</section>
 	<section name="quick_assist_proposal_size">
+	</section>
+	<section name="NewClassWizardPage">
+		<item value="false" key="create_constructor"/>
+		<item value="false" key="create_unimplemented"/>
 	</section>
 </section>

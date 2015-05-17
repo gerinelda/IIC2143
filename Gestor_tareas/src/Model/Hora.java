@@ -30,7 +30,13 @@ public class Hora implements Serializable{
 		this.s = 0;
 
 	}
-
+	
+	public Hora(String input){
+		this.h = Integer.parseInt(input.substring(0,2));
+		this.m = Integer.parseInt(input.substring(3, 5));
+		this.s = Integer.parseInt(input.substring(6, 8));
+	}
+	
 	@Override
 	public String toString() {
 		return atToString(h)+":"+atToString(m)+":"+atToString(s);

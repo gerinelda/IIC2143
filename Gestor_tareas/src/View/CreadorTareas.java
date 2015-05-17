@@ -35,14 +35,14 @@ public class CreadorTareas extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		modificarTareaListeners = new ArrayList<>();
 		JPanel panel = new JPanel();
-		placeComponents(panel);
+	//	placeComponents(panel);
 		add(panel);
 		setVisible(true);
 	}
-
+/*
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
-		/** NOMBRE **/
+		
 		JLabel nombreLabel = new JLabel("Nombre");
 		nombreLabel.setBounds(10, 10, 80, 25);
 		panel.add(nombreLabel);
@@ -52,7 +52,6 @@ public class CreadorTareas extends JFrame {
 		nombreText.setText("");
 		panel.add(nombreText);
 
-		/** FECHA INICIO **/
 		int fechaWidth = 53;
 		JLabel fiLabel = new JLabel("Fecha inicio");
 		fiLabel.setBounds(10, 40, 80, 25);
@@ -62,15 +61,15 @@ public class CreadorTareas extends JFrame {
 		fiyear = new JComboBox<>();
 		fimes = new JComboBox<>();
 		fidia = new JComboBox<>();
-		/** year setup **/
+
 		for (int i = 2015; i < 2035; i++) {
 			fiyear.addItem(i);
 		}
-		/** month setup **/
+
 		for (int i = 1; i <= 12; i++) {
 			fimes.addItem(i);
 		}
-		/** day setup, se actualiza cuando se cambia el mes **/
+
 		for (int i = 1; i <= 31; i++) {
 			fidia.addItem(i);
 		}
@@ -98,7 +97,7 @@ public class CreadorTareas extends JFrame {
 		panel.add(fimes);
 		panel.add(fiyear);
 
-		/** FECHA FINAL **/
+
 		JLabel ffLabel = new JLabel("Fecha final");
 		ffLabel.setBounds(10, 60, 80, 25);
 		panel.add(ffLabel);
@@ -107,15 +106,15 @@ public class CreadorTareas extends JFrame {
 		ffyear = new JComboBox<>();
 		ffmes = new JComboBox<>();
 		ffdia = new JComboBox<>();
-		/** year setup **/
+
 		for (int i = 2015; i < 2035; i++) {
 			ffyear.addItem(i);
 		}
-		/** month setup **/
+		
 		for (int i = 1; i <= 12; i++) {
 			ffmes.addItem(i);
 		}
-		/** day setup, se actualiza cuando se cambia el mes **/
+		
 		for (int i = 1; i <= 31; i++) {
 			ffdia.addItem(i);
 		}
@@ -214,13 +213,13 @@ public class CreadorTareas extends JFrame {
 		panel.add(crearButton);
 
 		crearButton.addActionListener(e -> {
-            /** evento al controlador, agregar tarea **/
+    
             System.out.println("agregar tarea! avisar a controlador");
         });
 
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
-
+*/
 	public void addModificarTareaListener(ModificarTareaListener listener) {
 		// comprobar si ya estaba el listener en la lista
 		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {

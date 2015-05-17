@@ -1,0 +1,107 @@
+package Controller;
+import java.io.FileWriter;
+
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import Model.*;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+
+import java.io.File;
+
+
+public class Xml {
+	
+	Element Proyecto = new Element("Proyecto");
+	
+	public boolean crear(Proyecto p, String ruta){
+
+		Element proyecto = new Element("proyecto");
+		Document documento = new Document(proyecto);
+		proyecto.setAttribute(new Attribute("id",Integer.toString(p.getId())));
+		proyecto.setAttribute(new Attribute("nombre", p.getNombre()));
+		proyecto.setAttribute(new Attribute("estado", p.getEstado().toString()));
+		for (int i = 0; i < p.getTareas().size(); i++) {
+			Element tarea = new Element("tarea");
+			Tarea t = p.getTareas().get(i);
+			tarea.setAttribute(new Attribute("id",Integer.toString(t.getId())));
+			tarea.setAttribute(new Attribute("nombre", t.getNombre()));
+			tarea.setAttribute(new Attribute("fi", t.getFi().toString()));
+			tarea.setAttribute(new Attribute("ff", t.getFf().toString()));
+			tarea.setAttribute(new Attribute("hi", t.getHi().toString()));
+			tarea.setAttribute(new Attribute("hf", t.getHf().toString()));
+			tarea.setAttribute(new Attribute("descripcion", t.getDescripcion()));
+			tarea.setAttribute(new Attribute("estado", t.getEstado().toString()));
+			tarea.setAttribute(new Attribute("color", Integer.toString(t.getColor())));
+			tarea.setAttribute(new Attribute("contexto", t.getContexto().getNombre()));
+			documento.getRootElement().addContent(tarea);	
+		}
+		
+		try{
+
+			FileWriter fw = new FileWriter(ruta);
+			XMLOutputter xmlOutput = new XMLOutputter();
+			xmlOutput.setFormat(Format.getPrettyFormat());
+			xmlOutput.output(documento, fw);
+			fw.close();
+			
+			System.out.print("archivo creado en "+ruta);
+			return true;	
+		}
+		catch(Exception e)
+		{
+			System.out.print("gg");
+			return false;
+		}
+	}
+
+	public boolean leer(String ruta)
+	{
+		Proyecto p;
+		
+		
+		try{
+	
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			org.w3c.dom.Document documento = dBuilder.parse(ruta);
+			org.w3c.dom.Element raiz = documento.getDocumentElement();
+			String id = raiz.getAttribute("id");
+			String nombre = raiz.getAttribute("nombre");
+			String estado = raiz.getAttribute("estado");
+			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
+			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
+			
+			NodeList tareas = raiz.getElementsByTagName("tarea");
+			int largo = tareas.getLength();
+			for (int i = 0; i < tareas.getLength(); i++) {
+				Node nodo = tareas.item(i);
+				NamedNodeMap nnm = nodo.getAttributes();
+				String nombre_Nodo = nnm.getNamedItem("nombre").getNodeValue();
+				String id_Nodo = nnm.getNamedItem("id").getNodeValue();
+				String fi = nnm.getNamedItem("fi").getNodeValue();
+				String ff = nnm.getNamedItem("ff").getNodeValue();
+				String hi = nnm.getNamedItem("hi").getNodeValue();
+				String hf = nnm.getNamedItem("hf").getNodeValue();
+				String descripcion = nnm.getNamedItem("descripcion").getNodeValue();
+				String estado = nnm.getNamedItem("estado").getNodeValue();
+				System.out.print("nombre: "+nombre_Nodo+", id: "+id_Nodo+", fi: "+fi+", ff: "+ff+", hi: "+hi+", hf: "+hf);
+			
+			}
+		
+			return true;
+		}
+		catch(Exception e){
+			System.out.print("gg");
+			return false;
+		}
+	}
+}
