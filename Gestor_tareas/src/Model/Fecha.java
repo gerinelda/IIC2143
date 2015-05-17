@@ -36,17 +36,17 @@ public class Fecha implements Serializable {
 
 	@Override
 	public String toString() {
-		return new String(atToString(d)+"/"+atToString(m)+"/"+Integer.toString(y));
+		return atToString(d)+"/"+atToString(m)+"/"+Integer.toString(y);
 	}
 	public String atToString(int i)
 	{
 		if (i<10)
 		{
-			return new String("0"+Integer.toString(i));
+			return "0"+Integer.toString(i);
 		}
 		else
 		{
-			return new String(Integer.toString(i));
+			return Integer.toString(i);
 		}
 	}
 

@@ -36,11 +36,7 @@ public class mail {
     }
     
     public boolean send(String mensaje, String asunto){
-    	if(send(mensaje, mail, asunto))
-    	{
-    		return true;
-    	}
-    	return false;
+    	return(send(mensaje, mail, asunto));
     }
     
 	private boolean send(String mensaje, String destinatario, String asunto) {

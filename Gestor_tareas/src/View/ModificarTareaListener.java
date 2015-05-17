@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public interface ModificarTareaListener {
 
-    public void ModificarTarea(ActionEvent e, Tarea tarea, Proyecto proyecto);
+    void ModificarTarea(ActionEvent e, Tarea tarea, Proyecto proyecto);
 
 }
 

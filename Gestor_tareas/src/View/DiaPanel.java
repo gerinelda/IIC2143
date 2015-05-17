@@ -3,7 +3,6 @@ import Model.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.xml.bind.annotation.XmlList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -115,9 +114,7 @@ public class DiaPanel extends JPanel implements ActionListener {
     /** revisa si la fecha del dia es igual a la fecha ingresada **/
     public boolean mismaFecha(Fecha fecha) {
         //mes (de Calendar.MONTH) parte en 0 hasta 11
-        if (fecha.getD() == dia && fecha.getM() == mes+1 && fecha.getY() == year) {
-            return true;
-        } else return false;
+        return (fecha.getD() == dia && fecha.getM() == mes+1 && fecha.getY() == year);
     }
 
     /** agrega a quien escucha la modificacion de una tarea

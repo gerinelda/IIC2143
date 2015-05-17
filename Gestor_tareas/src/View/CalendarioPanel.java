@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import Model.*;
 
 import javax.imageio.ImageIO;
@@ -33,7 +32,6 @@ public class CalendarioPanel extends JPanel {
             BGimage = ImageIO.read(CalendarioPanel.class.getResource("/Imagenes/calendarioBG.jpg"));
 
         } catch (IOException e) {
-            System.out.println(e);
             setBackground(Color.getHSBColor(0.191F, 0.3F, 0.21F));
             System.out.println("Background image loading failed.");
         }

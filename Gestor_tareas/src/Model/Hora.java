@@ -33,18 +33,18 @@ public class Hora implements Serializable{
 
 	@Override
 	public String toString() {
-		return new String(atToString(h)+":"+atToString(m)+":"+atToString(s));
+		return atToString(h)+":"+atToString(m)+":"+atToString(s);
 
 	}
 	public String atToString(int i)
 	{
 		if (i<10)
 		{
-			return new String("0"+Integer.toString(i));
+			return "0"+Integer.toString(i);
 		}
 		else
 		{
-			return new String(Integer.toString(i));
+			return Integer.toString(i);
 		}
 	}
 }
