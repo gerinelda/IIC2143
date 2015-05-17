@@ -37,16 +37,25 @@ public class TareaPanel extends JPanel implements ActionListener {
     }
 
     public void mostrarTodo() {
-        /** DESCRIPCION **/
-        JLabel descripcion = new JLabel();
-        add(descripcion);
-        descripcion.setText(tarea.getDescripcion());
+        Font font = nombre.getFont();
+        setOpaque(true);
+        setBackground(new Color(20, 35, 20, 230));
 
         /** DIA VENCIMIENTO **/
         JLabel fechafinal = new JLabel();
         add(fechafinal);
         fechafinal.setText(tarea.getFf().toString());
+        fechafinal.setBorder(new LineBorder(Color.WHITE, 1));
+        fechafinal.setFont(font);
+        fechafinal.setForeground(Color.WHITE);
 
+        /** DESCRIPCION **/
+        JLabel descripcion = new JLabel();
+        add(descripcion);
+        descripcion.setText(tarea.getDescripcion());
+        descripcion.setBorder(new LineBorder(Color.WHITE, 1));
+        descripcion.setFont(font);
+        descripcion.setForeground(Color.WHITE);
 
     }
 

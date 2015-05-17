@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Fecha implements Serializable {
 
@@ -50,4 +51,7 @@ public class Fecha implements Serializable {
 		}
 	}
 
+	public Calendar getCalendario() {
+		return new GregorianCalendar(y,m,d);
+	}
 }

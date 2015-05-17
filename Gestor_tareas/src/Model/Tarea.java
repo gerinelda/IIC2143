@@ -1,9 +1,10 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 
-public class Tarea implements Serializable {
+public class Tarea implements Serializable, Comparable<Tarea> {
 	
 	//public enum estado implements Serializable{activo, pausado, terminado}
 	private int id;
@@ -155,5 +156,17 @@ public class Tarea implements Serializable {
 		this.estado = t.getEstado();
 		this.color = t.getColor();
 		this.contexto = t.getContexto();
+	}
+
+	@Override
+	public int compareTo(Tarea o) {
+		/** debe ser una relacion siemtrica, reflexiva y transitiva **/
+		Calendar calendario1 = getFf().getCalendario();
+		Calendar calendario2 = o.getFf().getCalendario();
+		/** ajustar a la hora final **/
+		calendario1.set(Calendar.SECOND,getHf().getSegundos());
+		calendario2.set(Calendar.SECOND,o.getHf().getSegundos());
+
+		return calendario1.get(Calendar.SECOND) - calendario2.get(Calendar.SECOND);
 	}
 }

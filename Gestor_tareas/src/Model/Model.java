@@ -105,19 +105,24 @@ public class Model {
 		id_proyectos++;
 	}
 
+	/** util para debugging **/
+	public void printTareas() {
+		for (Proyecto p : proyectos) {
+			for (Tarea t : p.getTareas()) {
+				System.out.print("["+t.getNombre()+"]");
+			}
+		}
+		System.out.println("");
+	}
 
-	public void eliminarTarea(int id)
-	{
+	public void eliminarTarea(int id) {
 		Proyecto actual_proyecto;
 		Tarea actual_tarea;
-		for (int i = 0; i < contador_proyectos; i++)
-		{
+		for (int i = 0; i < contador_proyectos; i++) {
 			actual_proyecto = proyectos.get(i);
-			for(int j=0; j<actual_proyecto.getTareas().size(); j++)
-			{
+			for (int j = 0; j < actual_proyecto.getTareas().size(); j++) {
 				actual_tarea = actual_proyecto.getTareas().get(j);
-				if(actual_tarea.getId()==id)
-				{
+				if (actual_tarea.getId() == id) {
 					actual_proyecto.getTareas().remove(j);
 					contador_tareas--;
 					return;
@@ -125,7 +130,6 @@ public class Model {
 			}
 		}
 	}
-
 
 	public void eliminarProyecto(int id)
 	{

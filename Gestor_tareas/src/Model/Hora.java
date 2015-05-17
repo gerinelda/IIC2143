@@ -47,4 +47,8 @@ public class Hora implements Serializable{
 			return Integer.toString(i);
 		}
 	}
+
+	public int getSegundos() {
+		return s + 60 * m + 60 * 60 * h;
+	}
 }

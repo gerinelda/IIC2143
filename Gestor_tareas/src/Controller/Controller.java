@@ -25,7 +25,7 @@ public class Controller implements ActionListener, ModificarTareaListener {
     public void ModificarTarea(ActionEvent e, Tarea tarea,Proyecto proyecto) {
         if (e.getActionCommand().equals("eliminar")) {
             /** ELIMINAR TAREA **/
-            System.out.println("eliminando tarea");
+            System.out.println("eliminando tarea "+tarea.getNombre());
             model.eliminarTarea(tarea.getId());
         } else if (e.getActionCommand().equals("estado")) {
             /** CAMBIAR ESTADO **/

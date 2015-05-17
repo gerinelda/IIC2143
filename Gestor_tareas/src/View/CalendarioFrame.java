@@ -77,9 +77,7 @@ public class CalendarioFrame extends JFrame implements ActionListener, Modificar
             calendario = Calendar.getInstance();
             updateCalendario(calendario);
         } else if (e.getActionCommand().equals("volver")) {
-            // vuelve a vista resumen
-            // no implementado
-            System.out.println("no implementado, implementar para sprint 2!!");
+            setVisible(false);
         }
     }
 
@@ -90,6 +88,10 @@ public class CalendarioFrame extends JFrame implements ActionListener, Modificar
     @Override
     public void ModificarTarea(ActionEvent e, Tarea tarea, Proyecto proyecto) {
         updateCalendario(calendario);
+    }
+
+    public void updateUI() {
+        content.update(calendario);
     }
 }
 
