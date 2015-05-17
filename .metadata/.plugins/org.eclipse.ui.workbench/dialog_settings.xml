@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="FileSystemImportWizard">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="18" key="DIALOG_Y_ORIGIN"/>
+		<item value="323" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="853" key="dialogWidth"/>
-		<item value="480" key="dialogHeight"/>
+		<item value="474" key="dialogHeight"/>
+		<item value="847" key="dialogWidth"/>
+		<list key="textEntries">
+		</list>
+		<list key="orderedElements">
+		</list>
 		<list key="orderedProviders">
 		</list>
 		<list key="textArray">
 		</list>
-		<list key="orderedElements">
-		</list>
-		<list key="textEntries">
-		</list>
-	</section>
-	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="18" key="DIALOG_Y_ORIGIN"/>
-		<item value="323" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="NewWizardAction">
 	</section>
@@ -25,5 +23,7 @@
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>
 		</list>
+	</section>
+	<section name="FileSystemImportWizard">
 	</section>
 </section>

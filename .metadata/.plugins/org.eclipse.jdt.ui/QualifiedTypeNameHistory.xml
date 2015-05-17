@@ -14,4 +14,5 @@
 <fullyQualifiedTypeName name="Model.Fecha"/>
 <fullyQualifiedTypeName name="Model.Hora"/>
 <fullyQualifiedTypeName name="Model.Contexto"/>
+<fullyQualifiedTypeName name="Model.Tarea"/>
 </qualifiedTypeNameHistroy>
