@@ -1,11 +1,11 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 
 public class Tarea implements Serializable {
 	
-	//public enum estado implements Serializable{activo, pausado, terminado}
 	private int id;
 	private String nombre;
 	private Fecha fi;
@@ -155,5 +155,17 @@ public class Tarea implements Serializable {
 		this.estado = t.getEstado();
 		this.color = t.getColor();
 		this.contexto = t.getContexto();
+	}
+	
+	public void aplazar(int dias)
+	{
+		Calendar c = Calendar.getInstance();
+		c.set(ff.y, ff.m, ff.d);
+		int d =c.get(Calendar.DAY_OF_YEAR);
+		d = d+dias;
+		c.set(Calendar.DAY_OF_YEAR, d);
+		this.ff.y = c.get(Calendar.YEAR);
+		this.ff.m = c.get(Calendar.MONTH);
+		this.ff.d = c.get(Calendar.DAY_OF_MONTH);
 	}
 }
