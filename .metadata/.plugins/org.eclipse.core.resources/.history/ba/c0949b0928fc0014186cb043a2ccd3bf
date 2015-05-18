@@ -1,9 +1,0 @@
-import mail;
-public class prueba {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		mail m = new mail();
-	}
-
-}

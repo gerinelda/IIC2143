@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proyecto id="1" nombre="miSuperProyecto" estado="activo">
+  <tarea id="0" nombre="t1" fi="01/01/01" ff="02/01/01" hi="12:23:00" hf="12:50:00" descripcion="hola, soy la t1" estado="activo" color="234" contexto="c1" />
+  <tarea id="1" nombre="t2" fi="01/02/01" ff="02/02/01" hi="12:23:00" hf="12:50:00" descripcion="hola, soy la t2" estado="activo" color="234" contexto="c2" />
+</proyecto>

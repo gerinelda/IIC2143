@@ -18,9 +18,16 @@ public class Fecha implements Serializable {
 	}
 
 	public Fecha() {
-		d = calendar.get(Calendar.DAY_OF_MONTH);
-		m = calendar.get(Calendar.MONTH)+1;
-		y = calendar.get(Calendar.YEAR);
+		this.d = calendar.get(Calendar.DAY_OF_MONTH);
+		this.m = calendar.get(Calendar.MONTH)+1;
+		this.y = calendar.get(Calendar.YEAR);
+	}
+	
+	public Fecha(String input)
+	{
+		this.d = Integer.parseInt(input.substring(0,2));
+		this.m = Integer.parseInt(input.substring(3, 5));
+		this.y = Integer.parseInt(input.substring(6, 8));
 	}
 
 	public int getD() {
@@ -37,7 +44,7 @@ public class Fecha implements Serializable {
 
 	@Override
 	public String toString() {
-		return atToString(d)+"/"+atToString(m)+"/"+Integer.toString(y);
+		return atToString(d)+"/"+atToString(m)+"/"+atToString(y);
 	}
 	public String atToString(int i)
 	{

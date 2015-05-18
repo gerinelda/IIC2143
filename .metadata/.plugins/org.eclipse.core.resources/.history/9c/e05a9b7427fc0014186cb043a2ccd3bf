@@ -1,8 +1,0 @@
-package Controller;
-
-public class prueba {
-	mail m = new mail();
-	if(m.comprobarmail("mngatica@uc.cl")){
-	
-	}
-}

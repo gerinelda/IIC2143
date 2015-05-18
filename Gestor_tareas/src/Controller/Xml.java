@@ -1,11 +1,22 @@
 package Controller;
 import java.io.FileWriter;
+
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import Model.*;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+
+import java.io.File;
+
 
 public class Xml {
 	
@@ -49,6 +60,51 @@ public class Xml {
 		{
 			System.out.print("gg");
 			return false;
+		}
+	}
+
+	public Proyecto leer(String ruta)
+	{
+		Proyecto p;
+
+		try{
+	
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			org.w3c.dom.Document documento = dBuilder.parse(ruta);
+			org.w3c.dom.Element raiz = documento.getDocumentElement();
+			String id = raiz.getAttribute("id");
+			String nombre = raiz.getAttribute("nombre");
+			String estado = raiz.getAttribute("estado");
+			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
+			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
+			
+			NodeList tareas = raiz.getElementsByTagName("tarea");
+			int largo = tareas.getLength();
+			for (int i = 0; i < tareas.getLength(); i++) {
+				Node nodo = tareas.item(i);
+				NamedNodeMap nnm = nodo.getAttributes();
+				String nombre_tarea = nnm.getNamedItem("nombre").getNodeValue();
+				String id_tarea = nnm.getNamedItem("id").getNodeValue();
+				String fi = nnm.getNamedItem("fi").getNodeValue();
+				String ff = nnm.getNamedItem("ff").getNodeValue();
+				String hi = nnm.getNamedItem("hi").getNodeValue();
+				String hf = nnm.getNamedItem("hf").getNodeValue();
+				Fecha f = new Fecha(fi);
+				String descripcion = nnm.getNamedItem("descripcion").getNodeValue();
+				String estado_tarea = nnm.getNamedItem("estado").getNodeValue();
+				String color = nnm.getNamedItem("color").getNodeValue();
+				String contexto = nnm.getNamedItem("contexto").getNodeValue();
+				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, Integer.parseInt(color), new Contexto(contexto));
+				p.getTareas().add(t);
+				System.out.print("nombre: "+nombre_tarea+", id: "+id_tarea+", fi: "+fi+", ff: "+ff+", hi: "+hi+", hf: "+hf+", descripcion: "+descripcion+", estado_tarea: "+estado_tarea);
+			}
+		
+			return p;
+		}
+		catch(Exception e){
+			System.out.print("gg");
+			return null;
 		}
 	}
 }
