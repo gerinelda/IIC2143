@@ -182,4 +182,16 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		int j = calendario2.get(Calendar.DAY_OF_YEAR);
 		return i-j;
 	}
+	
+	public void aplazar(int dias)
+	{
+		Calendar c = Calendar.getInstance();
+		c.set(ff.y, ff.m, ff.d);
+		int d =c.get(Calendar.DAY_OF_YEAR);
+		d = d+dias;
+		c.set(Calendar.DAY_OF_YEAR, d);
+		this.ff.y = c.get(Calendar.YEAR);
+		this.ff.m = c.get(Calendar.MONTH);
+		this.ff.d = c.get(Calendar.DAY_OF_MONTH);
+	}
 }

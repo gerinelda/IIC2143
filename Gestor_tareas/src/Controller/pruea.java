@@ -18,6 +18,9 @@ public class pruea {
 		
 		//Proyecto p2 = xml.leer(path);
 		System.out.print("holi");
+		System.out.print(t1.getFf().toString());
+		t1.aplazar(7);
+		System.out.print(t1.getFf().toString());
 	}
 
 }
