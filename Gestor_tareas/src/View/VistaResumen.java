@@ -46,6 +46,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		JButton btn1 = new JButton("Todas");
 		JButton btn2 = new JButton("Ordenar");
 		JButton btn3 = new JButton("3 dias");
+		JButton btn4 = new JButton("Proyectos");
 		JPanel sidebar = new JPanel();
 
 		content.setLayout(new GridLayout(0,1));
@@ -59,6 +60,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		sidebar.add(btn1);
 		sidebar.add(btn2);
 		sidebar.add(btn3);
+		sidebar.add(btn4);
 
 		Font font = new Font("Centhury Gothic",Font.PLAIN,20);
 		content.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.WHITE, 2), "Vista Resumen", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, font, Color.WHITE));
@@ -83,6 +85,12 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 			public void actionPerformed(ActionEvent e) {
 				listaActualTareas = getProximos3dias();
 				mostrarTareas(listaActualTareas);
+			}
+		});
+		btn4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mostrarProyectos();
 			}
 		});
 		/** Content **/
@@ -220,5 +228,14 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		}
 		else if (e.getActionCommand().equals("estado")) {
 		}
+	}
+
+	public void mostrarProyectos() {
+		content.removeAll();
+		for (Proyecto p : model.getProyectos()) {
+			ProyectoPanel PP = new ProyectoPanel(p);
+			content.add(PP);
+		}
+		content.updateUI();
 	}
 }
