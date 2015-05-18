@@ -232,8 +232,9 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 	public void mostrarProyectos() {
 		content.removeAll();
-		for (Proyecto p : model.getProyectos()) {
-			ProyectoPanel PP = new ProyectoPanel(p);
+		ArrayList<Proyecto> proyectos = model.getProyectos();
+		for (Proyecto p : proyectos) {
+			ProyectoPanel PP = new ProyectoPanel(p,model);
 			content.add(PP);
 		}
 		content.updateUI();

@@ -1,6 +1,6 @@
 package View;
 
-import Model.Proyecto;
+import Model.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -11,8 +11,10 @@ import java.awt.event.ActionListener;
 public class ProyectoPanel extends JPanel {
 
     private Proyecto proyecto;
+    private Model model;
 
-    ProyectoPanel(Proyecto proyecto) {
+    ProyectoPanel(Proyecto proyecto, Model model) {
+        this.model = model;
         this.proyecto = proyecto;
         placeComponents();
     }
@@ -29,7 +31,7 @@ public class ProyectoPanel extends JPanel {
         nombreProyecto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProyectoFrame PF = new ProyectoFrame(proyecto);
+                ProyectoFrame PF = new ProyectoFrame(proyecto, model);
                 PF.setVisible(true);
             }
         });

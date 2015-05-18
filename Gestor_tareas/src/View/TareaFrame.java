@@ -7,7 +7,6 @@ import java.awt.*;
 
 public class TareaFrame extends JFrame{
 
-	Tarea tarea;
 	JPanel content;
 	JLabel id, nombre, fi, ff, hi, hf, descripcion, contexto;
 
