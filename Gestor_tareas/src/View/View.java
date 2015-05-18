@@ -26,5 +26,9 @@ public class View {
         vistaResumen.updateAll();
     }
 
+    public void actualizarProyectos() {
+        vistaResumen.actualizarProyectos();
+    }
+
 
 }

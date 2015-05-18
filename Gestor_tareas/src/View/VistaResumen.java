@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Xml;
 import Model.*;
 
 import java.awt.*;
@@ -24,6 +25,8 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 	private ArrayList<ModificarTareaListener> modificarTareaListeners;
 	private JPanel content;
 	private ArrayList<Tarea> listaActualTareas;
+	private JMenuBar menubar;
+	private JComboBox<Proyecto> proyectosCB;
 
 	public VistaResumen(Model model) {
 		this.model = model;
@@ -39,15 +42,16 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 	private void placeComponents() {
 		JPanel Horizontal = new JPanel();
 		Horizontal.setLayout(new BoxLayout(Horizontal, BoxLayout.X_AXIS));
-		Horizontal.setBackground(new Color(35, 35, 35,230));
+		Horizontal.setBackground(new Color(35, 35, 35, 230));
 		content = new JPanel();
 		content.setBackground(new Color(20, 35, 20, 230));
 
-		JMenuBar menubar = new JMenuBar();
+		menubar = new JMenuBar();
 		JButton btn1 = new JButton("Todas");
 		JButton btn2 = new JButton("Ordenar");
 		JButton btn3 = new JButton("3 dias");
 		JButton btn4 = new JButton("Proyectos");
+
 		JPanel sidebar = new JPanel();
 
 		content.setLayout(new GridLayout(0,1));
@@ -77,7 +81,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listaActualTareas =  getTareasPorFechaFinal();
+				listaActualTareas = getTareasPorFechaFinal();
 				mostrarTareas(listaActualTareas);
 			}
 		});
@@ -111,6 +115,31 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		JButton vistaCalendarioButton = new JButton("Calendario");
 		menubar.add(vistaCalendarioButton);
+
+		JButton ExportarButton = new JButton("Exportar");
+		menubar.add(ExportarButton);
+		ExportarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				/** EXPORTAR **/
+				/** aqui se fue el MVC pero queda poco tiempo **/
+				Xml xml = new Xml();
+				xml.crear((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
+			}
+		});
+
+		proyectosCB = new JComboBox<>();
+		actualizarProyectos();
+		menubar.add(proyectosCB);
+
+		JButton ImportarButton = new JButton("Importar");
+		menubar.add(ImportarButton);
+		ImportarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				openFileDialog();
+			}
+		});
 
 		crearTareaButton.addActionListener(e -> {
 			creadorTareas = new CreadorTareas(model);
@@ -254,4 +283,26 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		}
 		content.updateUI();
 	}
+
+	public void actualizarProyectos() {
+		proyectosCB.removeAllItems();
+		for (Proyecto p : model.getProyectos()) {
+			proyectosCB.addItem(p);
+		}
+	}
+
+	public void openFileDialog() {
+		FileDialog fd = new FileDialog(this,"Elije el archivo a importar",FileDialog.LOAD);
+		fd.setDirectory("C:\\");
+		fd.setFile("*.xml");
+		fd.setVisible(true);
+		String ruta = fd.getFile();
+		if (ruta != null) {
+			Xml xml = new Xml();
+			xml.leer(ruta,model);
+			mostrarTareas(listaActualTareas);
+			actualizarProyectos();
+		}
+	}
 }
+

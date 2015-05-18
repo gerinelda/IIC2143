@@ -16,7 +16,7 @@ public class pruea {
 		String path = "/home/gerinelda/IIC2143/" + p.getNombre()+".xml";
 		boolean a = xml.crear(p,path);
 		
-		Proyecto p2 = xml.leer(path);
+		//Proyecto p2 = xml.leer(path);
 		System.out.print("holi");
 	}
 
