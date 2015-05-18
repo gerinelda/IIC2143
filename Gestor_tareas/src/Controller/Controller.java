@@ -5,7 +5,7 @@ import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Controller implements ActionListener, ModificarTareaListener {
+public class Controller implements ActionListener, ModificarTareaListener, EmailListener {
 
     View view;
     Model model;
@@ -15,6 +15,7 @@ public class Controller implements ActionListener, ModificarTareaListener {
         this.model = model;
         view.setListener(this);
         view.addModificarTareaListener(this);
+        view.addEmailListener(this);
     }
 
     @Override
@@ -56,5 +57,11 @@ public class Controller implements ActionListener, ModificarTareaListener {
     public void updateAll() {
         view.actualizarProyectos();
         view.updateAll();
+    }
+
+    @Override
+    public void EnviarEmail(String contenido, String destinatarioi, String asunto) {
+        mail mymail = new mail();
+        mymail.send(contenido,asunto);
     }
 }

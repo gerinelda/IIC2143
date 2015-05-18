@@ -1,10 +1,12 @@
 package View;
+import Controller.Controller;
 import Model.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class View {
@@ -12,6 +14,7 @@ public class View {
     private Model model;
     private VistaResumen vistaResumen;
     private ArrayList<String> emails;
+    private ArrayList<EmailListener> emailListeners;
 
     public View(Model model) {
         this.model = model;
@@ -51,11 +54,22 @@ public class View {
                 JFrame emailFrame = new JFrame();
                 emailFrame.setVisible(true);
                 JPanel content = new JPanel();
-                emailFrame.setSize(300, 150);
+                content.setLayout(new BoxLayout(content,BoxLayout.Y_AXIS));
+                emailFrame.setSize(600, 150);
                 emailFrame.setContentPane(content);
-                content.add(new JLabel("¿Está seguro?\n" +
-                        "Esta acción enviará un e-mail con las tareas que \n" +
-                        "vencen esta semana"));
+                if (emails.isEmpty()) {
+                    content.add(new JLabel("No hay emails subscritos"));
+                } else {
+                    content.add(new JLabel("Esta seguro?"));
+                    content.add(new JLabel(
+                            "Esta accion enviara un e-mail con las tareas que \n" +
+                            "vencen esta semana a los siguientes emails"));
+                    if (emails!=null) {
+                        for (String email : emails) {
+                            content.add(new JLabel(email));
+                        }
+                    }
+                }
                 JButton boton_aceptar = new JButton("Aceptar");
                 JButton boton_cancelar = new JButton("Cancelar");
                 content.add(boton_aceptar);
@@ -84,9 +98,29 @@ public class View {
         vistaResumen.setVisible(true);
     }
 
-    private void enviarEmails() {
-        for (String email : emails) {
+    public void addEmailListener(EmailListener listener) {
+        emailListeners.add(listener);
+    }
 
+    private void enviarEmails() {
+        String contenido = "";
+        for (Proyecto p : model.getProyectos()) {
+            for (Tarea t : p.getTareas()) {
+                int diferencia = t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR)
+                        - Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+                if (diferencia >= 0 && diferencia <= 3) {
+                    contenido+="Tarea ["+t.getNombre()+"] vence pronto!\n";
+                }
+            }
+        }
+        if (contenido.equals("")) {
+            contenido = "No hay tareas por vencer en los proximos 3 dias";
+        }
+
+        for (String email : emails) {
+            for (EmailListener listener : emailListeners) {
+                listener.EnviarEmail(contenido,email,"Tareas pendientes");
+            }
         }
     }
 
