@@ -107,8 +107,14 @@ public class View {
         String contenido = "";
         for (Proyecto p : model.getProyectos()) {
             for (Tarea t : p.getTareas()) {
-                int diferencia = t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR)
-                        - Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+                int diferencia =
+                        (t.getFf().getCalendario().get(Calendar.YEAR)*365
+                                + t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR))
+                        -
+                        (Calendar.getInstance().get(Calendar.YEAR)*365
+                        + Calendar.getInstance().get(Calendar.DAY_OF_YEAR));
+                System.out.println(diferencia+"\t"+t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR)
+                        +"\t"+Calendar.getInstance().get(Calendar.DAY_OF_YEAR));
                 if (diferencia >= 0 && diferencia <= 3) {
                     contenido+="Tarea ["+t.getNombre()+"] vence pronto!\n";
                 }

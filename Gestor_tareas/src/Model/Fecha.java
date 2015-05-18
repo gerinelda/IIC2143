@@ -66,7 +66,6 @@ public class Fecha implements Serializable {
 	}
 
 	public Calendar getCalendario() {
-
-		return new GregorianCalendar(y,m,d);
+		return new GregorianCalendar(y,m-1,d);
 	}
 }
