@@ -77,8 +77,6 @@ public class Xml {
 			String nombre = raiz.getAttribute("nombre");
 			String estado = raiz.getAttribute("estado");
 			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
-			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
-			
 			NodeList tareas = raiz.getElementsByTagName("tarea");
 			int largo = tareas.getLength();
 			for (int i = 0; i < tareas.getLength(); i++) {
@@ -97,7 +95,6 @@ public class Xml {
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
 				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, Integer.parseInt(color), new Contexto(contexto));
 				p.getTareas().add(t);
-				System.out.print("nombre: "+nombre_tarea+", id: "+id_tarea+", fi: "+fi+", ff: "+ff+", hi: "+hi+", hf: "+hf+", descripcion: "+descripcion+", estado_tarea: "+estado_tarea);
 			}
 		
 			return p;
