@@ -3,14 +3,11 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import Model.*;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class TareaPanel extends JPanel implements ActionListener {
 

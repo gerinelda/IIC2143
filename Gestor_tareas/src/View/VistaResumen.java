@@ -47,6 +47,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		content.setBackground(new Color(20, 35, 20, 230));
 
 		menubar = new JMenuBar();
+		JButton addBtn = new JButton(" + ");
 		JButton btn1 = new JButton("Todas");
 		JButton btn2 = new JButton("Ordenar");
 		JButton btn3 = new JButton("3 dias");
@@ -54,7 +55,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		JPanel sidebar = new JPanel();
 
-		content.setLayout(new GridLayout(0,1));
+		content.setLayout(new GridLayout(0, 1));
 		sidebar.setLayout(new GridLayout(0, 1));
 		sidebar.setMaximumSize(new Dimension(100, 100000));
 		setJMenuBar(menubar);
@@ -62,6 +63,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		Horizontal.add(sidebar);
 		Horizontal.add(content);
+		sidebar.add(addBtn);
 		sidebar.add(btn1);
 		sidebar.add(btn2);
 		sidebar.add(btn3);
@@ -69,6 +71,15 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		Font font = new Font("Centhury Gothic",Font.PLAIN,20);
 		content.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.WHITE, 2), "Vista Resumen", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, font, Color.WHITE));
+
+		addBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TareaRapidaFrame TRF = new TareaRapidaFrame(model,Calendar.getInstance());
+				TRF.setListeners(modificarTareaListeners);
+				TRF.setVisible(true);
+			}
+		});
 
 		/** BOTONES FILTROS / SORT **/
 		btn1.addActionListener(new ActionListener() {

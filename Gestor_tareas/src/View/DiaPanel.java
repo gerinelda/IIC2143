@@ -19,7 +19,7 @@ public class DiaPanel extends JPanel implements ActionListener {
     private Model model;
     private int diaSemana;
     private TransparentButton agregar;
-    private ArrayList<ModificarTareaListener> modificarTareaListener;
+    private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
     public DiaPanel(int dia, int mes, int year, Model model) {
 
@@ -27,7 +27,7 @@ public class DiaPanel extends JPanel implements ActionListener {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  this.dia = dia;
         setBorder(new EtchedBorder());
 
-        modificarTareaListener = new ArrayList<>();
+        modificarTareaListeners = new ArrayList<>();
         this.model = model;
 
         this.mes = mes;
@@ -126,7 +126,7 @@ public class DiaPanel extends JPanel implements ActionListener {
                 tarea.addModificarTareaListener(listener);
             }
         }
-        modificarTareaListener.add(listener);
+        modificarTareaListeners.add(listener);
     }
 
     /** agrega un listener para una accion **/
@@ -142,9 +142,7 @@ public class DiaPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("agregar")) {
             TareaRapidaFrame tareaRapidaFrame = new TareaRapidaFrame(model,new GregorianCalendar(year,mes,dia));
-            for (ModificarTareaListener listener : modificarTareaListener) {
-                tareaRapidaFrame.addModificarTareaListener(listener);
-            }
+            tareaRapidaFrame.setListeners(modificarTareaListeners);
             tareaRapidaFrame.setVisible(true);
         }
     }
