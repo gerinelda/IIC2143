@@ -20,6 +20,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 	private ArrayList<Proyecto> proyectos;
 	private CreadorProyectos creadorProyectos;
 	private CreadorTareas creadorTareas;
+	private CreadorContextos creadorContextos;
 	private ArrayList<ModificarTareaListener> modificarTareaListeners;
 	private JPanel content;
 	private ArrayList<Tarea> listaActualTareas;
@@ -104,12 +105,15 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		
 		JButton crearProyectoButton = new JButton("Crear P");
 		menubar.add(crearProyectoButton);
-		
+
+		JButton crearContextoButton = new JButton("Crear C");
+		menubar.add(crearContextoButton);
+
 		JButton vistaCalendarioButton = new JButton("Calendario");
 		menubar.add(vistaCalendarioButton);
 
 		crearTareaButton.addActionListener(e -> {
-            creadorTareas = new CreadorTareas(model);
+			creadorTareas = new CreadorTareas(model);
 			for (ModificarTareaListener listener : modificarTareaListeners) {
 				creadorTareas.addModificarTareaListener(listener);
 			}
@@ -122,6 +126,17 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 				creadorProyectos.addModificarTareaListener(listener);
 			}
 			creadorProyectos.setVisible(true);
+		});
+
+		crearContextoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				creadorContextos = new CreadorContextos(model);
+				for (ModificarTareaListener listener : modificarTareaListeners) {
+					creadorContextos.addModificarTareaListener(listener);
+				}
+				creadorContextos.setVisible(true);
+			}
 		});
 
 		vistaCalendarioButton.addActionListener(e -> calendario.setVisible(true));

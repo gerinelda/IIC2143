@@ -40,6 +40,10 @@ public class Controller implements ActionListener, ModificarTareaListener {
             /** AGREGAR NUEVO PROYECTO **/
             System.out.println("agregando proyecto nuevo");
             model.agregarProyecto(proyecto);
+        } else if (e.getActionCommand().equals("agregarContexto")) {
+            /** AGREGAR NUEVO CONTEXTO **/
+            System.out.println("agregando contexto nuevo");
+            model.agregarContexto(new Contexto(proyecto.getNombre()));
         }
         updateAll();
     }

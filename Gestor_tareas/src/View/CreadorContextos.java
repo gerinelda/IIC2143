@@ -1,24 +1,18 @@
 package View;
 
 import Model.*;
-
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+public class CreadorContextos extends JFrame {
 
-public class CreadorProyectos extends JFrame {
-	
 	private JTextField nombreText;
 	private Model model;
 	private ArrayList<ModificarTareaListener> modificarTareaListeners;
 
-	public CreadorProyectos(Model model){
+	public CreadorContextos(Model model){
 		this.model = model;
 		modificarTareaListeners = new ArrayList<>();
 		setSize(300, 150);
@@ -28,7 +22,7 @@ public class CreadorProyectos extends JFrame {
 		placeComponents(panel);
 		setVisible(true);
 	}
-	
+
 	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
@@ -45,16 +39,17 @@ public class CreadorProyectos extends JFrame {
 		JButton cancelarButton = new JButton("Cancelar");
 		cancelarButton.setBounds(10, 70, 100, 25);
 		panel.add(cancelarButton);
-		
+
 		JButton crearButton = new JButton("Crear");
 		crearButton.setBounds(170, 70, 100, 25);
 		panel.add(crearButton);
-		
+
 		crearButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!nombreText.getText().isEmpty()) {
-					Proyecto p = new Proyecto(model.getId_proyectos(), nombreText.getText(), Estado.activo);
+					/** medio sucio pero le estoy pasando el nombre del contexto como nombre del proyecto **/
+					Proyecto p = new Proyecto(0, nombreText.getText(), Estado.activo);
 					for (ModificarTareaListener listener : modificarTareaListeners) {
 						listener.ModificarTarea(e, new Tarea(-1), p);
 					}
@@ -62,8 +57,8 @@ public class CreadorProyectos extends JFrame {
 				}
 			}
 		});
-		crearButton.setActionCommand("agregarProyecto");
-		
+		crearButton.setActionCommand("agregarContexto");
+
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
@@ -76,5 +71,5 @@ public class CreadorProyectos extends JFrame {
 		modificarTareaListeners.add(listener);
 	}
 
-	
+
 }
