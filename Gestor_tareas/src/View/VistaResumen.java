@@ -34,7 +34,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		modificarTareaListeners = new ArrayList<>();
 		modificarTareaListeners.add(this);
 		calendario = new CalendarioFrame(model);
-		setSize(500, 350);
+		setSize(750, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		placeComponents();
 	}
