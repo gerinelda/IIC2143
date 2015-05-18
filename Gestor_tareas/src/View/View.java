@@ -20,6 +20,7 @@ public class View {
         this.model = model;
         vistaResumen = new VistaResumen(model);
         emails = new ArrayList<>();
+        emailListeners = new ArrayList<>();
 
         JButton emailBtn = new JButton("ingresar e-mail");
         emailBtn.addActionListener(new ActionListener() {

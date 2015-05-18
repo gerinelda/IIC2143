@@ -60,8 +60,8 @@ public class Controller implements ActionListener, ModificarTareaListener, Email
     }
 
     @Override
-    public void EnviarEmail(String contenido, String destinatarioi, String asunto) {
+    public void EnviarEmail(String contenido, String destinatario, String asunto) {
         mail mymail = new mail();
-        mymail.send(contenido,asunto);
+        mymail.send(contenido,destinatario,asunto);
     }
 }
