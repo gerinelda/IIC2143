@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ProyectoFrame extends JFrame {
 
@@ -31,5 +33,6 @@ public class ProyectoFrame extends JFrame {
             temp.setForeground(Color.WHITE);
             add(temp);
         }
+
     }
 }

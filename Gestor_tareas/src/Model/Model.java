@@ -257,4 +257,16 @@ public class Model {
 			return null;
 		}
 	}
+
+	public void cambiarTarea(Tarea tarea) {
+		for (Proyecto p : proyectos) {
+			for (Tarea t : p.getTareas()) {
+				int indice = indiceTarea(t.getId());
+				if (t.getId() == tarea.getId()) {
+					// si la tarea tiene el mismo id entonces intercambiar
+					p.getTareas().set(indice, tarea);
+				}
+			}
+		}
+	}
 }

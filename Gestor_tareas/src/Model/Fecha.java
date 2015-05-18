@@ -30,6 +30,13 @@ public class Fecha implements Serializable {
 		this.y = Integer.parseInt(input.substring(6, 8));
 	}
 
+	/** fecha desde calendario **/
+	public Fecha(Calendar calendario) {
+		this.d = calendario.get(Calendar.DAY_OF_MONTH);
+		this.m = calendario.get(Calendar.MONTH)+1;
+		this.y = calendario.get(Calendar.YEAR);
+	}
+
 	public int getD() {
 		return d;
 	}
@@ -59,6 +66,7 @@ public class Fecha implements Serializable {
 	}
 
 	public Calendar getCalendario() {
+
 		return new GregorianCalendar(y,m,d);
 	}
 }

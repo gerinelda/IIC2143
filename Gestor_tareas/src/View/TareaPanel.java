@@ -3,6 +3,8 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import Model.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +26,7 @@ public class TareaPanel extends JPanel implements ActionListener {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setAlignmentX(Component.LEFT_ALIGNMENT);
         estado = new TransparentButton(tarea.getEstado());
-        estado.setBorder(new LineBorder(Color.white,1));
+        estado.setBorder(new LineBorder(Color.white, 1));
         nombre = new TransparentButton(" "+tarea.getNombre());
         delete = new TransparentButton(" X ");
         add(delete);
@@ -66,6 +68,11 @@ public class TareaPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("detalle")) {
             TareaFrame tF = new TareaFrame(tarea);
+            if (modificarTareaListeners!=null) {
+                for (ModificarTareaListener listener : modificarTareaListeners) {
+                    tF.addModificarTareaListener(listener);
+                }
+            }
             tF.setVisible(true);
         }
         else if (e.getActionCommand().equals("eliminar")) {

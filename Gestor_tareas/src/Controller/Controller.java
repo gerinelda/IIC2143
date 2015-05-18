@@ -43,6 +43,12 @@ public class Controller implements ActionListener, ModificarTareaListener {
             /** AGREGAR NUEVO CONTEXTO **/
             System.out.println("agregando contexto nuevo");
             model.agregarContexto(new Contexto(proyecto.getNombre()));
+        } else if (e.getActionCommand().equals("aplazar")) {
+            /** APLAZAR TAREA CON ID DE TAREA, DIAS = ID DE PROYECTO **/
+            System.out.println("aplazando "+proyecto.getId()+" dias");
+            //System.out.println(model.getTarea(tarea.getId()).getFf());
+            model.cambiarTarea(tarea);
+            //System.out.println(model.getTarea(tarea.getId()).getFf());
         }
         updateAll();
     }

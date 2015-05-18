@@ -1,23 +1,21 @@
 package View;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import Model.*;
 
-import javax.imageio.ImageIO;
 
 public class CalendarioPanel extends JPanel {
 
     private ArrayList<DiaPanel> diasPanel;
     private Model model;
-    private BufferedImage BGimage;
+    private Image BGimage;
 
     public CalendarioPanel(Calendar calendario, Model model, CalendarioFrame cF) {
         this.model = model;
@@ -29,10 +27,11 @@ public class CalendarioPanel extends JPanel {
 
         // imagen de fondo
         try {
-            BGimage = ImageIO.read(CalendarioPanel.class.getResource("/Imagenes/calendarioBG.jpg"));
+            BGimage = ImageIO.read(getClass().getResource("/resources/imagenes/calendarioBG.jpg"));
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             setBackground(Color.getHSBColor(0.191F, 0.3F, 0.21F));
+            System.out.println(e);
             System.out.println("Background image loading failed.");
         }
 
