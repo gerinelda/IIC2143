@@ -13,7 +13,7 @@ public class pruea {
 		p.getTareas().add(t1);
 		p.getTareas().add(t2);		
 		System.out.print(t1.getFf().toString());
-		t1.aplazar(7);
+		t1 .aplazar(7);
 		System.out.print(t1.getFf().toString());
 	}
 
