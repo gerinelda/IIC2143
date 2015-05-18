@@ -3,6 +3,7 @@ package View;
 import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyEditor;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -215,13 +216,15 @@ public class CreadorTareas extends JFrame {
 
 		crearButton.addActionListener(e -> {
             /** evento al controlador, agregar tarea **/
-            System.out.println("agregar tarea! avisar a controlador");
+			agregarTarea(e);
         });
+		crearButton.setActionCommand("agregar");
 
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
 	public void addModificarTareaListener(ModificarTareaListener listener) {
+
 		// comprobar si ya estaba el listener en la lista
 		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
 			if (modificarTareaListener.equals(listener)) {
@@ -230,5 +233,33 @@ public class CreadorTareas extends JFrame {
 		}
 		// si no esta, lo agregamos
 		modificarTareaListeners.add(listener);
+	}
+
+	public void agregarTarea(ActionEvent e) {
+		if (!nombreText.getText().isEmpty()
+				&& new Integer(HIminuto.getText()) >= 0
+				&& new Integer(HIminuto.getText()) < 60
+				&& new Integer(HIhora.getText()) >= 0
+				&& new Integer(HIhora.getText()) < 24
+				&& new Integer(HFminuto.getText()) >= 0
+				&& new Integer(HFminuto.getText()) < 60
+				&& new Integer(HFhora.getText()) >= 0
+				&& new Integer(HFhora.getText()) < 24) {
+
+			int id = model.getId_tareas();
+			String nombre = nombreText.getText();
+			Fecha fi = new Fecha((int) fidia.getSelectedItem(),(int) fimes.getSelectedItem(),(int) fiyear.getSelectedItem());
+			Fecha ff = new Fecha((int) ffdia.getSelectedItem(),(int) ffmes.getSelectedItem(),(int) ffyear.getSelectedItem());
+			Hora hi = new Hora(new Integer(HIhora.getText()),new Integer(HIminuto.getText()));
+			Hora hf = new Hora(new Integer(HFhora.getText()),new Integer(HFminuto.getText()));
+			String descr = descripcionText.getText();
+			int color = 0; //?????????????????
+			Contexto contexto = (Contexto) listaContexto.getSelectedItem();
+
+			Tarea tarea = new Tarea(id,nombre,fi,ff,hi,hf,descr,color,contexto);
+			for (ModificarTareaListener listener : modificarTareaListeners) {
+				listener.ModificarTarea(e, tarea, (Proyecto) listaProyectos.getSelectedItem());
+			}
+		}
 	}
 }

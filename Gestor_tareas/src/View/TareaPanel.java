@@ -81,7 +81,6 @@ public class TareaPanel extends JPanel implements ActionListener {
                 for (ModificarTareaListener listener : modificarTareaListeners) {
                     listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
-                 System.out.println(modificarTareaListeners);
                 estado.setBackground(estado.getColor(tarea.getEstado()));
             }
         }
