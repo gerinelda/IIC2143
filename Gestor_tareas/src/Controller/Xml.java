@@ -82,6 +82,7 @@ public class Xml {
 			NodeList tareas = raiz.getElementsByTagName("tarea");
 			int largo = tareas.getLength();
 			for (int i = 0; i < tareas.getLength(); i++) {
+				System.out.println("creando tarea en model");
 				Node nodo = tareas.item(i);
 				NamedNodeMap nnm = nodo.getAttributes();
 				String nombre_tarea = nnm.getNamedItem("nombre").getNodeValue();
@@ -96,8 +97,8 @@ public class Xml {
 				String color = nnm.getNamedItem("color").getNodeValue();
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
 				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, Integer.parseInt(color), new Contexto(contexto));
-				p.getTareas().add(t);
-				System.out.print("nombre: "+nombre_tarea+", id: "+id_tarea+", fi: "+fi+", ff: "+ff+", hi: "+hi+", hf: "+hf+", descripcion: "+descripcion+", estado_tarea: "+estado_tarea);
+				t.setEstado(Estado.valueOf(estado_tarea));
+				model.agregarTarea(t, new Integer(id));
 			}
 		
 			return p;

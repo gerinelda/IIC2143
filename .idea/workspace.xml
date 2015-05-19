@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24da63e7-6294-4781-bf15-8f2c2578d9ed" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Model/Fecha.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Model/Fecha.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Application.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Application.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="IIC2143.iws" />
@@ -30,12 +34,30 @@
         <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+              <caret line="315" column="18" selection-start-line="315" selection-start-column="18" selection-end-line="315" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#mostrarTareas#0;class#VistaResumen#0" expanded="false" />
+                <element signature="e#6063#6064#0" expanded="true" />
+                <element signature="e#6102#6103#0" expanded="true" />
+                <element signature="method#getTareasPendientes#0;class#VistaResumen#0" expanded="false" />
+                <element signature="method#getProximos3dias#0;class#VistaResumen#0" expanded="false" />
                 <element signature="method#addModificarTareaListener#0;class#VistaResumen#0" expanded="false" />
+                <element signature="method#updateAll#0;class#VistaResumen#0" expanded="false" />
+                <element signature="method#ModificarTarea#0;class#VistaResumen#0" expanded="false" />
                 <element signature="method#mostrarProyectos#0;class#VistaResumen#0" expanded="false" />
+                <element signature="method#actualizarProyectos#0;class#VistaResumen#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Application.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0372341">
+              <caret line="77" column="43" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,20 +66,61 @@
         <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mail.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/mail.java">
+      <file leaf-file-name="TareaPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+              <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hora.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pruea.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/pruea.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Xml.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="99" column="57" selection-start-line="99" selection-start-column="57" selection-end-line="99" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#crear#0;class#Xml#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Estado.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Estado.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,65 +147,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fecha.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fecha.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Fecha.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8643617">
+            <state vertical-scroll-proportion="0.0">
               <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
               <folding>
                 <element signature="e#1249#1250#0" expanded="true" />
                 <element signature="e#1293#1294#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TareaRapidaFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/TareaRapidaFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TareaPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreadorTareas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/CreadorTareas.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="260" column="13" selection-start-line="260" selection-start-column="13" selection-end-line="260" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModificarTareaListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/ModificarTareaListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tarea.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Tarea.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="185" column="14" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="14" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -177,7 +190,6 @@
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Contexto.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/MenuPanel.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/CalendarioFrame.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Tarea.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/TransparentButton.java" />
@@ -185,23 +197,24 @@
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/CreadorTareas.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/CreadorProyectos.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/CreadorContextos.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/CalendarioPanel.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/ProyectoFrame.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/pruea.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Model.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/Application.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/DiaPanel.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/TareaFrame.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/TareaRapidaFrame.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/ModificarTareaListener.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/EmailListener.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/mail.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Fecha.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/Application.java" />
       </list>
     </option>
   </component>
@@ -573,7 +586,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49356914" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3504823" sideWeight="0.48638427" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3762058" sideWeight="0.49394855" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1977492" sideWeight="0.49394855" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2549168" sideWeight="0.49496403" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -778,21 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Estado.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/ProyectoPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -804,16 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="3" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="method#crear#0;class#Xml#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,14 +850,6 @@
           <folding>
             <element signature="e#155#156#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="69" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,14 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/pruea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/EmailListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -957,18 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#addModificarTareaListener#0;class#VistaResumen#0" expanded="false" />
-            <element signature="method#mostrarProyectos#0;class#VistaResumen#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Tarea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -977,36 +937,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/mail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/TareaRapidaFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1023,6 +957,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/mail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/pruea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Hora.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Fecha.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+          <folding>
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1293#1294#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/TareaPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1047,14 +1026,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Fecha.java">
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Model/Estado.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8643617">
-          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="99" column="57" selection-start-line="99" selection-start-column="57" selection-end-line="99" selection-end-column="57" />
           <folding>
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#1293#1294#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#crear#0;class#Xml#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="315" column="18" selection-start-line="315" selection-start-column="18" selection-end-line="315" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#mostrarTareas#0;class#VistaResumen#0" expanded="false" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6102#6103#0" expanded="true" />
+            <element signature="method#getTareasPendientes#0;class#VistaResumen#0" expanded="false" />
+            <element signature="method#getProximos3dias#0;class#VistaResumen#0" expanded="false" />
+            <element signature="method#addModificarTareaListener#0;class#VistaResumen#0" expanded="false" />
+            <element signature="method#updateAll#0;class#VistaResumen#0" expanded="false" />
+            <element signature="method#ModificarTarea#0;class#VistaResumen#0" expanded="false" />
+            <element signature="method#mostrarProyectos#0;class#VistaResumen#0" expanded="false" />
+            <element signature="method#actualizarProyectos#0;class#VistaResumen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0372341">
+          <caret line="77" column="43" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

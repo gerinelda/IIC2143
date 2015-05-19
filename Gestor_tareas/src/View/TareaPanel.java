@@ -46,15 +46,18 @@ public class TareaPanel extends JPanel implements ActionListener {
 
         /** DIA VENCIMIENTO **/
         JLabel fechafinal = new JLabel();
-        add(fechafinal);
-        fechafinal.setText(tarea.getFf().toString());
+        fechafinal.setText(" "+tarea.getFf().toString()+" ");
         fechafinal.setBorder(new LineBorder(Color.WHITE, 1));
         fechafinal.setFont(font);
         fechafinal.setForeground(Color.WHITE);
 
+        remove(nombre);
+        add(fechafinal);
+        add(nombre);
+
         /** DESCRIPCION **/
         JLabel descripcion = new JLabel();
-        add(descripcion);
+        //add(descripcion);
         descripcion.setText(tarea.getDescripcion());
         descripcion.setBorder(new LineBorder(Color.WHITE, 1));
         descripcion.setFont(font);

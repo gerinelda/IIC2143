@@ -48,7 +48,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		menubar = new JMenuBar();
 		JButton addBtn = new JButton(" + ");
-		JButton btn1 = new JButton("Todas");
+		JButton btn1 = new JButton("Pendientes");
 		JButton btn2 = new JButton("Ordenar");
 		JButton btn3 = new JButton("3 dias");
 		JButton btn4 = new JButton("Proyectos");
@@ -85,7 +85,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listaActualTareas = getListaCompleta();
+				listaActualTareas = getTareasPendientes();
 				mostrarTareas(listaActualTareas);
 			}
 		});
@@ -112,7 +112,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		/** Content **/
 		JLabel nombreLabel = new JLabel("VISTA RESUMEN");
 		content.add(nombreLabel);
-		listaActualTareas = getListaCompleta();
+		listaActualTareas = getTareasPorFechaFinal();
 		mostrarTareas(listaActualTareas);
 
 		JButton crearTareaButton = new JButton("Crear T");
@@ -199,12 +199,17 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		calendario.setListener(listener);
 	}
 
-	public ArrayList<Tarea> getListaCompleta() {
+	public ArrayList<Tarea> getTareasPendientes() {
 		ArrayList<Tarea> lista = new ArrayList<>();
 		for(int i = 0; i< model.getContador_proyectos(); i++) {
 			for (int j = 0; j < proyectos.get(i).getTareas().size(); j++) {
 				Tarea t = proyectos.get(i).getTareas().get(j);
-				lista.add(t);
+				if ((t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR)
+					+ 365 * t.getFf().getY())
+					> (365*Calendar.getInstance().get(Calendar.YEAR)
+						+ Calendar.getInstance().get(Calendar.DAY_OF_YEAR))) {
+					lista.add(t);
+				}
 			}
 		}
 		return lista;

@@ -25,7 +25,7 @@ public class Hora implements Serializable{
 	}
 
 	public Hora() {
-		this.h = 0;
+		this.h = 12;
 		this.m = 0;
 		this.s = 0;
 
