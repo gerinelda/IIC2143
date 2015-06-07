@@ -32,15 +32,6 @@ public class Application {
 
 		/** DATOS DE EJEMPLO PARA EL COMIENZO */
 
-		/**
-		Tarea t1 = new Tarea(1,"i1 sistemas operativos",new Fecha(2,4,2015), new Fecha(4,4,2015), new Hora(), new Hora(12,0,0),
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-				, 0, new Contexto("Contexto"));
-		Tarea t2 = new Tarea(1,"examen calculo 9",new Fecha(2,4,2015), new Fecha(3,3,2015), new Hora(), new Hora(12),"lim 2+2 = 4. e = mc..", 0, new Contexto("Contexto"));
-		Tarea t3 = new Tarea(1,"terminar tesis",new Fecha(2,4,2015), new Fecha(6,4,2015), new Hora(), new Hora(12,20,3),"Terminar la bla bla bla", 0, new Contexto("Contexto"));
-		 **/
-
-
 		/** INGENIERIA DE SOFTWARE **/
 		Proyecto p2 = new Proyecto(model.getId_proyectos(),"Ingenieria de Software",Estado.activo);
 		Contexto c1 = new Contexto("Universidad");
