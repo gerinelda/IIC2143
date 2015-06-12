@@ -317,6 +317,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		if (ruta != null) {
 			Xml xml = new Xml();
 			xml.leer(ruta,model);
+			listaActualTareas = getTareasPorFechaFinal();
 			mostrarTareas(listaActualTareas);
 			actualizarProyectos();
 		}

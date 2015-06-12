@@ -63,7 +63,7 @@ public class Xml {
 		}
 	}
 
-	public Proyecto leer(String ruta, Model model)
+	public void leer(String ruta, Model model)
 	{
 		Proyecto p;
 
@@ -77,12 +77,11 @@ public class Xml {
 			String nombre = raiz.getAttribute("nombre");
 			String estado = raiz.getAttribute("estado");
 			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
-			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
-			
+			model.agregarProyecto(p);
+			//System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
 			NodeList tareas = raiz.getElementsByTagName("tarea");
-			int largo = tareas.getLength();
 			for (int i = 0; i < tareas.getLength(); i++) {
-				System.out.println("creando tarea en model");
+				//System.out.println("creando tarea en model");
 				Node nodo = tareas.item(i);
 				NamedNodeMap nnm = nodo.getAttributes();
 				String nombre_tarea = nnm.getNamedItem("nombre").getNodeValue();
@@ -91,21 +90,22 @@ public class Xml {
 				String ff = nnm.getNamedItem("ff").getNodeValue();
 				String hi = nnm.getNamedItem("hi").getNodeValue();
 				String hf = nnm.getNamedItem("hf").getNodeValue();
-				Fecha f = new Fecha(fi);
 				String descripcion = nnm.getNamedItem("descripcion").getNodeValue();
 				String estado_tarea = nnm.getNamedItem("estado").getNodeValue();
 				String color = nnm.getNamedItem("color").getNodeValue();
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
-				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, Integer.parseInt(color), new Contexto(contexto));
+				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff),
+						new Hora(hi), new Hora(hf), descripcion, Integer.parseInt(color), new Contexto(contexto));
 				t.setEstado(Estado.valueOf(estado_tarea));
 				model.agregarTarea(t, new Integer(id));
 			}
-		
-			return p;
+
+
+			return;
 		}
 		catch(Exception e){
 			System.out.print("gg");
-			return null;
+			return;
 		}
 	}
 }

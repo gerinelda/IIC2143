@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<proyecto id="1" nombre="Ingenieria de Software" estado="activo">
-  <tarea id="0" nombre="Sprint 2" fi="02/04/2015" ff="18/05/2015" hi="12:00:00" hf="23:59:59" descripcion="Terminar features originales" estado="terminado" color="0" contexto="Universidad" />
-  <tarea id="1" nombre="Interrogacion 1" fi="01/01/2015" ff="15/04/2015" hi="12:00:00" hf="18:30:00" descripcion="Ingenieria de Software" estado="terminado" color="0" contexto="Universidad" />
-  <tarea id="2" nombre="Interrogacion 2" fi="01/01/2015" ff="08/05/2015" hi="12:00:00" hf="18:30:00" descripcion="Ingenieria de Software" estado="terminado" color="0" contexto="Universidad" />
-  <tarea id="3" nombre="Interrogacion 3" fi="01/01/2015" ff="04/06/2015" hi="12:00:00" hf="18:30:00" descripcion="Ingenieria de Software" estado="activo" color="0" contexto="Universidad" />
-  <tarea id="4" nombre="Examen" fi="01/01/2015" ff="26/06/2015" hi="12:00:00" hf="08:30:00" descripcion="Ingenieria de Software" estado="activo" color="0" contexto="Universidad" />
-  <tarea id="8" nombre="Examen" fi="02/04/2015" ff="22/06/2015" hi="12:00:00" hf="08:30:00" descripcion="Sistemas Operativos" estado="activo" color="0" contexto="Universidad" />
-</proyecto>
+<proyecto id="1" nombre="Ingenieria de Software" estado="activo" />
