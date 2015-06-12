@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<proyecto id="2" nombre="Sistemas Operativos" estado="activo">
-  <tarea id="5" nombre="Interrogacion 1" fi="02/04/2015" ff="08/04/2015" hi="12:00:00" hf="18:30:00" descripcion="Sistemas Operativos" estado="terminado" color="0" contexto="Universidad" />
-  <tarea id="6" nombre="Interrogacion 2" fi="02/04/2015" ff="04/05/2015" hi="12:00:00" hf="18:30:00" descripcion="Sistemas Operativos" estado="terminado" color="0" contexto="Universidad" />
-  <tarea id="7" nombre="Interrogacion 3" fi="02/04/2015" ff="29/05/2015" hi="12:00:00" hf="18:30:00" descripcion="Sistemas Operativos" estado="activo" color="0" contexto="Universidad" />
-</proyecto>

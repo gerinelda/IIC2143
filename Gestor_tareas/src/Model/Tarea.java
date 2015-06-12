@@ -195,14 +195,22 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 	
 	public void aplazar(int dias) {
 		Calendar c = Calendar.getInstance();
-		c.set(ff.y, ff.m, ff.d);
-		c.add(Calendar.DAY_OF_MONTH, dias);
+		c.set(ff.y, ff.m-1, ff.d);
+		if (dias % 30 == 0) {
+			c.add(Calendar.MONTH,dias/30);
+		}
+		else if (dias % 7 == 0) {
+			c.add(Calendar.WEEK_OF_YEAR,dias/7);
+		}
+		else {
+			c.add(Calendar.DAY_OF_MONTH, dias);
+		}
 		this.setFechaPorCalendario(c);
 	}
 
 	private void setFechaPorCalendario(Calendar calendario) {
 		int d = calendario.get(Calendar.DAY_OF_MONTH);
-		int m = calendario.get(Calendar.MONTH);
+		int m = calendario.get(Calendar.MONTH)+1;
 		int y = calendario.get(Calendar.YEAR);
 		Fecha newFecha = new Fecha(d, m , y);
 		setFf(newFecha);
