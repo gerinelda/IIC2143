@@ -51,7 +51,8 @@ public class Fecha implements Serializable {
 
 	@Override
 	public String toString() {
-		return atToString(d)+"/"+atToString(m)+"/"+atToString(y);
+		/** mes va de 0 a 11 **/
+		return atToString(d)+"/"+(atToString(m)+1)+"/"+atToString(y);
 	}
 	public String atToString(int i)
 	{

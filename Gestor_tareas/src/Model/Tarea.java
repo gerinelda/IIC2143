@@ -170,28 +170,41 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 
 	@Override
 	public int compareTo(Tarea o) {
-		/** debe ser una relacion siemtrica, reflexiva y transitiva **/
+		/** compareTo debe ser una relacion simetrica, reflexiva y transitiva **/
+		/** r(a,b) == r(b,a)
+		 * r(a,a)
+		 * r(a,b) && r(b,c) ==> r(a,c)
+		 */
 		Calendar calendario1 = getFf().getCalendario();
 		Calendar calendario2 = o.getFf().getCalendario();
 		/** ajustar a la hora final **/
 		calendario1.set(Calendar.SECOND,getHf().getSegundos());
 		calendario2.set(Calendar.SECOND,o.getHf().getSegundos());
 
-		/** hasta el momento solo ordena por dia del año **/
-		int i = calendario1.get(Calendar.DAY_OF_YEAR);
-		int j = calendario2.get(Calendar.DAY_OF_YEAR);
+		int i, j;
+		if (calendario1.get(Calendar.YEAR) == calendario2.get(Calendar.YEAR)) {
+			i = calendario1.get(Calendar.DAY_OF_YEAR);
+			j = calendario2.get(Calendar.DAY_OF_YEAR);
+		}
+		else {
+			i = calendario1.get(Calendar.YEAR);
+			j = calendario2.get(Calendar.YEAR);
+		}
 		return i-j;
 	}
 	
-	public void aplazar(int dias)
-	{
+	public void aplazar(int dias) {
 		Calendar c = Calendar.getInstance();
 		c.set(ff.y, ff.m, ff.d);
-		int d =c.get(Calendar.DAY_OF_YEAR);
-		d = d+dias;
-		c.set(Calendar.DAY_OF_YEAR, d);
-		this.ff.y = c.get(Calendar.YEAR);
-		this.ff.m = c.get(Calendar.MONTH);
-		this.ff.d = c.get(Calendar.DAY_OF_MONTH);
+		c.add(Calendar.DAY_OF_MONTH, dias);
+		this.setFechaPorCalendario(c);
+	}
+
+	private void setFechaPorCalendario(Calendar calendario) {
+		int d = calendario.get(Calendar.DAY_OF_MONTH);
+		int m = calendario.get(Calendar.MONTH);
+		int y = calendario.get(Calendar.YEAR);
+		Fecha newFecha = new Fecha(d, m , y);
+		setFf(newFecha);
 	}
 }
