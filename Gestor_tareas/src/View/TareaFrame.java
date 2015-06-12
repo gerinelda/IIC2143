@@ -25,8 +25,8 @@ public class TareaFrame extends JFrame {
 	public void placeComponents() {
 		id = new JLabel("Id: " + Integer.toString(tarea.getId()));
 		nombre = new JLabel("Nombre: " + tarea.getNombre());
-		fi = new JLabel("Fecha inicio: " + tarea.getFi().toString());
-		hi = new JLabel("Hora inicio: " + tarea.getHi().toString());
+		fi = new JLabel("Fecha creacion: " + tarea.getFi().toString());
+		hi = new JLabel("Hora creacion: " + tarea.getHi().toString());
 		ff = new JLabel("Fecha final: " + tarea.getFf().toString());
 		hf = new JLabel("Hora final: " + tarea.getHf().toString());
 		descripcion = new JLabel("Descripcion: " + tarea.getDescripcion());
@@ -58,35 +58,75 @@ public class TareaFrame extends JFrame {
 		ff.setForeground(Color.WHITE);
 		fi.setForeground(Color.WHITE);
 
-		content.setBackground(new Color(47, 0, 8));
+		Color bgColor = new Color(47,0,8);
+		content.setBackground(bgColor);
 
 		JButton btn1 = new JButton("+1 dia");
-		JButton btn2 = new JButton("+1 semana");
+		JButton btn2 = new JButton("+1 sem");
 		JButton btn3 = new JButton("+1 mes");
-		content.add(btn1);
-		content.add(btn2);
-		content.add(btn3);
+		JButton btn4 = new JButton("-1 dia");
+		JButton btn5 = new JButton("-1 sem");
+		JButton btn6 = new JButton("-1 mes");
+		JPanel aplazarPanel = new JPanel();
+		JPanel subPanel1 = new JPanel();
+		JPanel subPanel2 = new JPanel();
+
+		aplazarPanel.setLayout(new BoxLayout(aplazarPanel,BoxLayout.X_AXIS));
+		subPanel1.setBackground(bgColor);
+		subPanel2.setBackground(bgColor);
+		subPanel1.setLayout(new BoxLayout(subPanel1,BoxLayout.Y_AXIS));
+		subPanel2.setLayout(new BoxLayout(subPanel2,BoxLayout.Y_AXIS));
+		subPanel2.add(btn1); // +1 dia
+		subPanel2.add(btn2); // +1 semana
+		subPanel2.add(btn3); // +1 mes
+		subPanel1.add(btn4); // -1 dia
+		subPanel1.add(btn5); // -1 semana
+		subPanel1.add(btn6); // -1 mes
+		aplazarPanel.add(subPanel1);
+		aplazarPanel.add(subPanel2);
+		content.add(aplazarPanel);
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				notificarListeners(e,1);
+				notificarListeners(e, 1);
 			}
 		});
-		btn1.setActionCommand("aplazar");
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				notificarListeners(e,7);
+				notificarListeners(e, 7);
 			}
 		});
 		btn3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				notificarListeners(e,30);
+				notificarListeners(e, 30);
 			}
 		});
+		btn4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				notificarListeners(e, -1);
+			}
+		});
+		btn5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				notificarListeners(e, -7);
+			}
+		});
+		btn6.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				notificarListeners(e, -30);
+			}
+		});
+		btn1.setActionCommand("aplazar");
 		btn2.setActionCommand("aplazar");
 		btn3.setActionCommand("aplazar");
+		btn4.setActionCommand("aplazar");
+		btn5.setActionCommand("aplazar");
+		btn6.setActionCommand("aplazar");
 	}
 
 	private void notificarListeners(ActionEvent e, int dias) {
