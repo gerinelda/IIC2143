@@ -30,6 +30,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	private JComboBox<Proyecto> proyectosCB;
 	private VistaPorContexto vistaPorContexto;
 	private Image BGimage;
+	private VistaSemanal vistaSemanal;
 
 	public VistaResumen(Model model) {
 		this.model = model;
@@ -37,6 +38,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		controllerListeners = new ArrayList<>();
 		controllerListeners.add(this);
 		calendario = new CalendarioFrame(model);
+		vistaSemanal = new VistaSemanal(model);
 		setSize(750, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		placeComponents();
@@ -72,9 +74,10 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		JButton addBtn = new JButton(" + ");
 		JButton btn1 = new JButton("Pendientes");
 		JButton btn2 = new JButton("Ordenar");
-		JButton btn5 = new JButton("Contexto");
 		JButton btn3 = new JButton("3 dias");
 		JButton btn4 = new JButton("Proyectos");
+		JButton btn5 = new JButton("Contexto");
+
 
 		JPanel sidebar = new JPanel();
 
@@ -145,17 +148,20 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		listaActualTareas = getTareasPorFechaFinal();
 		mostrarTareas(listaActualTareas);
 
-		JButton crearTareaButton = new JButton("Crear T");
+		JButton crearTareaButton = new JButton("+Tarea");
 		menubar.add(crearTareaButton);
 		
-		JButton crearProyectoButton = new JButton("Crear P");
+		JButton crearProyectoButton = new JButton("+Proyecto");
 		menubar.add(crearProyectoButton);
 
-		JButton crearContextoButton = new JButton("Crear C");
+		JButton crearContextoButton = new JButton("+Contexto");
 		menubar.add(crearContextoButton);
 
 		JButton vistaCalendarioButton = new JButton("Calendario");
 		menubar.add(vistaCalendarioButton);
+
+		JButton vistaSemanalButton = new JButton("Semanas");
+		menubar.add(vistaSemanalButton);
 
 		JButton ExportarButton = new JButton("Exportar");
 		menubar.add(ExportarButton);
@@ -182,20 +188,26 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			}
 		});
 
-		crearTareaButton.addActionListener(e -> {
-			creadorTareas = new CreadorTareas(model);
-			for (ControllerListener listener : controllerListeners) {
-				creadorTareas.addControllerListener(listener);
+		crearTareaButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				creadorTareas = new CreadorTareas(model);
+				for (ControllerListener listener : controllerListeners) {
+					creadorTareas.addControllerListener(listener);
+				}
+				creadorTareas.setVisible(true);
 			}
-			creadorTareas.setVisible(true);
 		});
 
-		crearProyectoButton.addActionListener(e -> {
-			creadorProyectos = new CreadorProyectos(model);
-			for (ControllerListener listener : controllerListeners) {
-				creadorProyectos.addControllerListener(listener);
+		crearProyectoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				creadorProyectos = new CreadorProyectos(model);
+				for (ControllerListener listener : controllerListeners) {
+					creadorProyectos.addControllerListener(listener);
+				}
+				creadorProyectos.setVisible(true);
 			}
-			creadorProyectos.setVisible(true);
 		});
 
 		crearContextoButton.addActionListener(new ActionListener() {
@@ -209,7 +221,19 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			}
 		});
 
-		vistaCalendarioButton.addActionListener(e -> calendario.setVisible(true));
+		vistaCalendarioButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				calendario.setVisible(true);
+			}
+		});
+
+		vistaSemanalButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vistaSemanal.setVisible(true);
+			}
+		});
 	}
 
 
