@@ -9,15 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/** Ventana que se abre al abrir una tarea
+ * contiene informacion de la tarea y los botones de aplazar
+ */
 public class TareaFrame extends JFrame {
 
 	JPanel content;
 	JLabel id, nombre, fi, ff, hi, hf, descripcion, contexto;
-	ArrayList<ModificarTareaListener> modificarTareaListeners;
+	ArrayList<ControllerListener> controllerListeners;
 	Tarea tarea;
 
 	public TareaFrame(Tarea tarea) {
-		modificarTareaListeners = new ArrayList<>();
+		controllerListeners = new ArrayList<>();
 		this.tarea = tarea;
 		placeComponents();
 	}
@@ -132,8 +135,8 @@ public class TareaFrame extends JFrame {
 	private void notificarListeners(ActionEvent e, int dias) {
 		Tarea tareaNueva = tarea;
 		tareaNueva.aplazar(dias);
-		if (modificarTareaListeners!=null) {
-			for (ModificarTareaListener listener : modificarTareaListeners) {
+		if (controllerListeners !=null) {
+			for (ControllerListener listener : controllerListeners) {
 				listener.ModificarTarea(e, tareaNueva, new Proyecto(dias));
 			}
 		}
@@ -141,8 +144,8 @@ public class TareaFrame extends JFrame {
 		ff.setText("Fecha final: " + tarea.getFf().toString());
 	}
 
-	public void addModificarTareaListener(ModificarTareaListener listener) {
-		modificarTareaListeners.add(listener);
+	public void addModificarTareaListener(ControllerListener listener) {
+		controllerListeners.add(listener);
 	}
 }
 

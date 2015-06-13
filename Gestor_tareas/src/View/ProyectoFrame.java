@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** ventana que se abre al abrir un proyecto en particular */
 public class ProyectoFrame extends JFrame {
 
     private Proyecto proyecto;

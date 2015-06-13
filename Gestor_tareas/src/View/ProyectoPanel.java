@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** cuadrado con el nombre del proyecto (y el boton) */
 public class ProyectoPanel extends JPanel {
 
     private Proyecto proyecto;

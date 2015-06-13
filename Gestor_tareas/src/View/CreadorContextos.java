@@ -10,11 +10,11 @@ public class CreadorContextos extends JFrame {
 
 	private JTextField nombreText;
 	private Model model;
-	private ArrayList<ModificarTareaListener> modificarTareaListeners;
+	private ArrayList<ControllerListener> controllerListeners;
 
 	public CreadorContextos(Model model){
 		this.model = model;
-		modificarTareaListeners = new ArrayList<>();
+		controllerListeners = new ArrayList<>();
 		setSize(300, 150);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
@@ -50,7 +50,7 @@ public class CreadorContextos extends JFrame {
 				if (!nombreText.getText().isEmpty()) {
 					/** medio sucio pero le estoy pasando el nombre del contexto como nombre del proyecto **/
 					Proyecto p = new Proyecto(0, nombreText.getText(), Estado.activo);
-					for (ModificarTareaListener listener : modificarTareaListeners) {
+					for (ControllerListener listener : controllerListeners) {
 						listener.ModificarTarea(e, new Tarea(-1), p);
 					}
 					setVisible(false);
@@ -62,13 +62,13 @@ public class CreadorContextos extends JFrame {
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
-	public void addModificarTareaListener(ModificarTareaListener listener) {
-		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
-			if (modificarTareaListener.equals(listener)) {
+	public void addModificarTareaListener(ControllerListener listener) {
+		for (ControllerListener controllerListener : controllerListeners) {
+			if (controllerListener.equals(listener)) {
 				return;
 			}
 		}
-		modificarTareaListeners.add(listener);
+		controllerListeners.add(listener);
 	}
 
 

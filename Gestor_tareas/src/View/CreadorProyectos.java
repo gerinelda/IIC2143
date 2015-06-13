@@ -16,11 +16,11 @@ public class CreadorProyectos extends JFrame {
 	
 	private JTextField nombreText;
 	private Model model;
-	private ArrayList<ModificarTareaListener> modificarTareaListeners;
+	private ArrayList<ControllerListener> controllerListeners;
 
 	public CreadorProyectos(Model model){
 		this.model = model;
-		modificarTareaListeners = new ArrayList<>();
+		controllerListeners = new ArrayList<>();
 		setSize(300, 150);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
@@ -55,7 +55,7 @@ public class CreadorProyectos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (!nombreText.getText().isEmpty()) {
 					Proyecto p = new Proyecto(model.getId_proyectos(), nombreText.getText(), Estado.activo);
-					for (ModificarTareaListener listener : modificarTareaListeners) {
+					for (ControllerListener listener : controllerListeners) {
 						listener.ModificarTarea(e, new Tarea(-1), p);
 					}
 					setVisible(false);
@@ -67,13 +67,13 @@ public class CreadorProyectos extends JFrame {
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
-	public void addModificarTareaListener(ModificarTareaListener listener) {
-		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
-			if (modificarTareaListener.equals(listener)) {
+	public void addModificarTareaListener(ControllerListener listener) {
+		for (ControllerListener controllerListener : controllerListeners) {
+			if (controllerListener.equals(listener)) {
 				return;
 			}
 		}
-		modificarTareaListeners.add(listener);
+		controllerListeners.add(listener);
 	}
 
 	

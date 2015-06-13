@@ -15,11 +15,11 @@ public class TareaPanel extends JPanel implements ActionListener {
     private TransparentButton delete;
     private TransparentButton estado;
     private Tarea tarea;
-    private ArrayList<ModificarTareaListener> modificarTareaListeners;
+    private ArrayList<ControllerListener> controllerListeners;
 
     public TareaPanel(Tarea tarea) {
         this.tarea = tarea;
-        modificarTareaListeners = new ArrayList<>();
+        controllerListeners = new ArrayList<>();
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setAlignmentX(Component.LEFT_ALIGNMENT);
         estado = new TransparentButton(tarea.getEstado());
@@ -68,24 +68,24 @@ public class TareaPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("detalle")) {
             TareaFrame tF = new TareaFrame(tarea);
-            if (modificarTareaListeners!=null) {
-                for (ModificarTareaListener listener : modificarTareaListeners) {
+            if (controllerListeners!=null) {
+                for (ControllerListener listener : controllerListeners) {
                     tF.addModificarTareaListener(listener);
                 }
             }
             tF.setVisible(true);
         }
         else if (e.getActionCommand().equals("eliminar")) {
-            if (modificarTareaListeners != null) {
-                for (ModificarTareaListener listener : modificarTareaListeners) {
+            if (controllerListeners != null) {
+                for (ControllerListener listener : controllerListeners) {
                     listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
             }
         }
         else if (e.getActionCommand().equals("estado")) {
-             if (modificarTareaListeners != null) {
-                 //Collections.reverse(modificarTareaListeners);
-                for (ModificarTareaListener listener : modificarTareaListeners) {
+             if (controllerListeners != null) {
+                 //Collections.reverse(controllerListeners);
+                for (ControllerListener listener : controllerListeners) {
                     listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
                 estado.setBackground(estado.getColor(tarea.getEstado()));
@@ -97,14 +97,15 @@ public class TareaPanel extends JPanel implements ActionListener {
         return tarea;
     }
 
-    public void addModificarTareaListener(ModificarTareaListener listener) {
-        for (ModificarTareaListener listenerInList : modificarTareaListeners) {
+    public void addModificarTareaListener(ControllerListener listener) {
+        for (ControllerListener listenerInList : controllerListeners) {
             if (listener.equals(listenerInList)) {
                 return;
             }
         }
-        modificarTareaListeners.add(listener);
+        controllerListeners.add(listener);
     }
+
     public void addListener(ActionListener listener) {
         estado.addActionListener(listener);
     }

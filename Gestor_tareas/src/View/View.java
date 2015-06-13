@@ -153,7 +153,7 @@ public class View {
         vistaResumen.setListener(listener);
     }
 
-    public void addModificarTareaListener(ModificarTareaListener listener) {
+    public void addModificarTareaListener(ControllerListener listener) {
         vistaResumen.addModificarTareaListener(listener);
     }
 

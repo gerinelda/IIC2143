@@ -5,7 +5,7 @@ import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Controller implements ActionListener, ModificarTareaListener, EmailListener {
+public class Controller implements ActionListener, ControllerListener, EmailListener {
 
     View view;
     Model model;

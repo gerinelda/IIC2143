@@ -27,13 +27,13 @@ public class CreadorTareas extends JFrame {
 	private JTextField HFminuto;
 	private Calendar calendarioI;
 	private Calendar calendarioF;
-	private ArrayList<ModificarTareaListener> modificarTareaListeners;
+	private ArrayList<ControllerListener> controllerListeners;
 
 	public CreadorTareas(Model model) {
 		this.model = model;
 		setSize(300, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		modificarTareaListeners = new ArrayList<>();
+		controllerListeners = new ArrayList<>();
 		JPanel panel = new JPanel();
 		placeComponents(panel);
 		add(panel);
@@ -222,16 +222,16 @@ public class CreadorTareas extends JFrame {
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
-	public void addModificarTareaListener(ModificarTareaListener listener) {
+	public void addModificarTareaListener(ControllerListener listener) {
 
 		// comprobar si ya estaba el listener en la lista
-		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
-			if (modificarTareaListener.equals(listener)) {
+		for (ControllerListener controllerListener : controllerListeners) {
+			if (controllerListener.equals(listener)) {
 				return;
 			}
 		}
 		// si no esta, lo agregamos
-		modificarTareaListeners.add(listener);
+		controllerListeners.add(listener);
 	}
 
 	public void agregarTarea(ActionEvent e) {
@@ -256,7 +256,7 @@ public class CreadorTareas extends JFrame {
 			Contexto contexto = (Contexto) listaContexto.getSelectedItem();
 
 			Tarea tarea = new Tarea(id,nombre,fi,ff,hi,hf,descr,color,contexto);
-			for (ModificarTareaListener listener : modificarTareaListeners) {
+			for (ControllerListener listener : controllerListeners) {
 				listener.ModificarTarea(e, tarea, (Proyecto) listaProyectos.getSelectedItem());
 			}
 		}

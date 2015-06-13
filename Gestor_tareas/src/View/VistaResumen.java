@@ -9,12 +9,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 
-public class VistaResumen extends JFrame implements ModificarTareaListener {
+public class VistaResumen extends JFrame implements ControllerListener {
 	
 	private Model model;
 	private CalendarioFrame calendario;
@@ -22,17 +23,19 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 	private CreadorProyectos creadorProyectos;
 	private CreadorTareas creadorTareas;
 	private CreadorContextos creadorContextos;
-	private ArrayList<ModificarTareaListener> modificarTareaListeners;
+	private ArrayList<ControllerListener> controllerListeners;
 	private JPanel content;
 	private ArrayList<Tarea> listaActualTareas;
 	private JMenuBar menubar;
 	private JComboBox<Proyecto> proyectosCB;
+	private VistaPorContexto vistaPorContexto;
+	private Image BGimage;
 
 	public VistaResumen(Model model) {
 		this.model = model;
 		this.proyectos = model.getProyectos();
-		modificarTareaListeners = new ArrayList<>();
-		modificarTareaListeners.add(this);
+		controllerListeners = new ArrayList<>();
+		controllerListeners.add(this);
 		calendario = new CalendarioFrame(model);
 		setSize(750, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,14 +45,34 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 	private void placeComponents() {
 		JPanel Horizontal = new JPanel();
 		Horizontal.setLayout(new BoxLayout(Horizontal, BoxLayout.X_AXIS));
-		Horizontal.setBackground(new Color(35, 35, 35, 230));
-		content = new JPanel();
-		content.setBackground(new Color(20, 35, 20, 230));
+
+		//Horizontal.setBackground(new Color(35, 35, 35, 230));
+
+		//content.setBackground(new Color(20, 35, 20, 230));
+		/** imagen de fondo */
+        try {
+            BGimage = ImageIO.read(getClass().getResource("/resources/imagenes/calendarioBG.jpg"));
+
+        } catch (Exception e) {
+            setBackground(Color.getHSBColor(0.191F, 0.3F, 0.21F));
+            System.out.println(e);
+            System.out.println("Background image loading failed.");
+        }
+		content = new JPanel() {
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(BGimage, 0, 0, this);
+			g.setColor(new Color(119, 2, 20, 160));
+			g.fillRect(0, 0, getWidth(), getHeight());
+		}};
+
 
 		menubar = new JMenuBar();
 		JButton addBtn = new JButton(" + ");
 		JButton btn1 = new JButton("Pendientes");
 		JButton btn2 = new JButton("Ordenar");
+		JButton btn5 = new JButton("Contexto");
 		JButton btn3 = new JButton("3 dias");
 		JButton btn4 = new JButton("Proyectos");
 
@@ -67,6 +90,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		sidebar.add(btn1);
 		sidebar.add(btn2);
 		sidebar.add(btn3);
+		sidebar.add(btn5);
 		sidebar.add(btn4);
 
 		Font font = new Font("Centhury Gothic",Font.PLAIN,20);
@@ -76,12 +100,12 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TareaRapidaFrame TRF = new TareaRapidaFrame(model,Calendar.getInstance());
-				TRF.setListeners(modificarTareaListeners);
+				TRF.setListeners(controllerListeners);
 				TRF.setVisible(true);
 			}
 		});
 
-		/** BOTONES FILTROS / SORT **/
+		/** BOTONES ( FILTROS / SORT ) **/
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -107,6 +131,12 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mostrarProyectos();
+			}
+		});
+		btn5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mostrarContextos();
 			}
 		});
 		/** Content **/
@@ -154,7 +184,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		crearTareaButton.addActionListener(e -> {
 			creadorTareas = new CreadorTareas(model);
-			for (ModificarTareaListener listener : modificarTareaListeners) {
+			for (ControllerListener listener : controllerListeners) {
 				creadorTareas.addModificarTareaListener(listener);
 			}
 			creadorTareas.setVisible(true);
@@ -162,7 +192,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		crearProyectoButton.addActionListener(e -> {
 			creadorProyectos = new CreadorProyectos(model);
-			for (ModificarTareaListener listener : modificarTareaListeners) {
+			for (ControllerListener listener : controllerListeners) {
 				creadorProyectos.addModificarTareaListener(listener);
 			}
 			creadorProyectos.setVisible(true);
@@ -172,7 +202,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				creadorContextos = new CreadorContextos(model);
-				for (ModificarTareaListener listener : modificarTareaListeners) {
+				for (ControllerListener listener : controllerListeners) {
 					creadorContextos.addModificarTareaListener(listener);
 				}
 				creadorContextos.setVisible(true);
@@ -182,12 +212,13 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		vistaCalendarioButton.addActionListener(e -> calendario.setVisible(true));
 	}
 
+
 	public void mostrarTareas(ArrayList<Tarea> tareas) {
 		content.removeAll();
 		for (Tarea t : tareas) {
 			TareaPanel TP = new TareaPanel(t);
 			TP.mostrarTodo();
-			for (ModificarTareaListener listener : modificarTareaListeners) {
+			for (ControllerListener listener : controllerListeners) {
 				TP.addModificarTareaListener(listener);
 			}
 			content.add(TP);
@@ -245,14 +276,14 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		return lista;
 	}
 
-	public void addModificarTareaListener(ModificarTareaListener listener) {
+	public void addModificarTareaListener(ControllerListener listener) {
 		calendario.addModificarTareaListener(listener);
-		for (ModificarTareaListener modificarTareaListener : modificarTareaListeners) {
-			if (listener.equals(modificarTareaListener)) {
+		for (ControllerListener controllerListener : controllerListeners) {
+			if (listener.equals(controllerListener)) {
 				return;
 			}
 		}
-		modificarTareaListeners.add(listener);
+		controllerListeners.add(listener);
 		mostrarTareas(listaActualTareas);
 	}
 
@@ -289,6 +320,13 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		}
 		else if (e.getActionCommand().equals("estado")) {
 		}
+	}
+
+	public void mostrarContextos() {
+		content.removeAll();
+		vistaPorContexto = new VistaPorContexto(model);
+		content.add(vistaPorContexto);
+		content.updateUI();
 	}
 
 	public void mostrarProyectos() {

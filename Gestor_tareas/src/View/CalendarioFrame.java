@@ -5,21 +5,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class CalendarioFrame extends JFrame implements ActionListener, ModificarTareaListener {
+/** ventana que muestra el calendario **/
+public class CalendarioFrame extends JFrame implements ActionListener, ControllerListener {
 
     private Calendar calendario = Calendar.getInstance();
     private JPanel container;
     private MenuPanel menu;
     private CalendarioPanel content;
     private Model model;
-    private ArrayList<ModificarTareaListener> modificarTareaListeners;
+    private ArrayList<ControllerListener> controllerListeners;
 
     public CalendarioFrame(Model model) {
         super("Calendario");
 
         this.model = model;
 
-        modificarTareaListeners = new ArrayList<>();
+        controllerListeners = new ArrayList<>();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         container = new JPanel();
@@ -39,25 +40,31 @@ public class CalendarioFrame extends JFrame implements ActionListener, Modificar
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
+    /** setea los listener que escuchan los botones que no modifican el modelo */
     public void setListener(ActionListener listener) {
         menu.setListener(listener);
         content.setListener(listener);
     }
 
-    public void addModificarTareaListener(ModificarTareaListener listener) {
-        modificarTareaListeners.add(listener);
+    /** controllerListener son los observadores que observan
+     *  un cambio en el modelo, (el controlador principalmente)
+     */
+    public void addModificarTareaListener(ControllerListener listener) {
+        controllerListeners.add(listener);
         setAllListeners();
     }
 
+    /** actualiza el calendario ante cambios de mes, etc */
     private void updateCalendario(Calendar calendario) {
         content.update(calendario);
         menu.updateFecha(calendario);
         setAllListeners();
     }
 
+    /** setea los listener (que modifican tareas) */
     private void setAllListeners() {
-        if (modificarTareaListeners !=null) {
-            for (ModificarTareaListener listener : modificarTareaListeners) {
+        if (controllerListeners !=null) {
+            for (ControllerListener listener : controllerListeners) {
                 content.addModificarTareaListener(listener);
             }
             content.addModificarTareaListener(this);

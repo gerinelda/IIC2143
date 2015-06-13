@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
+/** ventana que se abre al crear una tarea rapida
+ *
+ */
 public class TareaRapidaFrame extends JFrame implements ActionListener {
     /** abrir nueva ventana **/
     JPanel content;
     JTextField textField;
-    CopyOnWriteArrayList<ModificarTareaListener> modificarTareaListeners;
+    CopyOnWriteArrayList<ControllerListener> controllerListeners;
     JComboBox<Proyecto> listaProyectos;
     JComboBox<Contexto> listaContextos;
     Model model;
@@ -27,7 +31,7 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
         content.setOpaque(false);
         add(content);
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        modificarTareaListeners = new CopyOnWriteArrayList<>();
+        controllerListeners = new CopyOnWriteArrayList<>();
         /** agregar botones y textos **/
         JLabel titulo = new JLabel("Agregar Tarea");
         int fontSize = 18;
@@ -90,23 +94,23 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
 
     }
 
-    public void setListeners(ArrayList<ModificarTareaListener> listeners) {
-        modificarTareaListeners = new CopyOnWriteArrayList<>();
-        for (ModificarTareaListener listener : listeners) {
-            modificarTareaListeners.add(listener);
+    public void setListeners(ArrayList<ControllerListener> listeners) {
+        controllerListeners = new CopyOnWriteArrayList<>();
+        for (ControllerListener listener : listeners) {
+            controllerListeners.add(listener);
 
         }
     }
 
-    public void addModificarTareaListener(ModificarTareaListener listener) {
-        modificarTareaListeners.add(listener);
+    public void addModificarTareaListener(ControllerListener listener) {
+        controllerListeners.add(listener);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Aceptar")) {
             if (!textField.getText().isEmpty()) {
-                for (ModificarTareaListener listener : modificarTareaListeners) {
+                for (ControllerListener listener : controllerListeners) {
                     ActionEvent AE = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "agregar");
                     String nombre = textField.getText();
                     int id = 0; //??????

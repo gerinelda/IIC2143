@@ -19,7 +19,7 @@ public class DiaPanel extends JPanel implements ActionListener {
     private Model model;
     private int diaSemana;
     private TransparentButton agregar;
-    private ArrayList<ModificarTareaListener> modificarTareaListeners;
+    private ArrayList<ControllerListener> controllerListeners;
 
     public DiaPanel(int dia, int mes, int year, Model model) {
 
@@ -27,7 +27,7 @@ public class DiaPanel extends JPanel implements ActionListener {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));  this.dia = dia;
         setBorder(new EtchedBorder());
 
-        modificarTareaListeners = new ArrayList<>();
+        controllerListeners = new ArrayList<>();
         this.model = model;
 
         this.mes = mes;
@@ -120,13 +120,13 @@ public class DiaPanel extends JPanel implements ActionListener {
     /** agrega a quien escucha la modificacion de una tarea
      * la diferencia con el action listener es que este entrega como
      * parametros el id de la tarea **/
-    public void addModificarTareaListener(ModificarTareaListener listener) {
+    public void addModificarTareaListener(ControllerListener listener) {
         if (tareas != null) {
             for (TareaPanel tarea : tareas) {
                 tarea.addModificarTareaListener(listener);
             }
         }
-        modificarTareaListeners.add(listener);
+        controllerListeners.add(listener);
     }
 
     /** agrega un listener para una accion **/
@@ -142,7 +142,7 @@ public class DiaPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("agregar")) {
             TareaRapidaFrame tareaRapidaFrame = new TareaRapidaFrame(model,new GregorianCalendar(year,mes,dia));
-            tareaRapidaFrame.setListeners(modificarTareaListeners);
+            tareaRapidaFrame.setListeners(controllerListeners);
             tareaRapidaFrame.setVisible(true);
         }
     }
