@@ -120,10 +120,10 @@ public class DiaPanel extends JPanel implements ActionListener {
     /** agrega a quien escucha la modificacion de una tarea
      * la diferencia con el action listener es que este entrega como
      * parametros el id de la tarea **/
-    public void addModificarTareaListener(ControllerListener listener) {
+    public void addControllerListener(ControllerListener listener) {
         if (tareas != null) {
             for (TareaPanel tarea : tareas) {
-                tarea.addModificarTareaListener(listener);
+                tarea.addControllerListener(listener);
             }
         }
         controllerListeners.add(listener);

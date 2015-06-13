@@ -27,6 +27,7 @@ public class CreadorTareas extends JFrame {
 	private JTextField HFminuto;
 	private Calendar calendarioI;
 	private Calendar calendarioF;
+	private Calendar calendarioActual;
 	private ArrayList<ControllerListener> controllerListeners;
 
 	public CreadorTareas(Model model) {
@@ -51,6 +52,8 @@ public class CreadorTareas extends JFrame {
 		nombreText.setBounds(100, 10, 160, 25);
 		nombreText.setText("");
 		panel.add(nombreText);
+		calendarioActual = Calendar.getInstance();
+
 
 		/** FECHA INICIO **/
 		int fechaWidth = 53;
@@ -91,9 +94,9 @@ public class CreadorTareas extends JFrame {
 				}
 			}
 		});
-		fidia.setBounds(100, 40, fechaWidth, 25);
-		fimes.setBounds(101+fechaWidth, 40, fechaWidth, 25);
-		fiyear.setBounds(102+fechaWidth*2, 40, fechaWidth, 25);
+		fidia.setBounds(100, 40, fechaWidth-5, 25);
+		fimes.setBounds(101+fechaWidth-5, 40, fechaWidth-5, 25);
+		fiyear.setBounds(102+fechaWidth*2-10, 40, fechaWidth+10, 25);
 		panel.add(fidia);
 		panel.add(fimes);
 		panel.add(fiyear);
@@ -119,6 +122,15 @@ public class CreadorTareas extends JFrame {
 		for (int i = 1; i <= 31; i++) {
 			ffdia.addItem(i);
 		}
+		/** set fechas a hoy */
+		fidia.setSelectedItem(calendarioActual.get(Calendar.DAY_OF_MONTH));
+		fimes.setSelectedItem(calendarioActual.get(Calendar.MONTH)+1);
+		fiyear.setSelectedItem(calendarioActual.get(Calendar.YEAR));
+		ffdia.setSelectedItem(calendarioActual.get(Calendar.DAY_OF_MONTH));
+		ffmes.setSelectedItem(calendarioActual.get(Calendar.MONTH)+1);
+		ffyear.setSelectedItem(calendarioActual.get(Calendar.YEAR));
+
+
 		ffmes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -136,9 +148,9 @@ public class CreadorTareas extends JFrame {
 				}
 			}
 		});
-		ffdia.setBounds(100, 70, fechaWidth, 25);
-		ffmes.setBounds(101 + fechaWidth, 70, fechaWidth, 25);
-		ffyear.setBounds(102 + fechaWidth * 2, 70, fechaWidth, 25);
+		ffdia.setBounds(100, 70, fechaWidth-5, 25);
+		ffmes.setBounds(101 + fechaWidth-5, 70, fechaWidth-5, 25);
+		ffyear.setBounds(102 + fechaWidth * 2 - 10, 70, fechaWidth+10, 25);
 		panel.add(ffdia);
 		panel.add(ffmes);
 		panel.add(ffyear);
@@ -222,7 +234,7 @@ public class CreadorTareas extends JFrame {
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
-	public void addModificarTareaListener(ControllerListener listener) {
+	public void addControllerListener(ControllerListener listener) {
 
 		// comprobar si ya estaba el listener en la lista
 		for (ControllerListener controllerListener : controllerListeners) {
@@ -255,10 +267,11 @@ public class CreadorTareas extends JFrame {
 			int color = 0; //?????????????????
 			Contexto contexto = (Contexto) listaContexto.getSelectedItem();
 
-			Tarea tarea = new Tarea(id,nombre,fi,ff,hi,hf,descr,color,contexto);
+			Tarea tarea = new Tarea(id,nombre,fi,ff,hi,hf,descr,contexto);
 			for (ControllerListener listener : controllerListeners) {
 				listener.ModificarTarea(e, tarea, (Proyecto) listaProyectos.getSelectedItem());
 			}
+			this.dispose();
 		}
 	}
 }

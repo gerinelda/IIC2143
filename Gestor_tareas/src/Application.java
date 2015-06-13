@@ -36,14 +36,14 @@ public class Application {
 		/*
 		Proyecto p2 = new Proyecto(model.getId_proyectos(),"Ingenieria de Software",Estado.activo);
 		Contexto c1 = new Contexto("Universidad");
-		Tarea t5 = new Tarea(1,"Sprint 2",new Fecha(2,4,2015), new Fecha(18,5,2015), new Hora(), new Hora(23,59,59),"Terminar features originales", 0, c1);
+		Tarea t5 = new Tarea(1,"Sprint 2",new Fecha(2,4,2015), new Fecha(18,5,2015), new Hora(), new Hora(23,59,59),"Terminar features originales",  c1);
 		t5.setEstado(Estado.terminado);
-		Tarea t6 = new Tarea(1,"Interrogacion 1",new Fecha(1,1,2015), new Fecha(15,4,2015), new Hora(), new Hora(18,30), "Ingenieria de Software", 0, c1);
+		Tarea t6 = new Tarea(1,"Interrogacion 1",new Fecha(1,1,2015), new Fecha(15,4,2015), new Hora(), new Hora(18,30), "Ingenieria de Software",  c1);
 		t6.setEstado(Estado.terminado);
-		Tarea t7 = new Tarea(1,"Interrogacion 2" ,new Fecha(1,1,2015), new Fecha(8,5,2015), new Hora(), new Hora(18,30),"Ingenieria de Software", 0, c1);
+		Tarea t7 = new Tarea(1,"Interrogacion 2" ,new Fecha(1,1,2015), new Fecha(8,5,2015), new Hora(), new Hora(18,30),"Ingenieria de Software",  c1);
 		t7.setEstado(Estado.terminado);
-		Tarea t8 = new Tarea(1,"Interrogacion 3",new Fecha(1,1,2015), new Fecha(4,6,2015), new Hora(), new Hora(18,30),"Ingenieria de Software", 0,c1);
-		Tarea t9 = new Tarea(1,"Examen",new Fecha(1,1,2015), new Fecha(26,6,2015), new Hora(12,0,0), new Hora(8,30),"Ingenieria de Software", 0,c1);
+		Tarea t8 = new Tarea(1,"Interrogacion 3",new Fecha(1,1,2015), new Fecha(4,6,2015), new Hora(), new Hora(18,30),"Ingenieria de Software", c1);
+		Tarea t9 = new Tarea(1,"Examen",new Fecha(1,1,2015), new Fecha(26,6,2015), new Hora(12,0,0), new Hora(8,30),"Ingenieria de Software",c1);
 
 		model.agregarProyecto(p2);
 		model.agregarTarea(t5, p2.getId());
@@ -57,10 +57,10 @@ public class Application {
 		/*
 		Proyecto p3 = new Proyecto(model.getId_proyectos(),"Sistemas Operativos",Estado.activo);
 		Contexto c2 = new Contexto("Universidad");
-		Tarea t10 = new Tarea(1,"Interrogacion 1",new Fecha(2,4,2015), new Fecha(8,4,2015), new Hora(), new Hora(18,30),"Sistemas Operativos", 0, c2);
-		Tarea t11 = new Tarea(1,"Interrogacion 2",new Fecha(2,4,2015), new Fecha(4,5,2015), new Hora(), new Hora(18,30),"Sistemas Operativos", 0, c2);
-		Tarea t12 = new Tarea(1,"Interrogacion 3",new Fecha(2,4,2015), new Fecha(29,5,2015), new Hora(), new Hora(18,30),"Sistemas Operativos", 0, c2);
-		Tarea t13 = new Tarea(1,"Examen",new Fecha(2,4,2015), new Fecha(22,6,2015), new Hora(), new Hora(8,30),"Sistemas Operativos", 0, c2);
+		Tarea t10 = new Tarea(1,"Interrogacion 1",new Fecha(2,4,2015), new Fecha(8,4,2015), new Hora(), new Hora(18,30),"Sistemas Operativos",  c2);
+		Tarea t11 = new Tarea(1,"Interrogacion 2",new Fecha(2,4,2015), new Fecha(4,5,2015), new Hora(), new Hora(18,30),"Sistemas Operativos", c2);
+		Tarea t12 = new Tarea(1,"Interrogacion 3",new Fecha(2,4,2015), new Fecha(29,5,2015), new Hora(), new Hora(18,30),"Sistemas Operativos", c2);
+		Tarea t13 = new Tarea(1,"Examen",new Fecha(2,4,2015), new Fecha(22,6,2015), new Hora(), new Hora(8,30),"Sistemas Operativos", c2);
 		t10.setEstado(Estado.terminado);
 		t11.setEstado(Estado.terminado);
 

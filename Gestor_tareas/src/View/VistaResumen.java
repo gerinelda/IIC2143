@@ -185,7 +185,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		crearTareaButton.addActionListener(e -> {
 			creadorTareas = new CreadorTareas(model);
 			for (ControllerListener listener : controllerListeners) {
-				creadorTareas.addModificarTareaListener(listener);
+				creadorTareas.addControllerListener(listener);
 			}
 			creadorTareas.setVisible(true);
 		});
@@ -193,7 +193,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		crearProyectoButton.addActionListener(e -> {
 			creadorProyectos = new CreadorProyectos(model);
 			for (ControllerListener listener : controllerListeners) {
-				creadorProyectos.addModificarTareaListener(listener);
+				creadorProyectos.addControllerListener(listener);
 			}
 			creadorProyectos.setVisible(true);
 		});
@@ -203,7 +203,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			public void actionPerformed(ActionEvent e) {
 				creadorContextos = new CreadorContextos(model);
 				for (ControllerListener listener : controllerListeners) {
-					creadorContextos.addModificarTareaListener(listener);
+					creadorContextos.addControllerListener(listener);
 				}
 				creadorContextos.setVisible(true);
 			}
@@ -219,7 +219,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			TareaPanel TP = new TareaPanel(t);
 			TP.mostrarTodo();
 			for (ControllerListener listener : controllerListeners) {
-				TP.addModificarTareaListener(listener);
+				TP.addControllerListener(listener);
 			}
 			content.add(TP);
 		}
@@ -276,8 +276,8 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		return lista;
 	}
 
-	public void addModificarTareaListener(ControllerListener listener) {
-		calendario.addModificarTareaListener(listener);
+	public void addControllerListener(ControllerListener listener) {
+		calendario.addControllerListener(listener);
 		for (ControllerListener controllerListener : controllerListeners) {
 			if (listener.equals(controllerListener)) {
 				return;

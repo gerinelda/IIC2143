@@ -49,7 +49,7 @@ public class CalendarioFrame extends JFrame implements ActionListener, Controlle
     /** controllerListener son los observadores que observan
      *  un cambio en el modelo, (el controlador principalmente)
      */
-    public void addModificarTareaListener(ControllerListener listener) {
+    public void addControllerListener(ControllerListener listener) {
         controllerListeners.add(listener);
         setAllListeners();
     }
@@ -65,9 +65,9 @@ public class CalendarioFrame extends JFrame implements ActionListener, Controlle
     private void setAllListeners() {
         if (controllerListeners !=null) {
             for (ControllerListener listener : controllerListeners) {
-                content.addModificarTareaListener(listener);
+                content.addControllerListener(listener);
             }
-            content.addModificarTareaListener(this);
+            content.addControllerListener(this);
         }
     }
 

@@ -39,6 +39,8 @@ public class TransparentButton extends JButton {
         } else if (estado == Estado.pausado) {
             color = Color.YELLOW;
         } else if (estado == Estado.terminado) {
+            color = Color.GRAY;
+        } else if (estado == Estado.expirado) {
             color = Color.RED;
         }
         return color;

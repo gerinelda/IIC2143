@@ -49,9 +49,9 @@ public class CalendarioPanel extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
     }
 
-    public void addModificarTareaListener(ControllerListener listener) {
+    public void addControllerListener(ControllerListener listener) {
         for (DiaPanel diaPanel : diasPanel) {
-            diaPanel.addModificarTareaListener(listener);
+            diaPanel.addControllerListener(listener);
         }
     }
 

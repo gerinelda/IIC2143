@@ -135,6 +135,7 @@ public class TareaFrame extends JFrame {
 	private void notificarListeners(ActionEvent e, int dias) {
 		Tarea tareaNueva = tarea;
 		tareaNueva.aplazar(dias);
+		tarea.actualizarEstado();
 		if (controllerListeners !=null) {
 			for (ControllerListener listener : controllerListeners) {
 				listener.ModificarTarea(e, tareaNueva, new Proyecto(dias));
@@ -144,7 +145,7 @@ public class TareaFrame extends JFrame {
 		ff.setText("Fecha final: " + tarea.getFf().toString());
 	}
 
-	public void addModificarTareaListener(ControllerListener listener) {
+	public void addControllerListener(ControllerListener listener) {
 		controllerListeners.add(listener);
 	}
 }

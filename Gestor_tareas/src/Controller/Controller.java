@@ -4,6 +4,7 @@ import Model.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 public class Controller implements ActionListener, ControllerListener, EmailListener {
 
@@ -14,7 +15,7 @@ public class Controller implements ActionListener, ControllerListener, EmailList
         this.view = view;
         this.model = model;
         view.setListener(this);
-        view.addModificarTareaListener(this);
+        view.addControllerListener(this);
         view.addEmailListener(this);
     }
 
@@ -31,7 +32,23 @@ public class Controller implements ActionListener, ControllerListener, EmailList
         } else if (e.getActionCommand().equals("estado")) {
             /** CAMBIAR ESTADO **/
             System.out.println("cambiando estado");
-            model.siguienteEstado(tarea.getId());
+            /** verificar tipo de cambio de estado
+             * si es una tarea normal,
+             *         v----<----<-----<-----<--------
+             *      activa -> pausada -> terminada ->^
+             * si la tarea esta expirada (fecha limite ya pasó)
+             *      expirada <-> terminada
+             */
+            Calendar calendarioActual = Calendar.getInstance();
+            Calendar calendarioTarea = tarea.getFf().getCalendario();
+            if (calendarioActual.compareTo(calendarioTarea) > 0) {
+                /** tarea expirada! */
+                model.siguienteEstado2(tarea.getId());
+            }
+            else {
+                /** tarea normal! */
+                model.siguienteEstado(tarea.getId());
+            }
         } else if (e.getActionCommand().equals("agregar")) {
             /** AGREGAR TAREA NUEVA **/
             System.out.println("agregando tarea");
@@ -45,7 +62,7 @@ public class Controller implements ActionListener, ControllerListener, EmailList
             System.out.println("agregando contexto nuevo");
             model.agregarContexto(new Contexto(proyecto.getNombre()));
         } else if (e.getActionCommand().equals("aplazar")) {
-            /** APLAZAR TAREA CON ID DE TAREA, DIAS = ID DE PROYECTO **/
+            /** APLAZAR TAREA CON ID DE TAREA, ID DE PROYECTO == DIAS */
             System.out.println("aplazando "+proyecto.getId()+" dias");
             model.cambiarTarea(tarea);
         }

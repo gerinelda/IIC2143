@@ -102,7 +102,7 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
         }
     }
 
-    public void addModificarTareaListener(ControllerListener listener) {
+    public void addControllerListener(ControllerListener listener) {
         controllerListeners.add(listener);
     }
 
@@ -126,7 +126,6 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
                             new Hora(),
                             new Hora(),
                             "",
-                            0,
                             model.getContextos().get(listaContextos.getSelectedIndex())
                     );
                     listener.ModificarTarea(AE, tareaNueva, model.getProyecto(((Proyecto) listaProyectos.getSelectedItem()).getId()));

@@ -6,7 +6,6 @@ import java.util.Calendar;
 
 public class Tarea implements Serializable, Comparable<Tarea> {
 	
-	//public enum estado implements Serializable{activo, pausado, terminado}
 	private int id;
 	private String nombre;
 	private Fecha fi;
@@ -15,7 +14,6 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 	private Hora hf;
 	private String descripcion;
 	private Estado estado;
-	private int color;
 	private Contexto contexto;
 
 	public int getId() {
@@ -92,12 +90,13 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		}
 	}
 
-	public int getColor() {
-		return color;
-	}
-
-	public void setColor(int color) {
-		this.color = color;
+	public void siguienteEstado2() {
+		if (estado.equals(Estado.terminado)) {
+			estado = Estado.expirado;
+		}
+		else if (estado.equals(Estado.expirado)) {
+			estado = Estado.terminado;
+		}
 	}
 
 	public Contexto getContexto() {
@@ -112,7 +111,7 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 	
 	//Creación: se crea completa o vacía y se modifican los datos individualmente con los setters
 
-	public Tarea(int id, String nombre, Fecha fi, Fecha ff, Hora hi, Hora hf, String descripcion, int color, Contexto contexto)
+	public Tarea(int id, String nombre, Fecha fi, Fecha ff, Hora hi, Hora hf, String descripcion, Contexto contexto)
 	{
 		this.id = id;
 		this.nombre = nombre;
@@ -121,11 +120,17 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		this.hi = hi;
 		this.hf = hf;
 		this.descripcion = descripcion;
-		this.estado = estado.activo;
-		this.color = color;
 		this.contexto = contexto;
+		Calendar calendarioActual = Calendar.getInstance();
+		if (calendarioActual.compareTo(ff.getCalendario()) > 0) {
+			/** fecha limite expirada */
+			this.estado = estado.expirado;
+		}
+		else {
+			this.estado = Estado.activo;
+		}
 	}
-	
+
 	public Tarea(int id)
 	{
 		this.id = id;
@@ -135,26 +140,10 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		this.hi = null;
 		this.hf = null;
 		this.descripcion = null;
-		this.estado = estado.pausado;
-		this.color = 0;
+		this.estado = estado.expirado;
 		this.contexto = null;
 	}
 
-	public Tarea(int id, String nombre)
-	{
-		this.id = id;
-		this.nombre = nombre;
-		this.fi = null;
-		this.ff = null;
-		this.hi = null;
-		this.hf = null;
-		this.descripcion = null;
-		this.estado = estado.pausado;
-		this.color = 0;
-		this.contexto = null;
-	}
-
-	
 	public Tarea(Tarea t)
 	{
 		this.nombre = t.getNombre();
@@ -164,7 +153,6 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 		this.hf = t.getHf();
 		this.descripcion = t.getDescripcion();
 		this.estado = t.getEstado();
-		this.color = t.getColor();
 		this.contexto = t.getContexto();
 	}
 
@@ -206,6 +194,24 @@ public class Tarea implements Serializable, Comparable<Tarea> {
 			c.add(Calendar.DAY_OF_MONTH, dias);
 		}
 		this.setFechaPorCalendario(c);
+	}
+
+	public void actualizarEstado() {
+		Calendar calendarioActual = Calendar.getInstance();
+		if (calendarioActual.compareTo(this.getFf().getCalendario())>0) {
+			/** fecha final tarea expirada */
+			if (!this.getEstado().equals(Estado.terminado)) {
+				/** tarea no terminada */
+				this.setEstado(Estado.expirado);
+			}
+		}
+		else {
+			/** fecha final tarea no expirada */
+			if (this.getEstado().equals(Estado.expirado)) {
+				/** tarea expirada + tiempo no expirado => tarea activa */
+				this.setEstado(Estado.activo);
+			}
+		}
 	}
 
 	private void setFechaPorCalendario(Calendar calendario) {

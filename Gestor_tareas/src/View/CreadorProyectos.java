@@ -67,7 +67,7 @@ public class CreadorProyectos extends JFrame {
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}
 
-	public void addModificarTareaListener(ControllerListener listener) {
+	public void addControllerListener(ControllerListener listener) {
 		for (ControllerListener controllerListener : controllerListeners) {
 			if (controllerListener.equals(listener)) {
 				return;

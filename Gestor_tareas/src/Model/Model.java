@@ -130,6 +130,22 @@ public class Model {
 		}
 	}
 
+	public void siguienteEstado2(int id) {
+		Proyecto actual_proyecto;
+		Tarea actual_tarea;
+		for (int i = 0; i < contador_proyectos; i++) {
+			actual_proyecto = proyectos.get(i);
+			for (int j = 0; j < actual_proyecto.getTareas().size(); j++) {
+				actual_tarea = actual_proyecto.getTareas().get(j);
+				if (actual_tarea.getId() == id) {
+					actual_tarea.siguienteEstado2();
+					return;
+				}
+			}
+		}
+	}
+
+
 	public void eliminarTarea(int id) {
 		Proyecto actual_proyecto;
 		Tarea actual_tarea;

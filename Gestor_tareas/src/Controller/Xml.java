@@ -40,7 +40,6 @@ public class Xml {
 			tarea.setAttribute(new Attribute("hf", t.getHf().toString()));
 			tarea.setAttribute(new Attribute("descripcion", t.getDescripcion()));
 			tarea.setAttribute(new Attribute("estado", t.getEstado().toString()));
-			tarea.setAttribute(new Attribute("color", Integer.toString(t.getColor())));
 			tarea.setAttribute(new Attribute("contexto", t.getContexto().getNombre()));
 			documento.getRootElement().addContent(tarea);	
 		}
@@ -95,7 +94,7 @@ public class Xml {
 				String color = nnm.getNamedItem("color").getNodeValue();
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
 				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff),
-						new Hora(hi), new Hora(hf), descripcion, Integer.parseInt(color), new Contexto(contexto));
+						new Hora(hi), new Hora(hf), descripcion, new Contexto(contexto));
 				t.setEstado(Estado.valueOf(estado_tarea));
 				model.agregarTarea(t, new Integer(id));
 			}

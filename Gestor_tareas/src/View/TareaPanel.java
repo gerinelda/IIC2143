@@ -70,7 +70,7 @@ public class TareaPanel extends JPanel implements ActionListener {
             TareaFrame tF = new TareaFrame(tarea);
             if (controllerListeners!=null) {
                 for (ControllerListener listener : controllerListeners) {
-                    tF.addModificarTareaListener(listener);
+                    tF.addControllerListener(listener);
                 }
             }
             tF.setVisible(true);
@@ -97,7 +97,7 @@ public class TareaPanel extends JPanel implements ActionListener {
         return tarea;
     }
 
-    public void addModificarTareaListener(ControllerListener listener) {
+    public void addControllerListener(ControllerListener listener) {
         for (ControllerListener listenerInList : controllerListeners) {
             if (listener.equals(listenerInList)) {
                 return;
