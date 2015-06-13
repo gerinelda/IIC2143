@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proyecto id="4" nombre="qwerty" estado="activo">
+  <tarea id="2" nombre="t1" fi="13/06/2015" ff="14/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
+  <tarea id="3" nombre="t2" fi="13/06/2015" ff="13/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="miscelaneo" />
+  <tarea id="4" nombre="t3" fi="13/06/2015" ff="13/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="miscelaneo" />
+</proyecto>

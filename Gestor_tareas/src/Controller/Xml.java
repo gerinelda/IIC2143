@@ -1,6 +1,7 @@
 package Controller;
 import java.io.FileWriter;
 
+import View.VentanaError;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -12,6 +13,7 @@ import org.w3c.dom.NodeList;
 
 import Model.*;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
@@ -57,7 +59,7 @@ public class Xml {
 		}
 		catch(Exception e)
 		{
-			System.out.print("gg");
+			VentanaError error = new VentanaError("Importacion fallida");
 			return false;
 		}
 	}
@@ -103,7 +105,7 @@ public class Xml {
 			return;
 		}
 		catch(Exception e){
-			System.out.print("gg");
+			VentanaError error = new VentanaError("Importacion fallida");
 			return;
 		}
 	}

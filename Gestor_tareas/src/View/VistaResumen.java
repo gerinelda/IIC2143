@@ -1,6 +1,5 @@
 package View;
 
-import Controller.Xml;
 import Model.*;
 
 import java.awt.*;
@@ -27,10 +26,11 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	private JPanel content;
 	private ArrayList<Tarea> listaActualTareas;
 	private JMenuBar menubar;
-	private JComboBox<Proyecto> proyectosCB;
 	private VistaPorContexto vistaPorContexto;
 	private Image BGimage;
 	private VistaSemanal vistaSemanal;
+	private VistaExportarImportar vistaExportarImportar;
+
 
 	public VistaResumen(Model model) {
 		this.model = model;
@@ -39,7 +39,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		controllerListeners.add(this);
 		calendario = new CalendarioFrame(model);
 		vistaSemanal = new VistaSemanal(model);
-		setSize(750, 350);
+		setSize(830, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		placeComponents();
 	}
@@ -48,9 +48,6 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		JPanel Horizontal = new JPanel();
 		Horizontal.setLayout(new BoxLayout(Horizontal, BoxLayout.X_AXIS));
 
-		//Horizontal.setBackground(new Color(35, 35, 35, 230));
-
-		//content.setBackground(new Color(20, 35, 20, 230));
 		/** imagen de fondo */
         try {
             BGimage = ImageIO.read(getClass().getResource("/resources/imagenes/calendarioBG.jpg"));
@@ -163,28 +160,13 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		JButton vistaSemanalButton = new JButton("Semanas");
 		menubar.add(vistaSemanalButton);
 
-		JButton ExportarButton = new JButton("Exportar");
+		JButton ExportarButton = new JButton("Importar/Exportar");
 		menubar.add(ExportarButton);
 		ExportarButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/** EXPORTAR **/
-				/** aqui se fue el MVC pero queda poco tiempo **/
-				Xml xml = new Xml();
-				xml.crear((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
-			}
-		});
-
-		proyectosCB = new JComboBox<>();
-		actualizarProyectos();
-		menubar.add(proyectosCB);
-
-		JButton ImportarButton = new JButton("Importar");
-		menubar.add(ImportarButton);
-		ImportarButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				openFileDialog();
+				/** Ventana IMPORTAR / EXPORTAR **/
+				vistaExportarImportar = new VistaExportarImportar(model);
 			}
 		});
 
@@ -364,25 +346,8 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	}
 
 	public void actualizarProyectos() {
-		proyectosCB.removeAllItems();
-		for (Proyecto p : model.getProyectos()) {
-			proyectosCB.addItem(p);
-		}
+		vistaExportarImportar.actualizarProyectos();
 	}
 
-	public void openFileDialog() {
-		FileDialog fd = new FileDialog(this,"Elije el archivo a importar",FileDialog.LOAD);
-		fd.setDirectory("C:\\");
-		fd.setFile("*.xml");
-		fd.setVisible(true);
-		String ruta = fd.getFile();
-		if (ruta != null) {
-			Xml xml = new Xml();
-			xml.leer(ruta,model);
-			listaActualTareas = getTareasPorFechaFinal();
-			mostrarTareas(listaActualTareas);
-			actualizarProyectos();
-		}
-	}
 }
 

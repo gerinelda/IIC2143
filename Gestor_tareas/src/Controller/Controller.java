@@ -70,7 +70,6 @@ public class Controller implements ActionListener, ControllerListener, EmailList
     }
 
     public void updateAll() {
-        view.actualizarProyectos();
         view.updateAll();
     }
 

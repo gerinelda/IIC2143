@@ -211,6 +211,9 @@ public class Model {
 	}
 
 
+	/** devuelve indice (n° en lista) de
+	 *  tarea (indicada por id)
+	 *  en la lista de tareas de su proyecto */
 	public int indiceTarea(int id)
 	{
 		Proyecto actual_proyecto;
@@ -227,7 +230,6 @@ public class Model {
 		}
 		return -1;
 	}
-
 
 	public int indiceProyecto(int id)
 	{
@@ -274,12 +276,16 @@ public class Model {
 		}
 	}
 
+	/** intercambia una tarea por otra en la lista de tareas de su proyecto */
 	public void cambiarTarea(Tarea tarea) {
+		/** iteramos por cada proyecto */
 		for (Proyecto p : proyectos) {
+			/** iteramos por cada tarea */
 			for (Tarea t : p.getTareas()) {
-				int indice = indiceTarea(t.getId());
 				if (t.getId() == tarea.getId()) {
-					// si la tarea tiene el mismo id entonces intercambiar
+					/** indice = n° en lista de la tarea en su proyecto */
+					int indice = indiceTarea(t.getId());
+					/** si las tareas tienen el mismo id (osea son la misma), intercambiar */
 					p.getTareas().set(indice, tarea);
 				}
 			}
