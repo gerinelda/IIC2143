@@ -19,6 +19,7 @@ public class VistaPorContexto extends JPanel {
     private ArrayList<TareaPanel> listaTareas;
     private Model model;
     private GridBagConstraints gbc;
+    private TransparentButton eliminar;
 
     /** constructor */
     public VistaPorContexto(Model model) {
@@ -38,7 +39,7 @@ public class VistaPorContexto extends JPanel {
 
         listaTareas = new ArrayList<>();
         cbContextos = new JComboBox<>();
-        cbContextos.setSize(new Dimension(30,10));
+        cbContextos.setSize(new Dimension(30, 10));
         inicializarCBContexto();
         update();
         cbContextos.addActionListener(new ActionListener() {
@@ -47,26 +48,44 @@ public class VistaPorContexto extends JPanel {
                 update();
             }
         });
-        add(cbContextos);
+        add(cbContextos, gbc);
+
+        eliminar = new TransparentButton(" X ");
+        eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("oli");
+            }
+        });
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        add(eliminar,gbc);
+
     }
 
     /** iniciliza el comboBox con los contextos */
     private void inicializarCBContexto() {
+        //cbContextos = new JComboBox<>();
         cbContextos.removeAllItems();
         for (Contexto contexto : model.getContextos()) {
             cbContextos.addItem(contexto);
         }
     }
 
+    public void actualizarContextos() {
+        update();
+    }
+
     /** actualiza lo que muestra */
     public void update() {
-        System.out.println("actualizando vista por contexto");
         Contexto ContextoActual = (Contexto) cbContextos.getSelectedItem();
         inicializarCBContexto();
         cbContextos.setSelectedItem(ContextoActual);
         /** sacamos todos los componentes */
         removeAll();
         /** agregamos el combo box */
+        gbc.gridx = 0;
         gbc.gridy = 0;
         add(cbContextos, gbc);
         /** agregamos las tareas */

@@ -31,7 +31,6 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	private VistaSemanal vistaSemanal;
 	private VistaExportarImportar vistaExportarImportar;
 
-
 	public VistaResumen(Model model) {
 		this.model = model;
 		this.proyectos = model.getProyectos();
@@ -39,6 +38,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		controllerListeners.add(this);
 		calendario = new CalendarioFrame(model);
 		vistaSemanal = new VistaSemanal(model);
+		vistaPorContexto = new VistaPorContexto(model);
 		setSize(830, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		placeComponents();
@@ -294,7 +294,8 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	}
 
 	public void updateAll() {
-		mostrarTareas(getTareasPorFechaFinal());
+		vistaPorContexto.actualizarContextos();
+		//mostrarTareas(getTareasPorFechaFinal());
 		calendario.updateUI();
 
 	}
