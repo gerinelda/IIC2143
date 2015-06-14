@@ -18,7 +18,7 @@ public class VistaPorContexto extends JPanel {
     /** lista de tareas, cambia segun contexto seleccionado */
     private ArrayList<TareaPanel> listaTareas;
     private Model model;
-    GridBagConstraints gbc;
+    private GridBagConstraints gbc;
 
     /** constructor */
     public VistaPorContexto(Model model) {
@@ -39,14 +39,15 @@ public class VistaPorContexto extends JPanel {
         listaTareas = new ArrayList<>();
         cbContextos = new JComboBox<>();
         cbContextos.setSize(new Dimension(30,10));
+        inicializarCBContexto();
+        update();
         cbContextos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 update();
             }
         });
-        inicializarCBContexto();
-        update();
+        add(cbContextos);
     }
 
     /** iniciliza el comboBox con los contextos */
@@ -59,12 +60,16 @@ public class VistaPorContexto extends JPanel {
 
     /** actualiza lo que muestra */
     public void update() {
-        Contexto ActualContexto = (Contexto) cbContextos.getSelectedItem();
+        System.out.println("actualizando vista por contexto");
+        Contexto ContextoActual = (Contexto) cbContextos.getSelectedItem();
         inicializarCBContexto();
-        cbContextos.setSelectedItem(ActualContexto);
+        cbContextos.setSelectedItem(ContextoActual);
+        /** sacamos todos los componentes */
         removeAll();
+        /** agregamos el combo box */
         gbc.gridy = 0;
-        add(cbContextos,gbc);
+        add(cbContextos, gbc);
+        /** agregamos las tareas */
         listaTareas.clear();
         agregarTareasALista();
         int i = 1;
@@ -87,4 +92,5 @@ public class VistaPorContexto extends JPanel {
             }
         }
     }
+
 }

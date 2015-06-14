@@ -13,6 +13,8 @@ public class ProyectoPanel extends JPanel {
 
     private Proyecto proyecto;
     private Model model;
+    private JButton btnEliminar;
+
 
     ProyectoPanel(Proyecto proyecto, Model model) {
         this.model = model;
@@ -21,7 +23,8 @@ public class ProyectoPanel extends JPanel {
     }
 
     public void placeComponents() {
-        setBackground(new Color(20, 35, 20, 230));
+        //setBackground(new Color(20, 35, 20, 230));
+        setOpaque(false);
         Font font = new Font("Centhury Gothic",Font.PLAIN,16);
 
         TransparentButton nombreProyecto = new TransparentButton(proyecto.getNombre());
@@ -36,6 +39,20 @@ public class ProyectoPanel extends JPanel {
                 PF.setVisible(true);
             }
         });
+        if (!proyecto.getNombre().equals("miscelaneo")) {
+            btnEliminar = new JButton("Eliminar");
+            btnEliminar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("eliminado proyecto " + proyecto.getNombre());
+                    model.eliminarProyecto(proyecto.getId());
+                    btnEliminar.setVisible(false);
+                    nombreProyecto.setVisible(false);
+                    updateUI();
+                }
+            });
+            add(btnEliminar);
+        }
 
 
     }
