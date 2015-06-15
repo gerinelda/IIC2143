@@ -8,12 +8,34 @@
   <contexto nombre="miscelaneo" />
   <contexto nombre="miscelaneo" />
   <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
   <contexto nombre="fwef" />
   <contexto nombre="awefawef" />
   <contexto nombre="miscelaneo" />
   <contexto nombre="awefw" />
-  <proyecto id="0" nombre="miscelaneo" estado="activo">
-    <tarea id="0" nombre="afasdf" fi="15/06/2015" ff="21/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
-    <tarea id="1" nombre="sdafasdf" fi="15/06/2015" ff="15/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="miscelaneo" />
+  <contexto nombre="Universidad" />
+  <contexto nombre="Universidad" />
+  <contexto nombre="Universidad" />
+  <contexto nombre="Universidad" />
+  <contexto nombre="Universidad" />
+  <contexto nombre="Universidad" />
+  <proyecto id="0" nombre="miscelaneo" estado="activo" />
+  <proyecto id="1" nombre="Ingenieria de Software" estado="activo">
+    <tarea id="0" nombre="Sprint 2" fi="02/04/2015" ff="18/05/2015" hi="12:00:00" hf="23:59:59" descripcion="Terminar features originales" estado="terminado" contexto="Universidad" />
+    <tarea id="1" nombre="Interrogacion 1" fi="01/01/2015" ff="15/04/2015" hi="12:00:00" hf="18:30:00" descripcion="Ingenieria de Software" estado="terminado" contexto="Universidad" />
+    <tarea id="2" nombre="Interrogacion 2" fi="01/01/2015" ff="08/05/2015" hi="12:00:00" hf="18:30:00" descripcion="Ingenieria de Software" estado="terminado" contexto="Universidad" />
+    <tarea id="3" nombre="Interrogacion 3" fi="01/01/2015" ff="04/06/2015" hi="12:00:00" hf="18:30:00" descripcion="Ingenieria de Software" estado="expirado" contexto="Universidad" />
+    <tarea id="4" nombre="Examen" fi="01/01/2015" ff="26/06/2015" hi="12:00:00" hf="08:30:00" descripcion="Ingenieria de Software" estado="activo" contexto="Universidad" />
+  </proyecto>
+  <proyecto id="2" nombre="Sistemas Operativos" estado="activo">
+    <tarea id="5" nombre="Interrogacion 1" fi="02/04/2015" ff="08/04/2015" hi="12:00:00" hf="18:30:00" descripcion="Sistemas Operativos" estado="terminado" contexto="Universidad" />
+    <tarea id="6" nombre="Interrogacion 2" fi="02/04/2015" ff="04/05/2015" hi="12:00:00" hf="18:30:00" descripcion="Sistemas Operativos" estado="terminado" contexto="Universidad" />
+    <tarea id="7" nombre="Interrogacion 3" fi="02/04/2015" ff="29/05/2015" hi="12:00:00" hf="18:30:00" descripcion="Sistemas Operativos" estado="expirado" contexto="Universidad" />
+    <tarea id="8" nombre="Examen" fi="02/04/2015" ff="22/06/2015" hi="12:00:00" hf="08:30:00" descripcion="Sistemas Operativos" estado="activo" contexto="Universidad" />
   </proyecto>
 </sesion>

@@ -147,7 +147,6 @@ public class Model {
 		}
 	}
 
-
 	public void eliminarTarea(int id) {
 		Proyecto actual_proyecto;
 		Tarea actual_tarea;
