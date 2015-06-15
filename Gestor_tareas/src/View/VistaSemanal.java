@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Model.*;
 
@@ -25,11 +26,15 @@ public class VistaSemanal extends JFrame {
     private JPanel content;
     private Image BGimage;
     private ArrayList<Tarea> listaActualTareas;
+    private ArrayList<Proyecto> proyectos;
+    private int dia;
+    ArrayList<JPanel> dias;
     
     public VistaSemanal(Model model) {
         this.model = model;
+        this.proyectos = model.getProyectos();
         setVisible(false);
-        setSize(830, 350);
+        setSize(1230, 350);
         placeComponents();
     }
     
@@ -84,20 +89,13 @@ public class VistaSemanal extends JFrame {
 		System.out.println("Semana");
 		
 		
-		btn1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			
-				System.out.println("Siguiente");
-				
-			}
-		});
+
 		
 		
 	//	GridLayout horario = new GridLayout(0,7);
 		
 		
-		ArrayList<JPanel> dias = new ArrayList<JPanel>();
+		dias = new ArrayList<JPanel>();
 	
 		
 		for(int i = 0 ; i<7 ;i++){
@@ -111,6 +109,106 @@ public class VistaSemanal extends JFrame {
 		// Cada día es un "Stack" vertical donde se van metiendo los TareaPanel
 		
 		
+
+		
+		
+		Tarea t1 = new Tarea(1,"Examen",new Fecha(1,1,2015), new Fecha(26,6,2015), new Hora(12,0,0), new Hora(8,30),"Ingenieria de Software",new Contexto("Universidad"));
+		
+		dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		listaActualTareas = getProximosDias(7,dia);
+		
+		
+		header(dias);
+		metodo(listaActualTareas,dia,dias);
+		
+		
+		
+		//seleccionar tareas semanales a partir de un lunes
+		//ccon los botones cambio el lunes y actualizo
+		//coordinar eventos
+		
+		
+	
+		
+		btn1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				dia+=7;
+				listaActualTareas = getProximosDias(7,dia);
+				
+				metodo(listaActualTareas,dia,dias);
+				
+				System.out.println("Siguiente");
+				
+			}
+		});
+		
+		
+		btn2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				dias.get(0).removeAll();
+				
+			}
+		});
+		
+		btn3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose(); 
+			}
+		});
+		
+    }
+
+    public ArrayList<Tarea> getProximosDias(int m, int dia) {
+    	
+		ArrayList<Tarea> lista = new ArrayList<>();
+		for (int i = 0; i < model.getContador_proyectos(); i++) {
+			for (int j = 0; j < proyectos.get(i).getTareas().size(); j++) {
+				Tarea t = proyectos.get(i).getTareas().get(j);
+				/** devolver solo tareas que vencen en los m=3 proximos dias **/
+				int n = t.getFf().getCalendario().get(Calendar.DAY_OF_MONTH) - dia;
+				if ( n >= 0 && n <= m) {
+					lista.add(t);
+				}
+			}
+			
+		}
+		return lista;
+	}
+    
+    private void metodo (ArrayList<Tarea> listaActualTareas,int dia,ArrayList<JPanel> dias){
+    	
+    	for(JPanel jp:dias){
+    		jp.removeAll();
+    	}
+    	
+    	header(dias);
+		for(Tarea t:listaActualTareas){
+			
+			if(t.getFf().getD() == dia){
+				dias.get(0).add(new TareaPanel(t,model));	
+		
+			}
+			if(t.getFf().getD() == dia+1)
+				dias.get(1).add(new TareaPanel(t,model));
+			if(t.getFf().getD() == dia+2)
+				dias.get(2).add(new TareaPanel(t,model));
+			if(t.getFf().getD() == dia+3)
+				dias.get(3).add(new TareaPanel(t,model));
+			if(t.getFf().getD() == dia+4)
+				dias.get(4).add(new TareaPanel(t,model));
+			if(t.getFf().getD() == dia+5)
+				dias.get(5).add(new TareaPanel(t,model));
+			if(t.getFf().getD() == dia+6)
+				dias.get(6).add(new TareaPanel(t,model));
+		}
+    }
+
+    private void header(ArrayList<JPanel> dias){
 		dias.get(0).add(new JLabel("Lunes", JLabel.CENTER));		
 		dias.get(1).add(new JLabel("Martes", JLabel.CENTER));
 		dias.get(2).add(new JLabel("Miércoles", JLabel.CENTER));
@@ -118,19 +216,6 @@ public class VistaSemanal extends JFrame {
 		dias.get(4).add(new JLabel("Viernes", JLabel.CENTER));
 		dias.get(5).add(new JLabel("Sábado", JLabel.CENTER));
 		dias.get(6).add(new JLabel("Domingo", JLabel.CENTER));
-		
-		
-		Tarea t = new Tarea(1,"Examen",new Fecha(1,1,2015), new Fecha(26,6,2015), new Hora(12,0,0), new Hora(8,30),"Ingenieria de Software",new Contexto("Universidad"));
-		
-		Fecha lunesActual = new Fecha(15,6,2015);
-		
-		//seleccionar tareas semanales a partir de un lunes
-		//ccon los botones cambio el lunes y actualizo
-		//coordinar eventos
-		
-		
-		dias.get(3).add(new TareaPanel(t,model));
     }
-
 
 }
