@@ -70,6 +70,8 @@ public class VistaSemanal extends JFrame {
 		JButton btn3 = new JButton("Volver");
 
 		JPanel sidebar = new JPanel();
+		sidebar.setBackground(new Color(119, 2, 20, 160));
+
 
 		content.setLayout(new GridLayout(0, 7));
 		sidebar.setLayout(new GridLayout(0, 1));
@@ -82,7 +84,7 @@ public class VistaSemanal extends JFrame {
 		sidebar.add(btn3);
 
 		Horizontal.add(content);
-		Horizontal.setOpaque(false);
+		Horizontal.setBackground(new Color(119, 2, 20, 160));
 		Font font = new Font("Centhury Gothic", Font.PLAIN, 20);
 		content.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.WHITE, 2), "Vista Semanal", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, font, Color.WHITE));
 
@@ -92,7 +94,9 @@ public class VistaSemanal extends JFrame {
 
 		for (int i = 0; i < 7; i++) {
 
-			dias.add(new JPanel());
+			JPanel TempPanel = new JPanel();
+			TempPanel.setOpaque(false);
+			dias.add(TempPanel);
 			dias.get(i).setLayout(new GridLayout(10, 1));
 			content.add(dias.get(i));
 			dias.get(i).setBackground(Color.gray);
