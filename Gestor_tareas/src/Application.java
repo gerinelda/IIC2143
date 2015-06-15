@@ -33,7 +33,7 @@ public class Application {
 		Xml xml = new Xml();
 		agregarDatosMinimos(model);
 		xml.importarSesion(model);;
-		agregarDatosPrueba(model);
+		//agregarDatosPrueba(model);
 		View view = new View(model);
 		Controller controller = new Controller(view, model);
 	}

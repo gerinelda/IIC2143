@@ -180,7 +180,6 @@ public class Xml {
 
 	public void importarSesion(Model modelo) {
 		try {
-
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			org.w3c.dom.Document documento = dBuilder.parse("session.xml");
@@ -242,7 +241,6 @@ public class Xml {
 				String hf = t_node.getAttributes().getNamedItem("hf").getNodeValue();
 				String descripcion = t_node.getAttributes().getNamedItem("descripcion").getNodeValue();
 				String estado_tarea = t_node.getAttributes().getNamedItem("estado").getNodeValue();
-				String color = t_node.getAttributes().getNamedItem("color").getNodeValue();
 				String contexto = t_node.getAttributes().getNamedItem("contexto").getNodeValue();
 				/** evitamos crear contextos miscelaneos */
 				Contexto tempContexto = null;
@@ -263,7 +261,6 @@ public class Xml {
 			}
 		} catch (Exception e) {
 			System.out.println("cargado fallido");
-			//VentanaError error = new VentanaError("Cargado fallido");
 		}
 	}
 }
