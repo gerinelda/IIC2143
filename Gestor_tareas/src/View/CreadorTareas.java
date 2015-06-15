@@ -230,6 +230,7 @@ public class CreadorTareas extends JFrame {
 			agregarTarea(e);
         });
 		crearButton.setActionCommand("agregar");
+		getRootPane().setDefaultButton(crearButton);
 
 		cancelarButton.addActionListener(e -> setVisible(false));
 	}

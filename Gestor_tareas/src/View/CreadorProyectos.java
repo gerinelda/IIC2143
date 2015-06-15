@@ -49,7 +49,8 @@ public class CreadorProyectos extends JFrame {
 		JButton crearButton = new JButton("Crear");
 		crearButton.setBounds(170, 70, 100, 25);
 		panel.add(crearButton);
-		
+		getRootPane().setDefaultButton(crearButton);
+
 		crearButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

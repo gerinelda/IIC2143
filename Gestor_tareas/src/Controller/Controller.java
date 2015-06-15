@@ -51,7 +51,7 @@ public class Controller implements ActionListener, ControllerListener, EmailList
             }
         } else if (e.getActionCommand().equals("agregar")) {
             /** AGREGAR TAREA NUEVA **/
-            System.out.println("agregando tarea");
+            System.out.println("agregando tarea!");
             model.agregarTarea(tarea, proyecto.getId());
         } else if (e.getActionCommand().equals("agregarProyecto")) {
             /** AGREGAR NUEVO PROYECTO **/

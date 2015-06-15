@@ -30,6 +30,8 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	private Image BGimage;
 	private VistaSemanal vistaSemanal;
 	private VistaExportarImportar vistaExportarImportar;
+	private boolean viendoContextos;
+	private boolean viendoTareas;
 
 	public VistaResumen(Model model) {
 		this.model = model;
@@ -39,9 +41,13 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		calendario = new CalendarioFrame(model);
 		vistaSemanal = new VistaSemanal(model);
 		vistaPorContexto = new VistaPorContexto(model);
+		viendoContextos = false;
+		viendoTareas = true;
 		setSize(830, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		placeComponents();
+
+		mostrarNotificaciones();
 	}
 
 	private void placeComponents() {
@@ -69,12 +75,12 @@ public class VistaResumen extends JFrame implements ControllerListener {
 
 		menubar = new JMenuBar();
 		JButton addBtn = new JButton(" + ");
+		JButton btn0 = new JButton("Todas");
 		JButton btn1 = new JButton("Pendientes");
-		JButton btn2 = new JButton("Ordenar");
-		JButton btn3 = new JButton("3 dias");
+		JButton btn2 = new JButton("Completadas");
+		JButton btn3 = new JButton("Esta Semana");
 		JButton btn4 = new JButton("Proyectos");
 		JButton btn5 = new JButton("Contexto");
-
 
 		JPanel sidebar = new JPanel();
 
@@ -87,6 +93,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		Horizontal.add(sidebar);
 		Horizontal.add(content);
 		sidebar.add(addBtn);
+		sidebar.add(btn0);
 		sidebar.add(btn1);
 		sidebar.add(btn2);
 		sidebar.add(btn3);
@@ -108,6 +115,13 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		});
 
 		/** BOTONES ( FILTROS / SORT ) **/
+		btn0.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaActualTareas = getTareasPorFechaFinal();
+				mostrarTareas(listaActualTareas);
+			}
+		});
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -118,17 +132,19 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listaActualTareas = getTareasPorFechaFinal();
+				listaActualTareas = getTareasCompletadas();
 				mostrarTareas(listaActualTareas);
 			}
 		});
 		btn3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				listaActualTareas = getProximos3dias();
+				listaActualTareas = getProximosDias(7);
 				mostrarTareas(listaActualTareas);
 			}
 		});
+
+
 		btn4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -220,22 +236,47 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		});
 	}
 
-
 	public void mostrarTareas(ArrayList<Tarea> tareas) {
+		viendoTareas = true;
+		viendoContextos = false;
 		content.removeAll();
+		JPanel subContent = new JPanel();
+		subContent.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.weighty = 1;
+		gbc.weightx = 1;
+		gbc.gridx = 0;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		int i = 0;
+		subContent.setOpaque(false);
+		subContent.setVisible(true);
 		for (Tarea t : tareas) {
 			TareaPanel TP = new TareaPanel(t,model);
 			TP.mostrarTodo();
 			for (ControllerListener listener : controllerListeners) {
 				TP.addControllerListener(listener);
 			}
-			content.add(TP);
+			gbc.gridy = i++;
+			subContent.add(TP,gbc);
 		}
+		content.add(subContent);
 		content.updateUI();
 	}
 
 	public void setListener(ActionListener listener) {
 		calendario.setListener(listener);
+	}
+
+	public ArrayList<Tarea> getTareasCompletadas() {
+		ArrayList<Tarea> lista = new ArrayList<>();
+		for (Proyecto p : proyectos) {
+			for (Tarea t : p.getTareas()) {
+				if (t.getEstado().equals(Estado.terminado)) {
+					lista.add(t);
+				}
+			}
+		}
+		return lista;
 	}
 
 	public ArrayList<Tarea> getTareasPendientes() {
@@ -247,19 +288,20 @@ public class VistaResumen extends JFrame implements ControllerListener {
 					+ 365 * t.getFf().getY())
 					> (365*Calendar.getInstance().get(Calendar.YEAR)
 						+ Calendar.getInstance().get(Calendar.DAY_OF_YEAR))) {
-					lista.add(t);
+					if (!t.getEstado().equals(Estado.terminado)) {
+						lista.add(t);
+					}
 				}
 			}
 		}
 		return lista;
 	}
 
-	public ArrayList<Tarea> getProximos3dias() {
+	public ArrayList<Tarea> getProximosDias(int m) {
 		ArrayList<Tarea> lista = new ArrayList<>();
 		for (int i = 0; i < model.getContador_proyectos(); i++) {
 			for (int j = 0; j < proyectos.get(i).getTareas().size(); j++) {
 				Tarea t = proyectos.get(i).getTareas().get(j);
-				int m = 3;
 				/** devolver solo tareas que vencen en los m=3 proximos dias **/
 				int n = t.getFf().getCalendario().get(Calendar.DAY_OF_MONTH) - Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 				if ( n >= 0 && n <= m) {
@@ -292,14 +334,17 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			}
 		}
 		controllerListeners.add(listener);
-		mostrarTareas(listaActualTareas);
 	}
 
 	public void updateAll() {
 		vistaPorContexto.actualizarContextos();
-		//mostrarTareas(getTareasPorFechaFinal());
+		if (viendoContextos) {
+			mostrarContextos();
+		}
+		if (viendoTareas) {
+			mostrarTareas(getTareasPorFechaFinal());
+		}
 		calendario.updateUI();
-
 	}
 
 	@Override
@@ -332,8 +377,11 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	}
 
 	public void mostrarContextos() {
+		viendoContextos = true;
+		viendoTareas = false;
 		content.removeAll();
 		vistaPorContexto = new VistaPorContexto(model);
+		vistaPorContexto.setControllerListeners(controllerListeners);
 		content.add(vistaPorContexto);
 		content.updateUI();
 	}
@@ -352,5 +400,37 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		vistaExportarImportar.actualizarProyectos();
 	}
 
+	public void mostrarNotificaciones() {
+		JFrame notificaciones = new JFrame();
+		notificaciones.getContentPane().setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		int y = 0;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		notificaciones.getContentPane().setBackground(new Color(88, 2, 20, 220));
+		ArrayList<Tarea> listaTareasNotificadas = new ArrayList<>();
+		for (Proyecto p : model.getProyectos()) {
+			for (Tarea t : p.getTareas()) {
+				if (!t.getEstado().equals(Estado.terminado)
+					&& ( Calendar.getInstance().get(Calendar.DAY_OF_YEAR) - t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR) >= 0 )
+						&& (Calendar.getInstance().get(Calendar.DAY_OF_YEAR) - t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR) <= 7)) {
+					listaTareasNotificadas.add(t);
+				}
+			}
+		}
+		if (listaTareasNotificadas.isEmpty()) {
+			return;
+		}
+		setVisible(true);
+
+		for (Tarea t : listaTareasNotificadas) {
+			TareaPanel TP = new TareaPanel(t,model);
+			for (ControllerListener listener : controllerListeners) {
+				TP.addControllerListener(listener);
+			}
+			gbc.gridy = y++;
+			notificaciones.getContentPane().add(TP,gbc);
+		}
+	}
 }
 

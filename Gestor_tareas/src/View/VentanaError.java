@@ -13,7 +13,7 @@ public class VentanaError extends JFrame {
 		int fontSize = 16;
 		Font font = new Font(texto.getFont().getName(),texto.getFont().getStyle(),fontSize);
 		add(texto);
-		setSize(200, 100);
+		setSize(300, 100);
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override

@@ -40,6 +40,7 @@ public class TareaRapidaFrame extends JFrame implements ActionListener {
         titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
         JButton btnAceptar = new JButton("Aceptar");
         JButton btnCancelar = new JButton("Cancelar");
+        getRootPane().setDefaultButton(btnAceptar);
 
         JPanel XLayout1 = new JPanel();
         JLabel nombre = new JLabel("Nombre: ");

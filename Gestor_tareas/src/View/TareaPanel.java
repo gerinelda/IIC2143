@@ -43,8 +43,8 @@ public class TareaPanel extends JPanel implements ActionListener {
 
     public void mostrarTodo() {
         Font font = nombre.getFont();
-        setOpaque(true);
-        setBackground(new Color(20, 35, 20, 230));
+        setOpaque(false);
+        //setBackground(new Color(20, 35, 20, 230));
 
         /** DIA VENCIMIENTO **/
         JLabel fechafinal = new JLabel();
@@ -78,7 +78,9 @@ public class TareaPanel extends JPanel implements ActionListener {
             tF.setVisible(true);
         }
         else if (e.getActionCommand().equals("eliminar")) {
+            /** si la lista de controllerListenes es no vacia */
             if (controllerListeners != null) {
+                /** notificar a cada controllerListener */
                 for (ControllerListener listener : controllerListeners) {
                     listener.ModificarTarea(e, tarea, new Proyecto(-1));
                 }
@@ -100,6 +102,7 @@ public class TareaPanel extends JPanel implements ActionListener {
     }
 
     public void addControllerListener(ControllerListener listener) {
+        /** si esta anteriormente salir antes */
         for (ControllerListener listenerInList : controllerListeners) {
             if (listener.equals(listenerInList)) {
                 return;
