@@ -1,6 +1,7 @@
 import Controller.*;
 import View.*;
 import Model.*;
+
 import javax.swing.*;
 
 
@@ -17,22 +18,39 @@ public class Application {
 
 	}
 
+	/*
 	private static void runApp() {
 		Model model = new Model();
 		agregarDatosPrueba(model);
 		View view = new View(model);
 		Controller controller = new Controller(view, model);
 	}
+	*/
 
-	private static void agregarDatosPrueba(Model model) {
+	private static void runApp() { //throws IOException, ParserException, ValidationException, URISyntaxException, ParseException {
+		Model model = new Model();
+		//CalendarioICS c = new CalendarioICS();
+		Xml xml = new Xml();
+		agregarDatosMinimos(model);
+		xml.importarSesion(model);;
+		//agregarDatosPrueba(model);
+		View view = new View(model);
+		Controller controller = new Controller(view, model);
+	}
+
+	private static void agregarDatosMinimos(Model model) {
 		Proyecto p1 = new Proyecto(model.getId_proyectos(),"miscelaneo",Estado.activo);
 		Contexto contexto = new Contexto("miscelaneo");
 		model.agregarContexto(contexto);
 		model.agregarProyecto(p1);
+	}
+
+	private static void agregarDatosPrueba(Model model) {
 
 		/** DATOS DE EJEMPLO PARA EL COMIENZO */
 
 		/** INGENIERIA DE SOFTWARE **/
+		/*
 		Proyecto p2 = new Proyecto(model.getId_proyectos(),"Ingenieria de Software",Estado.activo);
 		Contexto c1 = new Contexto("Universidad");
 		Tarea t5 = new Tarea(1,"Sprint 2",new Fecha(2,4,2015), new Fecha(18,5,2015), new Hora(), new Hora(23,59,59),"Terminar features originales",  c1);
@@ -51,7 +69,9 @@ public class Application {
 		model.agregarTarea(t8, p2.getId());
 		model.agregarTarea(t9, p2.getId());
 
+*/
 		/** SISTEMAS OPERATIVOS **/
+		/*
 		Proyecto p3 = new Proyecto(model.getId_proyectos(),"Sistemas Operativos",Estado.activo);
 		Contexto c2 = new Contexto("Universidad");
 		Tarea t10 = new Tarea(1,"Interrogacion 1",new Fecha(2,4,2015), new Fecha(8,4,2015), new Hora(), new Hora(18,30),"Sistemas Operativos",  c2);
@@ -67,6 +87,7 @@ public class Application {
 		model.agregarTarea(t11, p3.getId());
 		model.agregarTarea(t12, p3.getId());
 		model.agregarTarea(t13, p3.getId());
+		*/
 
 	}
 }

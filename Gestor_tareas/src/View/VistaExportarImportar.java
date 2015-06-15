@@ -2,12 +2,16 @@ package View;
 
 import javax.swing.*;
 
+import Controller.CalendarioICS;
 import Controller.Xml;
 import Model.*;
+import net.fortuna.ical4j.model.ValidationException;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class VistaExportarImportar extends JFrame {
 
@@ -15,6 +19,8 @@ public class VistaExportarImportar extends JFrame {
 	private JComboBox<Proyecto> proyectosCB;
 	private JButton exportar;
 	private JButton importar;
+	private JButton importar2;
+	private JButton exportar2;
 	private JPanel content;
 
 	VistaExportarImportar(Model model) {
@@ -35,19 +41,57 @@ public class VistaExportarImportar extends JFrame {
 		}
 
 		/** botones */
-		exportar = new JButton("Exportar");
+		exportar = new JButton("Exportar Proyecto");
 		exportar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Xml xml = new Xml();
-				xml.crear((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
+				xml.exportarProyecto((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
 			}
 		});
-		importar = new JButton("Importar");
+		importar = new JButton("Importar Proyecto");
 		importar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				openFileDialog();
+				String ruta = openFileDialog();
+				Xml xml = new Xml();
+				xml.importarProyecto(ruta, model);
+			}
+		});
+
+		/** botones */
+		exportar2 = new JButton("Exportar Agenda");
+		exportar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CalendarioICS ICS = new CalendarioICS();
+				String ruta = openFileDialog();
+				try {
+					ICS.exportarAgenda(model,ruta);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (ValidationException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		importar2 = new JButton("Importar Agenda");
+		importar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ruta = openFileDialog();
+				CalendarioICS ICS = new CalendarioICS();
+				try {
+					ICS.exportarAgenda(model, ruta);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (ValidationException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -62,19 +106,26 @@ public class VistaExportarImportar extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		content.add(importar,gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		content.add(exportar2,gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		content.add(importar2,gbc);
 		add(content);
 	}
 
-	private void openFileDialog() {
+	private String openFileDialog() {
 		FileDialog fd = new FileDialog(this,"Elije el archivo a importar",FileDialog.LOAD);
 		fd.setDirectory("C:\\");
-		fd.setFile("*.xml");
+		//fd.setFile("*.xml");
 		fd.setVisible(true);
 		String ruta = fd.getFile();
-		if (ruta != null) {
-			Xml xml = new Xml();
-			xml.leer(ruta, model);
+		if (ruta == null) {
+			VentanaError VE = new VentanaError("Error");
+
 		}
+		return ruta;
 	}
 
 	public void actualizarProyectos() {

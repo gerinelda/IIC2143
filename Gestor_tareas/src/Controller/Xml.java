@@ -13,18 +13,14 @@ import org.w3c.dom.NodeList;
 
 import Model.*;
 
-import javax.swing.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
-import java.io.File;
-
-
 public class Xml {
-	
+
 	Element Proyecto = new Element("Proyecto");
-	
-	public boolean crear(Proyecto p, String ruta){
+
+	public boolean exportarProyecto(Proyecto p, String ruta){
 
 		Element proyecto = new Element("proyecto");
 		Document documento = new Document(proyecto);
@@ -43,9 +39,9 @@ public class Xml {
 			tarea.setAttribute(new Attribute("descripcion", t.getDescripcion()));
 			tarea.setAttribute(new Attribute("estado", t.getEstado().toString()));
 			tarea.setAttribute(new Attribute("contexto", t.getContexto().getNombre()));
-			documento.getRootElement().addContent(tarea);	
+			documento.getRootElement().addContent(tarea);
 		}
-		
+
 		try{
 
 			FileWriter fw = new FileWriter(ruta);
@@ -53,23 +49,22 @@ public class Xml {
 			xmlOutput.setFormat(Format.getPrettyFormat());
 			xmlOutput.output(documento, fw);
 			fw.close();
-			
+
 			System.out.print("archivo creado en "+ruta);
-			return true;	
+			return true;
 		}
 		catch(Exception e)
 		{
-			VentanaError error = new VentanaError("Importacion fallida");
+			VentanaError error = new VentanaError("Exportacion fallida");
 			return false;
 		}
 	}
 
-	public void leer(String ruta, Model model)
+	public void importarProyecto(String ruta, Model model)
 	{
 		Proyecto p;
-
 		try{
-	
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			org.w3c.dom.Document documento = dBuilder.parse(ruta);
@@ -78,11 +73,12 @@ public class Xml {
 			String nombre = raiz.getAttribute("nombre");
 			String estado = raiz.getAttribute("estado");
 			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
+			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
 			model.agregarProyecto(p);
-			//System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
 			NodeList tareas = raiz.getElementsByTagName("tarea");
+			int largo = tareas.getLength();
 			for (int i = 0; i < tareas.getLength(); i++) {
-				//System.out.println("creando tarea en model");
+				System.out.println("creando tarea en model");
 				Node nodo = tareas.item(i);
 				NamedNodeMap nnm = nodo.getAttributes();
 				String nombre_tarea = nnm.getNamedItem("nombre").getNodeValue();
@@ -91,22 +87,176 @@ public class Xml {
 				String ff = nnm.getNamedItem("ff").getNodeValue();
 				String hi = nnm.getNamedItem("hi").getNodeValue();
 				String hf = nnm.getNamedItem("hf").getNodeValue();
+				Fecha f = new Fecha(fi);
 				String descripcion = nnm.getNamedItem("descripcion").getNodeValue();
 				String estado_tarea = nnm.getNamedItem("estado").getNodeValue();
 				String color = nnm.getNamedItem("color").getNodeValue();
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
-				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff),
-						new Hora(hi), new Hora(hf), descripcion, new Contexto(contexto));
+				/** evitamos crear contextos miscelaneos */
+				Contexto tempContexto = null;
+				if (contexto.equals("miscelaneo")) {
+					for (Contexto c : model.getContextos()) {
+						if (c.getNombre().equals("miscelaneo")) {
+							tempContexto = c;
+							break;
+						}
+					}
+				}
+				else {
+					tempContexto = new Contexto(contexto);
+				}
+
+				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, tempContexto);
 				t.setEstado(Estado.valueOf(estado_tarea));
-				model.agregarTarea(t, new Integer(id));
+				model.agregarTarea(t, p.getId());
 			}
-
-
-			return;
 		}
 		catch(Exception e){
 			VentanaError error = new VentanaError("Importacion fallida");
-			return;
+		}
+	}
+
+	public boolean exportarSesion(Model modelo)
+	{
+		String ruta = "session.xml";
+		Element s = new Element("sesion");
+		Document documento = new Document(s);
+		for (int i = 0; i < modelo.getContextos().size(); i++) {
+			Contexto c_actual = modelo.getContextos().get(i);
+			Element c = new Element("contexto");
+			c.setAttribute(new Attribute("nombre", c_actual.getNombre()));
+			documento.getRootElement().addContent(c);
+		}
+		for (int i = 0; i < modelo.getProyectos().size(); i++) {
+			Proyecto p_actual = modelo.getProyectos().get(i);
+			Element p = new Element("proyecto");
+			p.setAttribute(new Attribute("id",Integer.toString(p_actual.getId())));
+			p.setAttribute(new Attribute("nombre", p_actual.getNombre()));
+			p.setAttribute(new Attribute("estado", p_actual.getEstado().toString()));
+			for (int j = 0; j < p_actual.getTareas().size(); j++) {
+				Element tarea = new Element("tarea");
+				Tarea t = p_actual.getTareas().get(j);
+				tarea.setAttribute(new Attribute("id",Integer.toString(t.getId())));
+				tarea.setAttribute(new Attribute("nombre", t.getNombre()));
+				tarea.setAttribute(new Attribute("fi", t.getFi().toString()));
+				tarea.setAttribute(new Attribute("ff", t.getFf().toString()));
+				tarea.setAttribute(new Attribute("hi", t.getHi().toString()));
+				tarea.setAttribute(new Attribute("hf", t.getHf().toString()));
+				tarea.setAttribute(new Attribute("descripcion", t.getDescripcion()));
+				tarea.setAttribute(new Attribute("estado", t.getEstado().toString()));
+				tarea.setAttribute(new Attribute("contexto", t.getContexto().getNombre()));
+				p.addContent(tarea);
+
+			}
+			documento.getRootElement().addContent(p);
+		}
+
+		try{
+
+			FileWriter fw = new FileWriter(ruta);
+			XMLOutputter xmlOutput = new XMLOutputter();
+			xmlOutput.setFormat(Format.getPrettyFormat());
+			xmlOutput.output(documento, fw);
+			fw.close();
+
+			System.out.print("archivo creado en "+ruta);
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("guardado fallido");
+			//VentanaError error = new VentanaError("Guardado fallido");
+			return false;
+		}
+
+	}
+
+	public void importarSesion(Model modelo) {
+		try {
+
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			org.w3c.dom.Document documento = dBuilder.parse("session.xml");
+			org.w3c.dom.Element raiz = documento.getDocumentElement();
+			NodeList contextos = raiz.getElementsByTagName("contexto");
+			NodeList proyectos = raiz.getElementsByTagName("proyecto");
+			NodeList tareas = raiz.getElementsByTagName("tarea");
+
+			for (int i = 0; i < contextos.getLength(); i++) {
+				String contexto = contextos.item(i).getAttributes().getNamedItem("nombre").getNodeValue();
+				/** evitamos crear contextos miscelaneos */
+				Contexto c_actual = null;
+				if (contexto.equals("miscelaneo")) {
+					for (Contexto c : modelo.getContextos()) {
+						if (c.getNombre().equals("miscelaneo")) {
+							c_actual = c;
+							break;
+						}
+					}
+				}
+				else {
+					c_actual = new Contexto(contexto);
+				}
+				if (c_actual!=null) {
+					modelo.agregarContexto(c_actual);
+				}
+			}
+
+			int l = proyectos.getLength();
+			for (int i = 0; i < proyectos.getLength(); i++) {
+				Node p_node = proyectos.item(i);
+				String id = p_node.getAttributes().getNamedItem("id").getNodeValue();
+				String nombre = p_node.getAttributes().getNamedItem("nombre").getNodeValue();
+				String estado = p_node.getAttributes().getNamedItem("estado").getNodeValue();
+				Proyecto p_actual = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
+				boolean existe = false;
+				for (Proyecto p : modelo.getProyectos()) {
+					if (p.getNombre().equals("miscelaneo")) {
+						/** ya existe el proyecto */
+						p_actual = p;
+						existe = true;
+						break;
+					}
+				}
+				if (!existe) {
+					System.out.println(p_actual.getNombre());
+					modelo.agregarProyecto(p_actual);
+				}
+			}
+
+			for (int j = 0; j < tareas.getLength(); j++) {
+				Node t_node = tareas.item(j);
+				int id_parent = Integer.parseInt(t_node.getParentNode().getAttributes().getNamedItem("id").getNodeValue());
+				String nombre_tarea = t_node.getAttributes().getNamedItem("nombre").getNodeValue();
+				String id_tarea = t_node.getAttributes().getNamedItem("id").getNodeValue();
+				String fi = t_node.getAttributes().getNamedItem("fi").getNodeValue();
+				String ff = t_node.getAttributes().getNamedItem("ff").getNodeValue();
+				String hi = t_node.getAttributes().getNamedItem("hi").getNodeValue();
+				String hf = t_node.getAttributes().getNamedItem("hf").getNodeValue();
+				String descripcion = t_node.getAttributes().getNamedItem("descripcion").getNodeValue();
+				String estado_tarea = t_node.getAttributes().getNamedItem("estado").getNodeValue();
+				String color = t_node.getAttributes().getNamedItem("color").getNodeValue();
+				String contexto = t_node.getAttributes().getNamedItem("contexto").getNodeValue();
+				/** evitamos crear contextos miscelaneos */
+				Contexto tempContexto = null;
+				if (contexto.equals("miscelaneo")) {
+					for (Contexto c : modelo.getContextos()) {
+						if (c.getNombre().equals("miscelaneo")) {
+							tempContexto = c;
+							break;
+						}
+					}
+				}
+				else {
+					tempContexto = new Contexto(contexto);
+				}
+				Tarea t_actual = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, tempContexto);
+				t_actual.setEstado(Estado.valueOf(estado_tarea));
+				modelo.agregarTarea(t_actual, id_parent);
+			}
+		} catch (Exception e) {
+			System.out.println("cargado fallido");
+			//VentanaError error = new VentanaError("Cargado fallido");
 		}
 	}
 }

@@ -432,5 +432,9 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			notificaciones.getContentPane().add(TP,gbc);
 		}
 	}
+
+
+
+
 }
 

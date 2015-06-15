@@ -1,5 +1,6 @@
 package View;
-import Controller.Controller;
+import Controller.*;
+
 import Model.*;
 
 import javax.swing.*;
@@ -96,6 +97,22 @@ public class View {
 
         vistaResumen.getJMenuBar().add(emailBtn);
         vistaResumen.getJMenuBar().add(emailBtn2);
+
+
+        vistaResumen.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(vistaResumen,
+                        "Seguro que quieres salir?", "Salir",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    Xml xml = new Xml();
+                    xml.exportarSesion(model);
+                    System.exit(0);
+                }
+            }
+        });
+
         vistaResumen.setVisible(true);
     }
 
@@ -164,6 +181,7 @@ public class View {
     public void actualizarProyectos() {
         vistaResumen.actualizarProyectos();
     }
+
 
 
 }
