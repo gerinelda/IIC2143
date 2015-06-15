@@ -105,7 +105,7 @@ public class VistaPorContexto extends JPanel {
         for (Proyecto p : model.getProyectos()) {
             for (Tarea t : p.getTareas()) {
                 if (t.getContexto().equals(ContextoActual)) {
-                    TareaPanel TP = new TareaPanel(t);
+                    TareaPanel TP = new TareaPanel(t,model);
                     listaTareas.add(TP);
                 }
             }

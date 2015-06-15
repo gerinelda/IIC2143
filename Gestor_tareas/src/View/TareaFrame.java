@@ -4,6 +4,7 @@ import Model.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,10 +19,12 @@ public class TareaFrame extends JFrame {
 	JLabel id, nombre, fi, ff, hi, hf, descripcion, contexto;
 	ArrayList<ControllerListener> controllerListeners;
 	Tarea tarea;
+	Model model;
 
-	public TareaFrame(Tarea tarea) {
+	public TareaFrame(Tarea tarea, Model m) {
 		controllerListeners = new ArrayList<>();
 		this.tarea = tarea;
+		this.model = m;
 		placeComponents();
 	}
 
@@ -40,17 +43,8 @@ public class TareaFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Font font = new Font("Centhury Gothic", Font.PLAIN, 20);
 		content.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.WHITE, 2), "Detalle Tarea", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, font, Color.WHITE));
-		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-		setSize(300, 300);
-		content.add(id);
-		content.add(nombre);
-		content.add(fi);
-		content.add(hi);
-		content.add(ff);
-		content.add(hf);
-		content.add(descripcion);
-		content.add(contexto);
-		add(content);
+		content.setLayout(new GridLayout(0, 2));
+		
 
 		id.setForeground(Color.WHITE);
 		descripcion.setForeground(Color.WHITE);
@@ -64,30 +58,83 @@ public class TareaFrame extends JFrame {
 		Color bgColor = new Color(47,0,8);
 		content.setBackground(bgColor);
 
-		JButton btn1 = new JButton("+1 dia");
+		JButton btn1 = new JButton("+1 dia  ");
 		JButton btn2 = new JButton("+1 sem");
 		JButton btn3 = new JButton("+1 mes");
-		JButton btn4 = new JButton("-1 dia");
+		JButton btn4 = new JButton("-1 dia   ");
 		JButton btn5 = new JButton("-1 sem");
 		JButton btn6 = new JButton("-1 mes");
+		JButton btn7 = new JButton("Editar");
+		
 		JPanel aplazarPanel = new JPanel();
 		JPanel subPanel1 = new JPanel();
 		JPanel subPanel2 = new JPanel();
-
-		aplazarPanel.setLayout(new BoxLayout(aplazarPanel,BoxLayout.X_AXIS));
+		JPanel editarPanel = new JPanel();
+		
+		btn7.setSize(30, 30);
+		
+		subPanel1.setLayout(new GridLayout(0,1));
+		subPanel2.setLayout(new GridLayout(2,0));
+		aplazarPanel.setLayout(new GridLayout(3,2));
+		editarPanel.setLayout(new GridLayout(0,1));
+		
+		setSize(600, 350);
+		subPanel1.add(id);
+		subPanel1.add(nombre);
+		subPanel1.add(fi);
+		subPanel1.add(hi);
+		subPanel1.add(ff);
+		subPanel1.add(hf);
+		subPanel1.add(descripcion);
+		subPanel1.add(contexto);
+		content.add(subPanel1);
+		content.add(subPanel2);
+		subPanel2.add(aplazarPanel);
+		subPanel2.add(editarPanel);
+		editarPanel.add(btn7);
+		editarPanel.add(new Label(""));
+		add(content);
+	
+	
+		aplazarPanel.add(btn1); // +1 dia
+		aplazarPanel.add(btn2); // +1 semana
+		aplazarPanel.add(btn3); // +1 mes
+		aplazarPanel.add(btn4); // -1 dia
+		aplazarPanel.add(btn5); // -1 semana
+		aplazarPanel.add(btn6); // -1 mes
+		
+				
 		subPanel1.setBackground(bgColor);
 		subPanel2.setBackground(bgColor);
-		subPanel1.setLayout(new BoxLayout(subPanel1,BoxLayout.Y_AXIS));
-		subPanel2.setLayout(new BoxLayout(subPanel2,BoxLayout.Y_AXIS));
-		subPanel2.add(btn1); // +1 dia
-		subPanel2.add(btn2); // +1 semana
-		subPanel2.add(btn3); // +1 mes
-		subPanel1.add(btn4); // -1 dia
-		subPanel1.add(btn5); // -1 semana
-		subPanel1.add(btn6); // -1 mes
-		aplazarPanel.add(subPanel1);
-		aplazarPanel.add(subPanel2);
-		content.add(aplazarPanel);
+		aplazarPanel.setBackground(bgColor);
+		editarPanel.setBackground(bgColor);
+		
+		
+
+		
+	
+		btn7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//1 crear tarea
+				//2 cargar info en el creador
+				//3 cambiar tarea
+				
+				EditorTareas editorTareas = new EditorTareas(model,tarea);
+				
+				for (ControllerListener listener : controllerListeners) {
+					editorTareas.addControllerListener(listener);
+				}
+				editorTareas.setVisible(true);
+				
+				//3 model.cambiarTarea();
+				
+				System.out.println("Editar");
+			}
+		});
+		//
+		
+		
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -132,6 +179,7 @@ public class TareaFrame extends JFrame {
 		btn6.setActionCommand("aplazar");
 	}
 
+	
 	private void notificarListeners(ActionEvent e, int dias) {
 		Tarea tareaNueva = tarea;
 		tareaNueva.aplazar(dias);

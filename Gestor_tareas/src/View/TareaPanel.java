@@ -16,8 +16,9 @@ public class TareaPanel extends JPanel implements ActionListener {
     private TransparentButton estado;
     private Tarea tarea;
     private ArrayList<ControllerListener> controllerListeners;
+    private Model m;
 
-    public TareaPanel(Tarea tarea) {
+    public TareaPanel(Tarea tarea, Model m) {
         this.tarea = tarea;
         controllerListeners = new ArrayList<>();
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -37,6 +38,7 @@ public class TareaPanel extends JPanel implements ActionListener {
         estado.setActionCommand("estado");
         estado.addActionListener(this);
         delete.addActionListener(this);
+        this.m = m;
     }
 
     public void mostrarTodo() {
@@ -67,7 +69,7 @@ public class TareaPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("detalle")) {
-            TareaFrame tF = new TareaFrame(tarea);
+            TareaFrame tF = new TareaFrame(tarea,m);
             if (controllerListeners!=null) {
                 for (ControllerListener listener : controllerListeners) {
                     tF.addControllerListener(listener);

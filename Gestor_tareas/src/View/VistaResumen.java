@@ -96,6 +96,8 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		Font font = new Font("Centhury Gothic",Font.PLAIN,20);
 		content.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.WHITE, 2), "Vista Resumen", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, font, Color.WHITE));
 
+		//okay: faltan dias de la semana
+		
 		addBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -222,7 +224,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 	public void mostrarTareas(ArrayList<Tarea> tareas) {
 		content.removeAll();
 		for (Tarea t : tareas) {
-			TareaPanel TP = new TareaPanel(t);
+			TareaPanel TP = new TareaPanel(t,model);
 			TP.mostrarTodo();
 			for (ControllerListener listener : controllerListeners) {
 				TP.addControllerListener(listener);
