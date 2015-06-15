@@ -1,7 +1,15 @@
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
+
 import Controller.*;
 import View.*;
 import Model.*;
+
 import javax.swing.*;
+
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.ValidationException;
 
 
 public class Application {
@@ -11,15 +19,23 @@ public class Application {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				runApp();
+				try {
+					runApp();
+				} catch (IOException | ParserException | ValidationException | URISyntaxException | ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
 	}
 
-	private static void runApp() {
+	private static void runApp() throws IOException, ParserException, ValidationException, URISyntaxException, ParseException {
 		Model model = new Model();
 		agregarDatosPrueba(model);
+		CalendarioICS c = new CalendarioICS();
+		//c.leer(model, "hola.ics");
+		c.crear(model, "prueba.ics");
 		View view = new View(model);
 		Controller controller = new Controller(view, model);
 	}

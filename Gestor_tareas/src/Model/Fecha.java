@@ -48,7 +48,10 @@ public class Fecha implements Serializable {
 	public int getY() {
 		return y;
 	}
-
+	public String toString2()
+	{
+		return atToString(y)+atToString(m)+atToString(d);
+	}
 	@Override
 	public String toString() {
 		return atToString(d)+"/"+atToString(m)+"/"+atToString(y);

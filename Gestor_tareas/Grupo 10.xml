@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proyecto id="3" nombre="Grupo 10" estado="activo">
+  <tarea id="10" nombre="Tarea rápida" fi="01/06/2015" ff="01/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" color="0" contexto="En mi cama" />
+  <tarea id="11" nombre="Revisión Sprint 3" fi="14/06/2015" ff="24/07/2015" hi="10:30:00" hf="14:45:00" descripcion="Esta s la revisión del sprint 3" estado="activo" color="0" contexto="En mi cama" />
+</proyecto>
