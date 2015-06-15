@@ -1,5 +1,6 @@
 package View;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -19,17 +20,18 @@ public class VistaPorContexto extends JPanel {
     private ArrayList<TareaPanel> listaTareas;
     private Model model;
     private GridBagConstraints gbc;
-    private TransparentButton eliminar;
+    private JButton eliminar;
+    private ArrayList<TareaPanel> tareaPanels;
 
     /** constructor */
     public VistaPorContexto(Model model) {
         this.model = model;
-        //setBackground(new Color(20, 35, 20, 230));
+        tareaPanels = new ArrayList<>();
         setOpaque(false);
         Font font = new Font("Centhury Gothic",Font.PLAIN,20);
         setBorder(BorderFactory.createTitledBorder(
                         new LineBorder(Color.WHITE, 2),
-                        "Vista por contextos", TitledBorder.DEFAULT_JUSTIFICATION,
+                        "Contextos", TitledBorder.DEFAULT_JUSTIFICATION,
                         TitledBorder.DEFAULT_POSITION, font, Color.WHITE)
         );
 
@@ -41,27 +43,22 @@ public class VistaPorContexto extends JPanel {
         cbContextos = new JComboBox<>();
         cbContextos.setSize(new Dimension(30, 10));
         inicializarCBContexto();
-        update();
         cbContextos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 update();
             }
         });
-        add(cbContextos, gbc);
-
-        eliminar = new TransparentButton(" X ");
+        eliminar = new JButton(" X ");
         eliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("oli");
+                model.eliminarContexto((Contexto) cbContextos.getSelectedItem());
+                update();
             }
         });
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        add(eliminar,gbc);
-
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        update();
     }
 
     /** iniciliza el comboBox con los contextos */
@@ -85,11 +82,17 @@ public class VistaPorContexto extends JPanel {
         /** sacamos todos los componentes */
         removeAll();
         /** agregamos el combo box */
+        gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(cbContextos, gbc);
+        /** boton eliminar */
+        gbc.gridx = 1;
+        add(eliminar, gbc);
         /** agregamos las tareas */
         listaTareas.clear();
+        gbc.gridx = 0;
+        gbc.gridwidth = 2;
         agregarTareasALista();
         int i = 1;
         for (TareaPanel TP : listaTareas) {
@@ -101,13 +104,23 @@ public class VistaPorContexto extends JPanel {
 
     /** muestra las tareas segun el contexto selecionado  */
     private void agregarTareasALista() {
+        tareaPanels = new ArrayList<>();
         Contexto ContextoActual = (Contexto) cbContextos.getSelectedItem();
         for (Proyecto p : model.getProyectos()) {
             for (Tarea t : p.getTareas()) {
                 if (t.getContexto().equals(ContextoActual)) {
                     TareaPanel TP = new TareaPanel(t);
+                    tareaPanels.add(TP);
                     listaTareas.add(TP);
                 }
+            }
+        }
+    }
+
+    public void setControllerListeners(ArrayList<ControllerListener> listeners) {
+        for (ControllerListener listener : listeners) {
+            for (TareaPanel TP : tareaPanels) {
+                TP.addControllerListener(listener);
             }
         }
     }

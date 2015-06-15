@@ -1,4 +1,6 @@
 package Model;
+import View.VentanaError;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -290,5 +292,44 @@ public class Model {
 				}
 			}
 		}
+	}
+
+	/** elimina un contexto y cambia las tareas asociadas a el contexto miscelaneo */
+	public void eliminarContexto(Contexto contexto) {
+		if (contexto.getNombre().equals("miscelaneo")) {
+			VentanaError VE = new VentanaError("No se puede borrar el contexto \"miscelaneo\"");
+			return;
+		}
+		/** obtener contexto miscelaneo */
+		Contexto misc = null;
+		for (Contexto c : contextos) {
+			if (c.getNombre().equals("miscelaneo")) {
+				misc = c;
+				break;
+			}
+		}
+		if (misc == null) {
+			VentanaError VE = new VentanaError("Error borrando contexto");
+			return;
+		}
+		/** cambiar tareas con contexto "contexto" a "miscelaneo" */
+		for (Proyecto p : proyectos) {
+			for (Tarea t : p.getTareas()) {
+				if (t.getContexto().equals(contexto)) {
+					t.setContexto(misc);
+				}
+			}
+		}
+		/** eliminar Contexto "contexto" */
+		/*
+		for (Contexto c : contextos) {
+			if (c.equals(contexto)) {
+				System.out.println("eliminando contexto "+contexto.getNombre());
+				contextos.remove(c);
+			}
+		}
+		*/
+		contextos.remove(contexto);
+
 	}
 }

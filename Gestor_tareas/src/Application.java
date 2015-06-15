@@ -33,7 +33,6 @@ public class Application {
 		/** DATOS DE EJEMPLO PARA EL COMIENZO */
 
 		/** INGENIERIA DE SOFTWARE **/
-		/*
 		Proyecto p2 = new Proyecto(model.getId_proyectos(),"Ingenieria de Software",Estado.activo);
 		Contexto c1 = new Contexto("Universidad");
 		Tarea t5 = new Tarea(1,"Sprint 2",new Fecha(2,4,2015), new Fecha(18,5,2015), new Hora(), new Hora(23,59,59),"Terminar features originales",  c1);
@@ -52,9 +51,7 @@ public class Application {
 		model.agregarTarea(t8, p2.getId());
 		model.agregarTarea(t9, p2.getId());
 
-*/
 		/** SISTEMAS OPERATIVOS **/
-		/*
 		Proyecto p3 = new Proyecto(model.getId_proyectos(),"Sistemas Operativos",Estado.activo);
 		Contexto c2 = new Contexto("Universidad");
 		Tarea t10 = new Tarea(1,"Interrogacion 1",new Fecha(2,4,2015), new Fecha(8,4,2015), new Hora(), new Hora(18,30),"Sistemas Operativos",  c2);
@@ -70,9 +67,6 @@ public class Application {
 		model.agregarTarea(t11, p3.getId());
 		model.agregarTarea(t12, p3.getId());
 		model.agregarTarea(t13, p3.getId());
-		*/
-
-
 
 	}
 }

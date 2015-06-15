@@ -19,7 +19,7 @@ public class TransparentButton extends JButton {
         this.estado = estado;
         setup();
         this.bestado = true;
-        this.setText("   ");
+        this.setText("     ");
         bgColor = getColor(estado);
         setBackground(bgColor);
     }
@@ -32,6 +32,7 @@ public class TransparentButton extends JButton {
         return bgColor;
     }
 
+    /** devuelve el color del estado de la tarea */
     public Color getColor(Estado estado) {
         Color color = Color.BLACK;
         if (estado == Estado.activo) {
