@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -33,7 +34,7 @@ import net.fortuna.ical4j.util.UidGenerator;
 
 public class CalendarioICS {
 	
-	public void leer(Model modelo, String path) throws IOException, ParserException
+	public void importarCalendario(Model modelo, String path) throws IOException, ParserException
 	{
 		FileInputStream fin = new FileInputStream(path);
 		
@@ -66,7 +67,18 @@ public class CalendarioICS {
 		fin.close();
 	}
 	
-	public void crear(Model modelo, String path) throws IOException, ValidationException, URISyntaxException, ParseException{
+	public void importarAgenda(Model modelo, String carpeta) throws IOException, ParserException{
+		File f = new File(carpeta);
+		if (f.exists())
+		{ 
+			File[] ficheros = f.listFiles();
+			for (int i = 0; i < ficheros.length; i++) {
+				importarCalendario(modelo, ficheros[i].toString());
+			}
+		}
+	}
+
+	public void exportarAgenda(Model modelo, String carpeta) throws IOException, ValidationException, URISyntaxException{
 		Calendar calendar;
 		Proyecto p_actual;
 		Tarea t_actual;
@@ -118,15 +130,28 @@ public class CalendarioICS {
 				calendar.getComponents().add(evento);
 			}
 			if(calendar.getComponents().size()>0){
-				fout = new FileOutputStream(p_actual.getNombre()+".ics");
+				fout = new FileOutputStream(carpeta+"/"+p_actual.getNombre()+".ics");
 				CalendarOutputter outputter = new CalendarOutputter();
 				outputter.output(calendar, fout);	
 				fout.close();
 			}
-		}
-		
-		
-		            
+		}	
+	}
 	
+	public void exportarSesion(Model modelo) throws IOException, ValidationException, URISyntaxException, ParseException{
+		  String carpeta = "./calendarios";
+		  exportarAgenda(modelo, carpeta);
+	}
+
+	public void importarSesion(Model modelo) throws IOException, ParserException{
+		String sDirectorio = "./calendarios";
+		File f = new File(sDirectorio);
+		if (f.exists())
+		{ 
+			File[] ficheros = f.listFiles();
+			for (int i = 0; i < ficheros.length; i++) {
+				importarCalendario(modelo, ficheros[i].toString());
+			}
+		}
 	}
 }

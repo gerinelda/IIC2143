@@ -1,10 +1,18 @@
 package View;
+import Controller.CalendarioICS;
 import Controller.Controller;
+import Controller.Xml;
 import Model.*;
 
 import javax.swing.*;
+
+import net.fortuna.ical4j.model.ValidationException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -15,13 +23,15 @@ public class View {
     private VistaResumen vistaResumen;
     private ArrayList<String> emails;
     private ArrayList<EmailListener> emailListeners;
+    CalendarioICS ical = new CalendarioICS();
 
     public View(Model model) {
         this.model = model;
         vistaResumen = new VistaResumen(model);
         emails = new ArrayList<>();
         emailListeners = new ArrayList<>();
-
+        
+     
         JButton emailBtn = new JButton("ingresar e-mail");
         emailBtn.addActionListener(new ActionListener() {
             @Override
@@ -97,11 +107,27 @@ public class View {
         vistaResumen.getJMenuBar().add(emailBtn);
         vistaResumen.getJMenuBar().add(emailBtn2);
         vistaResumen.setVisible(true);
+        
+        vistaResumen.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(vistaResumen, 
+                    "Seguro que quieres salir?", "Salir", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                	Xml xml = new Xml();
+					xml.exportarSesion(model);
+                    System.exit(0);
+                }
+            }
+        });
     }
 
     public void addEmailListener(EmailListener listener) {
         emailListeners.add(listener);
     }
+    
+    
 
     private void enviarEmails() {
         String contenido = "";

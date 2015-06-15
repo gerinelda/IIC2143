@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sesion>
+  <contexto nombre="Casa" />
+  <contexto nombre="Universidad" />
+  <proyecto id="0" nombre="Ingeniería de software" estado="activo">
+    <tarea id="0" nombre="Arreglar bugs" fi="15/06/20" ff="15/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" color="0" contexto="Universidad" />
+    <tarea id="1" nombre="Sprint 3" fi="15/06/20" ff="15/06/20" hi="14:00:00" hf="14:00:00" descripcion="Esto está difícil" estado="activo" color="0" contexto="Universidad" />
+  </proyecto>
+  <proyecto id="1" nombre="Tecnologia y aplicaciones web" estado="activo" />
+  <proyecto id="2" nombre="Pintar" estado="activo">
+    <tarea id="2" nombre="Comprar pintura" fi="18/06/20" ff="18/06/20" hi="12:00:00" hf="12:30:00" descripcion="Color:naranjo" estado="activo" color="0" contexto="Casa" />
+    <tarea id="3" nombre="Pintar" fi="20/06/20" ff="22/06/20" hi="10:30:00" hf="15:30:00" descripcion="Hola" estado="activo" color="0" contexto="Casa" />
+  </proyecto>
+</sesion>

@@ -1,17 +1,24 @@
 package View;
 
+import Controller.CalendarioICS;
 import Controller.Xml;
 import Model.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
+import net.fortuna.ical4j.model.ValidationException;
 
 
 public class VistaResumen extends JFrame implements ModificarTareaListener {
@@ -37,6 +44,8 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		setSize(750, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		placeComponents();
+		
+	
 	}
 
 	private void placeComponents() {
@@ -135,7 +144,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 				/** EXPORTAR **/
 				/** aqui se fue el MVC pero queda poco tiempo **/
 				Xml xml = new Xml();
-				xml.crear((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
+				xml.exportarProyecto((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
 			}
 		});
 
@@ -181,7 +190,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 
 		vistaCalendarioButton.addActionListener(e -> calendario.setVisible(true));
 	}
-
+	
 	public void mostrarTareas(ArrayList<Tarea> tareas) {
 		content.removeAll();
 		for (Tarea t : tareas) {
@@ -316,7 +325,7 @@ public class VistaResumen extends JFrame implements ModificarTareaListener {
 		String ruta = fd.getFile();
 		if (ruta != null) {
 			Xml xml = new Xml();
-			xml.leer(ruta,model);
+			xml.importarProyecto(ruta,model);
 			mostrarTareas(listaActualTareas);
 			actualizarProyectos();
 		}

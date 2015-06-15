@@ -32,10 +32,11 @@ public class Application {
 
 	private static void runApp() throws IOException, ParserException, ValidationException, URISyntaxException, ParseException {
 		Model model = new Model();
-		agregarDatosPrueba(model);
+		//agregarDatosPrueba(model);
 		CalendarioICS c = new CalendarioICS();
 		//c.leer(model, "hola.ics");
-		c.crear(model, "prueba.ics");
+		Xml xml = new Xml();
+		xml.importarSesion(model);;
 		View view = new View(model);
 		Controller controller = new Controller(view, model);
 	}
