@@ -32,9 +32,7 @@ public class Application {
 
 	private static void runApp() throws IOException, ParserException, ValidationException, URISyntaxException, ParseException {
 		Model model = new Model();
-		//agregarDatosPrueba(model);
 		CalendarioICS c = new CalendarioICS();
-		//c.leer(model, "hola.ics");
 		Xml xml = new Xml();
 		xml.importarSesion(model);;
 		View view = new View(model);
