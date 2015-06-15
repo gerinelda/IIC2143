@@ -4,9 +4,16 @@
   <contexto nombre="miscelaneo" />
   <contexto nombre="miscelaneo" />
   <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
   <contexto nombre="fwef" />
   <contexto nombre="awefawef" />
   <contexto nombre="miscelaneo" />
   <contexto nombre="awefw" />
-  <proyecto id="0" nombre="miscelaneo" estado="activo" />
+  <proyecto id="0" nombre="miscelaneo" estado="activo">
+    <tarea id="0" nombre="afasdf" fi="15/06/2015" ff="21/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
+    <tarea id="1" nombre="sdafasdf" fi="15/06/2015" ff="15/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="miscelaneo" />
+  </proyecto>
 </sesion>

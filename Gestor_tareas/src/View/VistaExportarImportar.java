@@ -19,8 +19,8 @@ public class VistaExportarImportar extends JFrame {
 	private JComboBox<Proyecto> proyectosCB;
 	private JButton exportar;
 	private JButton importar;
-	private JButton importar2;
-	private JButton exportar2;
+	//private JButton importar2;
+	//private JButton exportar2;
 	private JPanel content;
 
 	VistaExportarImportar(Model model) {
@@ -60,12 +60,13 @@ public class VistaExportarImportar extends JFrame {
 		});
 
 		/** botones */
+		/*
 		exportar2 = new JButton("Exportar Agenda");
 		exportar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CalendarioICS ICS = new CalendarioICS();
-				String ruta = openFileDialog();
+				String ruta = "";
 				try {
 					ICS.exportarAgenda(model,ruta);
 				} catch (IOException e1) {
@@ -94,6 +95,7 @@ public class VistaExportarImportar extends JFrame {
 				}
 			}
 		});
+		*/
 
 		/** agregar elementos al frame */
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -106,12 +108,14 @@ public class VistaExportarImportar extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		content.add(importar,gbc);
+		/*
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		content.add(exportar2,gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		content.add(importar2,gbc);
+		*/
 		add(content);
 	}
 

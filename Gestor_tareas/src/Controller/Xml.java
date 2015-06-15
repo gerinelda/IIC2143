@@ -87,10 +87,8 @@ public class Xml {
 				String ff = nnm.getNamedItem("ff").getNodeValue();
 				String hi = nnm.getNamedItem("hi").getNodeValue();
 				String hf = nnm.getNamedItem("hf").getNodeValue();
-				Fecha f = new Fecha(fi);
 				String descripcion = nnm.getNamedItem("descripcion").getNodeValue();
 				String estado_tarea = nnm.getNamedItem("estado").getNodeValue();
-				String color = nnm.getNamedItem("color").getNodeValue();
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
 				/** evitamos crear contextos miscelaneos */
 				Contexto tempContexto = null;

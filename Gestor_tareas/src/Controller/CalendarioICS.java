@@ -87,7 +87,7 @@ public class CalendarioICS {
 		TimeZone timezone = registry.getTimeZone("America/Santiago");
 		VTimeZone tz = ((net.fortuna.ical4j.model.TimeZone) timezone).getVTimeZone();
 		for(int i = 0; i < modelo.getContador_proyectos();i++)
-		{		
+		{
 			p_actual = modelo.getProyectos().get(i);
 			calendar = new Calendar();
 			calendar.getProperties().add(new ProdId("-//Gestor de tareas//IIC2143//ES"));
@@ -96,10 +96,10 @@ public class CalendarioICS {
 			calendar.getProperties().add(Method.PUBLISH);
 			calendar.getProperties().add(new net.fortuna.ical4j.model.property.XProperty("X-WR-CALNAME", p_actual.getNombre()));
 			calendar.getProperties().add(new net.fortuna.ical4j.model.property.XProperty("X-WR-TIMEZONE", "America/Santiago"));
-		
+
 			for (int j = 0; j < p_actual.getTareas().size(); j++) {
 				t_actual = p_actual.getTareas().get(j);
-				
+
 				java.util.Calendar cStart = java.util.Calendar.getInstance();
 				cStart.setTimeZone(timezone);
 				cStart.set(java.util.Calendar.YEAR, t_actual.getFi().getY());
@@ -110,7 +110,7 @@ public class CalendarioICS {
 				cStart.set(java.util.Calendar.MINUTE, t_actual.getHi().getM());
 				cStart.set(java.util.Calendar.SECOND, t_actual.getHi().getS());
 				*/
-			
+
 				java.util.Calendar cEnd = java.util.Calendar.getInstance();
 				cEnd = java.util.Calendar.getInstance();
 				cEnd.set(java.util.Calendar.YEAR, t_actual.getFf().getY());
@@ -121,12 +121,12 @@ public class CalendarioICS {
 				cEnd.set(java.util.Calendar.MINUTE, t_actual.getHf().getM());
 				cEnd.set(java.util.Calendar.SECOND, t_actual.getHf().getS());
 				*/
-				
+
 				DateTime start = new DateTime(cStart.getTime());
 				DateTime end = new DateTime(cEnd.getTime());
-				
+
 				VEvent evento = new VEvent(start, end, t_actual.getNombre());
-				
+
 				evento.getProperties().add(new net.fortuna.ical4j.model.property.Description(t_actual.getDescripcion()));
 				evento.getProperties().add(new net.fortuna.ical4j.model.property.Organizer("hola"));
 				UidGenerator ug = new UidGenerator(t_actual.getId()+"");
