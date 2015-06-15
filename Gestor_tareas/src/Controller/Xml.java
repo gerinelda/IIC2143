@@ -73,6 +73,15 @@ public class Xml {
 			String nombre = raiz.getAttribute("nombre");
 			String estado = raiz.getAttribute("estado");
 			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
+			/** si ya existe */
+			for (Proyecto proy : model.getProyectos()) {
+				if (proy.getNombre().equals(nombre)) {
+					p = proy;
+				}
+			}
+			if (p.getNombre().equals("miscelaneo")) {
+				p = model.getProyecto(8080);
+			}
 			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
 			model.agregarProyecto(p);
 			NodeList tareas = raiz.getElementsByTagName("tarea");

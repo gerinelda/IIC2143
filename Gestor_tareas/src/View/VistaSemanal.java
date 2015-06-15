@@ -199,13 +199,36 @@ public class VistaSemanal extends JFrame {
     }
 
     private void header(ArrayList<JPanel> dias){
-		dias.get(0).add(new JLabel("Lunes", JLabel.CENTER));		
-		dias.get(1).add(new JLabel("Martes", JLabel.CENTER));
-		dias.get(2).add(new JLabel("Miércoles", JLabel.CENTER));
-		dias.get(3).add(new JLabel("Jueves", JLabel.CENTER));
-		dias.get(4).add(new JLabel("Viernes", JLabel.CENTER));
-		dias.get(5).add(new JLabel("Sábado", JLabel.CENTER));
-		dias.get(6).add(new JLabel("Domingo", JLabel.CENTER));
+		Font font = new Font("Centhury Gothic",Font.PLAIN,18);
+		JLabel t = new JLabel("Lunes "+dia, JLabel.CENTER);
+		t.setFont(font);
+		dias.get(0).add(t);
+		t = new JLabel("Martes "+(dia+1), JLabel.CENTER);
+		t.setFont(font);
+		dias.get(1).add(t);
+		t = new JLabel("Miercoles "+(dia+2), JLabel.CENTER);
+		t.setFont(font);
+		dias.get(2).add(t);
+		t = new JLabel("Jueves "+(dia+3), JLabel.CENTER);
+		t.setFont(font);
+		dias.get(3).add(t);
+		t = new JLabel("Viernes "+(dia+4), JLabel.CENTER);
+		t.setFont(font);
+		dias.get(4).add(t);
+		t = new JLabel("Sabado "+(dia+5), JLabel.CENTER);
+		t.setFont(font);
+		dias.get(5).add(t);
+		t = new JLabel("Domingo "+(dia+6), JLabel.CENTER);
+		t.setFont(font);
+		dias.get(6).add(t);
+
+		/*
+		dias.get(2).add(new JLabel("Miércoles " + (dia + 2), JLabel.CENTER));
+		dias.get(3).add(new JLabel("Jueves "+(dia+3), JLabel.CENTER));
+		dias.get(4).add(new JLabel("Viernes "+(dia+4), JLabel.CENTER));
+		dias.get(5).add(new JLabel("Sábado "+(dia+5), JLabel.CENTER));
+		dias.get(6).add(new JLabel("Domingo "+(dia+6), JLabel.CENTER));
+		*/
     }
 
 }
