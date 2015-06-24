@@ -195,7 +195,7 @@ public class Xml {
 			NodeList tareas = raiz.getElementsByTagName("tarea");
 			NodeList correos = raiz.getElementsByTagName("correo");
 			for (int i = 0; i<correos.getLength(); i++) {
-				modelo.getCorreos().add(correos.item(i).getAttributes().getNamedItem("correo").getNodeValue());
+				modelo.getCorreos().add(correos.item(i).getAttributes())
 			}
 			
 			for (int i = 0; i < contextos.getLength(); i++) {
@@ -238,7 +238,7 @@ public class Xml {
 				Node t_node = tareas.item(j);
 				int id_parent = Integer.parseInt(t_node.getParentNode().getAttributes().getNamedItem("id").getNodeValue());
 				String nombre_tarea = t_node.getAttributes().getNamedItem("nombre").getNodeValue();
-				String id_tarea = t_node.getAttributes().getNamedItem("id").getNodeValue();
+				String id	_tarea = t_node.getAttributes().getNamedItem("id").getNodeValue();
 				String fi = t_node.getAttributes().getNamedItem("fi").getNodeValue();
 				String ff = t_node.getAttributes().getNamedItem("ff").getNodeValue();
 				String hi = t_node.getAttributes().getNamedItem("hi").getNodeValue();

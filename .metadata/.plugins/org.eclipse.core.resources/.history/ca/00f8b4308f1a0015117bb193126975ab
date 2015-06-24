@@ -128,12 +128,6 @@ public class Xml {
 		String ruta = "session.xml";
 		Element s = new Element("sesion");
 		Document documento = new Document(s);
-		
-		for (String c: modelo.getCorreos()) {
-			Element d = new Element("correo");
-			d.setAttribute(new Attribute("correo", c));
-			documento.getRootElement().addContent(d);
-		}
 		for (int i = 0; i < modelo.getContextos().size(); i++) {
 			Contexto c_actual = modelo.getContextos().get(i);
 			Element c = new Element("contexto");
@@ -193,11 +187,7 @@ public class Xml {
 			NodeList contextos = raiz.getElementsByTagName("contexto");
 			NodeList proyectos = raiz.getElementsByTagName("proyecto");
 			NodeList tareas = raiz.getElementsByTagName("tarea");
-			NodeList correos = raiz.getElementsByTagName("correo");
-			for (int i = 0; i<correos.getLength(); i++) {
-				modelo.getCorreos().add(correos.item(i).getAttributes().getNamedItem("correo").getNodeValue());
-			}
-			
+
 			for (int i = 0; i < contextos.getLength(); i++) {
 				String contexto = contextos.item(i).getAttributes().getNamedItem("nombre").getNodeValue();
 				boolean flag = false;

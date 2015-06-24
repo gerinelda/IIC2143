@@ -26,7 +26,6 @@ public class Model {
     public Model() {
 		proyectos = new ArrayList<>();
 		contextos = new ArrayList<>();
-		correos = new ArrayList<String>();
     }
 
 	public int getContador_proyectos() {

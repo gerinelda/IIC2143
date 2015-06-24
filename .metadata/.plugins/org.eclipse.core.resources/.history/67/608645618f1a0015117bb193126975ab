@@ -130,7 +130,7 @@ public class Xml {
 		Document documento = new Document(s);
 		
 		for (String c: modelo.getCorreos()) {
-			Element d = new Element("correo");
+			Element d = new Element("correos");
 			d.setAttribute(new Attribute("correo", c));
 			documento.getRootElement().addContent(d);
 		}
@@ -193,11 +193,7 @@ public class Xml {
 			NodeList contextos = raiz.getElementsByTagName("contexto");
 			NodeList proyectos = raiz.getElementsByTagName("proyecto");
 			NodeList tareas = raiz.getElementsByTagName("tarea");
-			NodeList correos = raiz.getElementsByTagName("correo");
-			for (int i = 0; i<correos.getLength(); i++) {
-				modelo.getCorreos().add(correos.item(i).getAttributes().getNamedItem("correo").getNodeValue());
-			}
-			
+
 			for (int i = 0; i < contextos.getLength(); i++) {
 				String contexto = contextos.item(i).getAttributes().getNamedItem("nombre").getNodeValue();
 				boolean flag = false;
@@ -238,7 +234,7 @@ public class Xml {
 				Node t_node = tareas.item(j);
 				int id_parent = Integer.parseInt(t_node.getParentNode().getAttributes().getNamedItem("id").getNodeValue());
 				String nombre_tarea = t_node.getAttributes().getNamedItem("nombre").getNodeValue();
-				String id_tarea = t_node.getAttributes().getNamedItem("id").getNodeValue();
+				String id	_tarea = t_node.getAttributes().getNamedItem("id").getNodeValue();
 				String fi = t_node.getAttributes().getNamedItem("fi").getNodeValue();
 				String ff = t_node.getAttributes().getNamedItem("ff").getNodeValue();
 				String hi = t_node.getAttributes().getNamedItem("hi").getNodeValue();

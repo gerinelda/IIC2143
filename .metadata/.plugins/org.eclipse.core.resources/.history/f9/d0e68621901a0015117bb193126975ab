@@ -195,7 +195,7 @@ public class Xml {
 			NodeList tareas = raiz.getElementsByTagName("tarea");
 			NodeList correos = raiz.getElementsByTagName("correo");
 			for (int i = 0; i<correos.getLength(); i++) {
-				modelo.getCorreos().add(correos.item(i).getAttributes().getNamedItem("correo").getNodeValue());
+				modelo.getCorreos().add(correos.item(i).getAttributes().getNamedItem("correo").getNodeName());
 			}
 			
 			for (int i = 0; i < contextos.getLength(); i++) {

@@ -11,22 +11,12 @@ public class Model {
 	private int contador_tareas;
 	private int id_proyectos;
 	private ArrayList<Proyecto> proyectos;
-	public ArrayList<String> getCorreos() {
-		return correos;
-	}
-
-	public void setCorreos(ArrayList<String> correos) {
-		this.correos = correos;
-	}
-
 	private ArrayList<Contexto> contextos;
-	private ArrayList<String> correos;
-	
+
     // data
     public Model() {
 		proyectos = new ArrayList<>();
 		contextos = new ArrayList<>();
-		correos = new ArrayList<String>();
     }
 
 	public int getContador_proyectos() {
@@ -222,7 +212,7 @@ public class Model {
 	}
 
 
-	/** devuelve indice (nï¿½ en lista) de
+	/** devuelve indice (n° en lista) de
 	 *  tarea (indicada por id)
 	 *  en la lista de tareas de su proyecto */
 	public int indiceTarea(int id)
@@ -294,7 +284,7 @@ public class Model {
 			/** iteramos por cada tarea */
 			for (Tarea t : p.getTareas()) {
 				if (t.getId() == tarea.getId()) {
-					/** indice = nï¿½ en lista de la tarea en su proyecto */
+					/** indice = n° en lista de la tarea en su proyecto */
 					int indice = indiceTarea(t.getId());
 					/** si las tareas tienen el mismo id (osea son la misma), intercambiar */
 					p.getTareas().set(indice, tarea);
