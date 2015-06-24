@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import Model.*;
 
@@ -28,7 +29,8 @@ public class VistaSemanal extends JFrame {
 	private ArrayList<Tarea> listaActualTareas;
 	private ArrayList<Proyecto> proyectos;
 	private int dia;
-	ArrayList<JPanel> dias;
+	private ArrayList<JPanel> dias;
+	private Calendar calendario;
 
 	public VistaSemanal(Model model) {
 		this.model = model;
@@ -88,12 +90,9 @@ public class VistaSemanal extends JFrame {
 		Font font = new Font("Centhury Gothic", Font.PLAIN, 20);
 		content.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.WHITE, 2), "Vista Semanal", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, font, Color.WHITE));
 
-		System.out.println("Semana");
-
 		dias = new ArrayList<JPanel>();
 
 		for (int i = 0; i < 7; i++) {
-
 			JPanel TempPanel = new JPanel();
 			TempPanel.setOpaque(false);
 			dias.add(TempPanel);
@@ -104,12 +103,12 @@ public class VistaSemanal extends JFrame {
 
 		// Cada día es un "Stack" vertical donde se van metiendo los TareaPanel
 
-		dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		calendario = Calendar.getInstance();
+		dia = calendario.get(Calendar.DAY_OF_MONTH);
 		listaActualTareas = getProximosDias(7, dia);
 
-
 		header(dias);
-		metodo(listaActualTareas, dia, dias);
+		metodo(listaActualTareas, dias);
 
 		//seleccionar tareas semanales a partir de un lunes
 		//ccon los botones cambio el lunes y actualizo
@@ -120,10 +119,12 @@ public class VistaSemanal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				dia += 7;
+				calendario.add(Calendar.DAY_OF_MONTH,7);
+				dia = calendario.get(Calendar.DAY_OF_MONTH);
+
 				listaActualTareas = getProximosDias(7, dia);
 
-				metodo(listaActualTareas, dia, dias);
+				metodo(listaActualTareas, dias);
 				content.updateUI();
 
 				System.out.println("Siguiente");
@@ -135,16 +136,15 @@ public class VistaSemanal extends JFrame {
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				calendario.add(Calendar.DAY_OF_MONTH,-7);
+				dia = calendario.get(Calendar.DAY_OF_MONTH);
 
-				dia -= 7;
 				listaActualTareas = getProximosDias(7, dia);
 
-				metodo(listaActualTareas, dia, dias);
+				metodo(listaActualTareas, dias);
 				content.updateUI();
 
-				System.out.println("Siguiente");
-				content.updateUI();
-
+				System.out.println("anterior");
 			}
 		});
 
@@ -161,7 +161,7 @@ public class VistaSemanal extends JFrame {
 		ArrayList<Tarea> lista = new ArrayList<>();
 		for (Proyecto p : model.getProyectos()) {
 			for (Tarea t : p.getTareas()) {
-				/** devolver solo tareas que vencen en los m=3 proximos dias **/
+				/** devolver solo tareas que vencen en los m proximos dias **/
 				int n = t.getFf().getCalendario().get(Calendar.DAY_OF_MONTH) - dia;
 				if (n >= 0 && n <= m) {
 					lista.add(t);
@@ -172,53 +172,81 @@ public class VistaSemanal extends JFrame {
 	}
 
 
-    private void metodo (ArrayList<Tarea> listaActualTareas,int dia,ArrayList<JPanel> dias) {
+    private void metodo (ArrayList<Tarea> listaActualTareas, ArrayList<JPanel> dias) {
     	for(JPanel jp:dias){
     		jp.removeAll();
     	}
     	header(dias);
 		for(Tarea t:listaActualTareas){
-			
+			Calendar calendario2 = new GregorianCalendar(calendario.get(Calendar.YEAR),
+					calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH));
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
 			if(t.getFf().getD() == dia){
 				dias.get(0).add(new TareaPanel(t,model));	
-		
 			}
-			if(t.getFf().getD() == dia+1)
+			calendario2.add(Calendar.DAY_OF_MONTH,1);
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
+			if(t.getFf().getD() == dia)
 				dias.get(1).add(new TareaPanel(t,model));
-			if(t.getFf().getD() == dia+2)
+			calendario2.add(Calendar.DAY_OF_MONTH,1);
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
+			if(t.getFf().getD() == dia)
 				dias.get(2).add(new TareaPanel(t,model));
-			if(t.getFf().getD() == dia+3)
+			calendario2.add(Calendar.DAY_OF_MONTH,1);
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
+			if(t.getFf().getD() == dia)
 				dias.get(3).add(new TareaPanel(t,model));
-			if(t.getFf().getD() == dia+4)
+			calendario2.add(Calendar.DAY_OF_MONTH, 1);
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
+			if(t.getFf().getD() == dia)
 				dias.get(4).add(new TareaPanel(t,model));
-			if(t.getFf().getD() == dia+5)
+			calendario2.add(Calendar.DAY_OF_MONTH,1);
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
+			if(t.getFf().getD() == dia)
 				dias.get(5).add(new TareaPanel(t,model));
-			if(t.getFf().getD() == dia+6)
+			calendario2.add(Calendar.DAY_OF_MONTH,1);
+			dia = calendario2.get(Calendar.DAY_OF_MONTH);
+			if(t.getFf().getD() == dia)
 				dias.get(6).add(new TareaPanel(t,model));
 		}
     }
 
     private void header(ArrayList<JPanel> dias){
+		Calendar calendario2 = new GregorianCalendar(calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),
+				calendario.get(Calendar.DAY_OF_MONTH));
 		Font font = new Font("Centhury Gothic",Font.PLAIN,18);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
 		JLabel t = new JLabel("Lunes "+dia, JLabel.CENTER);
 		t.setFont(font);
 		dias.get(0).add(t);
-		t = new JLabel("Martes "+(dia+1), JLabel.CENTER);
+		calendario2.add(Calendar.DAY_OF_MONTH, 1);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
+		t = new JLabel("Martes "+(dia), JLabel.CENTER);
 		t.setFont(font);
 		dias.get(1).add(t);
-		t = new JLabel("Miercoles "+(dia+2), JLabel.CENTER);
+		calendario2.add(Calendar.DAY_OF_MONTH, 1);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
+		t = new JLabel("Miercoles "+(dia), JLabel.CENTER);
 		t.setFont(font);
 		dias.get(2).add(t);
-		t = new JLabel("Jueves "+(dia+3), JLabel.CENTER);
+		calendario2.add(Calendar.DAY_OF_MONTH, 1);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
+		t = new JLabel("Jueves "+(dia), JLabel.CENTER);
 		t.setFont(font);
 		dias.get(3).add(t);
-		t = new JLabel("Viernes "+(dia+4), JLabel.CENTER);
+		calendario2.add(Calendar.DAY_OF_MONTH, 1);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
+		t = new JLabel("Viernes "+(dia), JLabel.CENTER);
 		t.setFont(font);
 		dias.get(4).add(t);
-		t = new JLabel("Sabado "+(dia+5), JLabel.CENTER);
+		calendario2.add(Calendar.DAY_OF_MONTH, 1);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
+		t = new JLabel("Sabado "+(dia), JLabel.CENTER);
 		t.setFont(font);
 		dias.get(5).add(t);
-		t = new JLabel("Domingo "+(dia+6), JLabel.CENTER);
+		calendario2.add(Calendar.DAY_OF_MONTH, 1);
+		dia = calendario2.get(Calendar.DAY_OF_MONTH);
+		t = new JLabel("Domingo "+(dia), JLabel.CENTER);
 		t.setFont(font);
 		dias.get(6).add(t);
 

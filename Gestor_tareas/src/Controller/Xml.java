@@ -190,20 +190,16 @@ public class Xml {
 
 			for (int i = 0; i < contextos.getLength(); i++) {
 				String contexto = contextos.item(i).getAttributes().getNamedItem("nombre").getNodeValue();
+				boolean flag = false;
 				/** evitamos crear contextos miscelaneos */
 				Contexto c_actual = null;
-				if (contexto.equals("miscelaneo")) {
-					for (Contexto c : modelo.getContextos()) {
-						if (c.getNombre().equals("miscelaneo")) {
-							c_actual = c;
-							break;
-						}
+				for (Contexto c : modelo.getContextos()) {
+					if (c.getNombre().equals(contexto)) {
+						flag = true;
 					}
 				}
-				else {
+				if (!flag) {
 					c_actual = new Contexto(contexto);
-				}
-				if (c_actual!=null) {
 					modelo.agregarContexto(c_actual);
 				}
 			}

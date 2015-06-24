@@ -303,7 +303,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 			for (int j = 0; j < proyectos.get(i).getTareas().size(); j++) {
 				Tarea t = proyectos.get(i).getTareas().get(j);
 				/** devolver solo tareas que vencen en los m=3 proximos dias **/
-				int n = t.getFf().getCalendario().get(Calendar.DAY_OF_MONTH) - Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+				int n = t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR) - Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
 				if ( n >= 0 && n <= m) {
 					lista.add(t);
 				}

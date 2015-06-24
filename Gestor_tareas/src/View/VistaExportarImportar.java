@@ -122,7 +122,7 @@ public class VistaExportarImportar extends JFrame {
 	private String openFileDialog() {
 		FileDialog fd = new FileDialog(this,"Elije el archivo a importar",FileDialog.LOAD);
 		fd.setDirectory("C:\\");
-		//fd.setFile("*.xml");
+		fd.setFile("*.xml");
 		fd.setVisible(true);
 		String ruta = fd.getFile();
 		if (ruta == null) {

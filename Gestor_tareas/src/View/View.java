@@ -93,11 +93,8 @@ public class View {
             }
         });
 
-
-
         vistaResumen.getJMenuBar().add(emailBtn);
         vistaResumen.getJMenuBar().add(emailBtn2);
-
 
         vistaResumen.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -108,11 +105,14 @@ public class View {
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
                     Xml xml = new Xml();
                     xml.exportarSesion(model);
+                    System.out.println("exiting");
                     System.exit(0);
+                }
+                else {
+                    System.out.println("no");
                 }
             }
         });
-
         vistaResumen.setVisible(true);
     }
 
