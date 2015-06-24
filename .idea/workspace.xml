@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24da63e7-6294-4781-bf15-8f2c2578d9ed" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaExportarImportar.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaExportarImportar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaSemanal.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/VistaSemanal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\session.xml" afterPath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\session.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\Ingenieria de Software.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\miscelaneo.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\qwerty.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\testt.xml" afterPath="" />
     </list>
     <ignored path="IIC2143.iws" />
     <ignored path=".idea/workspace.xml" />
