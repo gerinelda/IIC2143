@@ -136,12 +136,12 @@ public class EditorTareas extends JFrame {
 			ffdia.addItem(i);
 		}
 		/** set fechas a hoy */
-		fidia.setSelectedItem(calendarioActual.get(Calendar.DAY_OF_MONTH));
-		fimes.setSelectedItem(calendarioActual.get(Calendar.MONTH)+1);
-		fiyear.setSelectedItem(calendarioActual.get(Calendar.YEAR));
-		ffdia.setSelectedItem(calendarioActual.get(Calendar.DAY_OF_MONTH));
-		ffmes.setSelectedItem(calendarioActual.get(Calendar.MONTH)+1);
-		ffyear.setSelectedItem(calendarioActual.get(Calendar.YEAR));
+		fidia.setSelectedItem(tareaInicial.getFi().getD());
+		fimes.setSelectedItem(tareaInicial.getFi().getM());
+		fiyear.setSelectedItem(tareaInicial.getFi().getY());
+		ffdia.setSelectedItem(tareaInicial.getFf().getD());
+		ffmes.setSelectedItem(tareaInicial.getFf().getM());
+		ffyear.setSelectedItem(tareaInicial.getFf().getY());
 
 
 		ffmes.addActionListener(new ActionListener() {
@@ -168,10 +168,10 @@ public class EditorTareas extends JFrame {
 		panel.add(ffmes);
 		panel.add(ffyear);
 
-		HIhora = new JTextField("12");
-		HIminuto = new JTextField("0");
-		HFhora = new JTextField("12");
-		HFminuto = new JTextField("0");
+		HIhora = new JTextField(tareaInicial.getHi().getH());
+		HIminuto = new JTextField(tareaInicial.getHi().getM());
+		HFhora = new JTextField(tareaInicial.getHf().getH());
+		HFminuto = new JTextField(tareaInicial.getHf().getM());
 
 		JLabel hiLabel = new JLabel("Hora inicio");
 		hiLabel.setBounds(10, 100, 80, 25);
@@ -282,7 +282,7 @@ public class EditorTareas extends JFrame {
 			int color = 0; //?????????????????
 			Contexto contexto = (Contexto) listaContexto.getSelectedItem();
 
-			//Tarea con nueva información y el mismo id
+			//Tarea con nueva informaciï¿½n y el mismo id
 			
 			Tarea tarea = new Tarea(id,nombre,fi,ff,hi,hf,descr,contexto);
 			//Cambio tarea 
