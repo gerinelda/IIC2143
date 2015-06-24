@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sesion>
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <contexto nombre="miscelaneo" />
+  <proyecto id="0" nombre="miscelaneo" estado="activo">
+    <tarea id="0" nombre="Comprar pasajes" fi="28/06/2015" ff="28/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
+  </proyecto>
+</sesion>

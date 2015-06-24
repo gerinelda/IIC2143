@@ -4,9 +4,28 @@ import java.io.Serializable;
 
 
 public class Hora implements Serializable{
-	int h;
-	int m;
-	int s;
+	private int h;
+	public int getH() {
+		return h;
+	}
+	public void setH(int h) {
+		this.h = h;
+	}
+	public int getM() {
+		return m;
+	}
+	public void setM(int m) {
+		this.m = m;
+	}
+	public int getS() {
+		return s;
+	}
+	public void setS(int s) {
+		this.s = s;
+	}
+
+	private int m;
+	private int s;
 
 	public Hora(int h, int m, int s) {
 		this.h = h;

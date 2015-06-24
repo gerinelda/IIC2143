@@ -5,6 +5,7 @@ import javax.swing.*;
 import Controller.CalendarioICS;
 import Controller.Xml;
 import Model.*;
+import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.ValidationException;
 
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 
 public class VistaExportarImportar extends JFrame {
 
@@ -54,8 +56,28 @@ public class VistaExportarImportar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String ruta = openFileDialog();
-				Xml xml = new Xml();
-				xml.importarProyecto(ruta, model);
+				String extension = "";
+
+				int i = ruta.lastIndexOf('.');
+				if (i >= 0) {
+				    extension = ruta.substring(i+1);
+				}
+				if(extension.equals("ics"))
+				{
+					CalendarioICS cal = new CalendarioICS();
+					try {
+						cal.importarCalendario(model, ruta);
+					} catch (IOException | ParserException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else if(extension.equals("xml"))
+				{
+					Xml xml = new Xml();
+					xml.importarProyecto(ruta, model);
+				}
+				
 			}
 		});
 
@@ -124,7 +146,7 @@ public class VistaExportarImportar extends JFrame {
 		fd.setDirectory("C:\\");
 		//fd.setFile("*.xml");
 		fd.setVisible(true);
-		String ruta = fd.getFile();
+		String ruta = fd.getDirectory()+fd.getFile();
 		if (ruta == null) {
 			VentanaError VE = new VentanaError("Error");
 

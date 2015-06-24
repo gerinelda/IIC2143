@@ -1,0 +1,89 @@
+00:53:55 **** Build of configuration Debug for project HW ****
+make all 
+Building file: ../src/HW.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/HW.d" -MT"src/HW.d" -o "src/HW.o" "../src/HW.c"
+../src/HW.c: In function ‘merge’:
+../src/HW.c:36:9: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  while(p<=m & q <= posf)
+         ^
+Finished building: ../src/HW.c
+ 
+Building target: HW
+Invoking: GCC C Linker
+gcc  -o "HW"  ./src/HW.o   
+Finished building target: HW
+ 
+00:54:00 **** Incremental Build of configuration Debug for project HW ****
+make all 
+make: No se hace nada para «all».
+00:54:08 **** Incremental Build of configuration Debug for project HW ****
+make all 
+make: No se hace nada para «all».
+00:54:32 **** Incremental Build of configuration Debug for project HW ****
+make all 
+Building file: ../src/HW.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/HW.d" -MT"src/HW.d" -o "src/HW.o" "../src/HW.c"
+../src/HW.c: In function ‘merge’:
+../src/HW.c:36:9: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  while(p<=m & q <= posf)
+         ^
+Finished building: ../src/HW.c
+ 
+Building target: HW
+Invoking: GCC C Linker
+gcc  -o "HW"  ./src/HW.o   
+Finished building target: HW
+ 
+00:55:03 **** Incremental Build of configuration Debug for project HW ****
+make all 
+Building file: ../src/HW.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/HW.d" -MT"src/HW.d" -o "src/HW.o" "../src/HW.c"
+../src/HW.c: In function ‘merge’:
+../src/HW.c:36:9: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  while(p<=m & q <= posf)
+         ^
+Finished building: ../src/HW.c
+ 
+Building target: HW
+Invoking: GCC C Linker
+gcc  -o "HW"  ./src/HW.o   
+Finished building target: HW
+ 
+00:55:38 **** Incremental Build of configuration Debug for project HW ****
+make all 
+Building file: ../src/HW.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/HW.d" -MT"src/HW.d" -o "src/HW.o" "../src/HW.c"
+../src/HW.c: In function ‘merge’:
+../src/HW.c:36:9: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  while(p<=m & q <= posf)
+         ^
+Finished building: ../src/HW.c
+ 
+Building target: HW
+Invoking: GCC C Linker
+gcc  -o "HW"  ./src/HW.o   
+Finished building target: HW
+ 
+00:56:07 **** Incremental Build of configuration Debug for project HW ****
+make all 
+make: No se hace nada para «all».
+00:56:39 **** Incremental Build of configuration Debug for project HW ****
+make all 
+Building file: ../src/HW.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/HW.d" -MT"src/HW.d" -o "src/HW.o" "../src/HW.c"
+../src/HW.c: In function ‘merge’:
+../src/HW.c:36:9: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  while(p<=m & q <= posf)
+         ^
+Finished building: ../src/HW.c
+ 
+Building target: HW
+Invoking: GCC C Linker
+gcc  -o "HW"  ./src/HW.o   
+Finished building target: HW
+ 

@@ -1,0 +1,119 @@
+/*
+ ============================================================================
+ Name        : HW.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+void print(int *a, int posi, int posf)
+{
+	int i;
+	for(i = posi; i<=posf; i++)
+	{
+		printf("%i - ", a[i]);
+	}
+	printf(" fin \n");
+}
+
+void merge(int* a, int* temp, int posi, int m, int posf)
+{
+	int k = posi;
+	int p = posi;
+	int q = m+1;
+
+	while(p<=m & q <= posf)
+	{
+		if(a[p]<a[q]) //a[p]<a[q]
+		{
+			temp[k]=a[p];
+			k++;
+			p++;
+		}
+		else{
+			temp[k]=a[q];
+			k++;
+			q++;
+		}
+	}
+	while(p<=m)
+	{
+		temp[k]=a[p];
+		k++;
+		p++;
+	}
+	while(q<=posf)
+	{
+		temp[k]=a[q];
+		k++;
+		q++;
+	}
+
+	int i;
+	for (i = posi; i < posf+1; ++i)
+	{
+		a[i]= temp[i];
+	}
+}
+
+void mergesort(int* a, int* temp, int posi, int posf)
+{
+	if(posi<posf){
+		int m = (posi+posf)/2;
+
+		mergesort(a, temp, 0, m);
+		mergesort(a, temp, m+1, posf);
+		merge(a, temp, posi, m, posf);
+	}
+}
+
+
+
+
+int main()
+{
+	printf("hola\n");
+	int *temporal = (int*)calloc(101, sizeof(int));
+	int *a = (int*)calloc(101, sizeof(int));
+	int i = 0;
+	int r;
+	srand(time(NULL));
+	for(i = 0;i < 10; ++i)
+	{
+
+		r = rand()%41;
+		a[i]= r;
+	}
+
+
+
+	for (i = 0; i <0; ++i)
+	{
+		temporal[i]=0;
+	}
+
+	clock_t start = clock();
+	mergesort(a, temporal, 0, 10);
+	printf("Tiempo transcurrido: %f", ((double)clock() - start) / CLOCKS_PER_SEC);
+	print(a, 0, 10);
+	free(temporal);
+	free(a);
+
+	return 0;
+
+
+}
+
+
+
