@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<proyecto id="1" nombre="Ingenieria de software" estado="activo">
+<proyecto id="2" nombre="Ingenieria de software" estado="activo">
   <tarea id="0" nombre="Presentacion final" fi="24/06/2015" ff="24/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="Universidad" />
-  <tarea id="1" nombre="Examen" fi="24/06/2015" ff="26/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="Universidad" />
-  <tarea id="2" nombre="Interrogacion 1" fi="24/06/2015" ff="15/04/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
-  <tarea id="3" nombre="Interrogacion 2" fi="24/06/2015" ff="08/05/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
-  <tarea id="4" nombre="Interrogacion 3" fi="24/06/2015" ff="04/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
+  <tarea id="1" nombre="Interrogacion 1" fi="24/06/2015" ff="15/04/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
+  <tarea id="2" nombre="Interrogacion 2" fi="24/06/2015" ff="08/05/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
+  <tarea id="3" nombre="Interrogacion 3" fi="24/06/2015" ff="04/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
+  <tarea id="4" nombre="Examen" fi="24/06/2015" ff="26/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="Universidad" />
 </proyecto>

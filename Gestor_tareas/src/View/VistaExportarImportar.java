@@ -49,6 +49,12 @@ public class VistaExportarImportar extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Xml xml = new Xml();
 				xml.exportarProyecto((Proyecto) proyectosCB.getSelectedItem(), ((Proyecto) proyectosCB.getSelectedItem()).getNombre() + ".xml");
+				CalendarioICS c = new CalendarioICS();
+				try {
+					c.exportarAgenda(model, ".");
+				} catch (IOException | ValidationException | URISyntaxException ee) {
+					System.out.println("importado ics falido");
+				}
 			}
 		});
 		importar = new JButton("Importar Proyecto");
@@ -144,7 +150,7 @@ public class VistaExportarImportar extends JFrame {
 	private String openFileDialog() {
 		FileDialog fd = new FileDialog(this,"Elije el archivo a importar",FileDialog.LOAD);
 		fd.setDirectory("C:\\");
-		fd.setFile("*.xml");
+		//fd.setFile("*.xml");
 		fd.setVisible(true);
 		String ruta = fd.getDirectory()+fd.getFile();
 		if (ruta == null) {

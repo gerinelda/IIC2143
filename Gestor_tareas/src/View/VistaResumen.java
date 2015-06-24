@@ -94,7 +94,7 @@ public class VistaResumen extends JFrame implements ControllerListener {
 		Horizontal.add(content);
 		sidebar.add(addBtn);
 		sidebar.add(btn0);
-		sidebar.add(btn1);
+		//sidebar.add(btn1);
 		sidebar.add(btn2);
 		sidebar.add(btn3);
 		sidebar.add(btn5);
