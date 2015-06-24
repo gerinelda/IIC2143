@@ -5,4 +5,7 @@
     <tarea id="0" nombre="dsa" fi="24/06/20" ff="26/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
     <tarea id="1" nombre="asda" fi="24/06/20" ff="25/07/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
   </proyecto>
+  <proyecto id="1" nombre="asdas" estado="activo" />
+  <proyecto id="2" nombre="asdas" estado="activo" />
+  <proyecto id="3" nombre="ASDAsdadsa" estado="activo" />
 </sesion>

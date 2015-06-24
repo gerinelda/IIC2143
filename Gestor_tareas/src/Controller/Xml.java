@@ -212,16 +212,14 @@ public class Xml {
 				String estado = p_node.getAttributes().getNamedItem("estado").getNodeValue();
 				Proyecto p_actual = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
 				boolean existe = false;
+				System.out.println(nombre);
 				for (Proyecto p : modelo.getProyectos()) {
-					if (p.getNombre().equals("miscelaneo")) {
-						/** ya existe el proyecto */
-						p_actual = p;
+					if (p.getNombre().equals(nombre)) {
 						existe = true;
 						break;
 					}
 				}
 				if (!existe) {
-					System.out.println(p_actual.getNombre());
 					modelo.agregarProyecto(p_actual);
 				}
 			}
