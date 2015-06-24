@@ -36,6 +36,7 @@ public class Application {
 		//agregarDatosPrueba(model);
 		View view = new View(model);
 		Controller controller = new Controller(view, model);
+		view.enviarNotificaciones();
 	}
 
 	private static void agregarDatosMinimos(Model model) {

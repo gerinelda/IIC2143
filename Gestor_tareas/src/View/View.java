@@ -148,6 +148,35 @@ public class View {
         }
     }
 
+    public void enviarNotificaciones() {
+        boolean flag = true;
+        String contenido = "";
+        for (Proyecto p : model.getProyectos()) {
+            for (Tarea t : p.getTareas()) {
+                int diferencia =
+                        (t.getFf().getCalendario().get(Calendar.YEAR)*365
+                                + t.getFf().getCalendario().get(Calendar.DAY_OF_YEAR)) -
+                                (Calendar.getInstance().get(Calendar.YEAR)*365
+                                        + Calendar.getInstance().get(Calendar.DAY_OF_YEAR));
+                if (diferencia >= 0 && diferencia <= 3) {
+                    contenido+="Tarea ["+t.getNombre()+"] vence pronto!\n";
+                }
+            }
+        }
+        if (contenido.equals("")) {
+            flag = false;
+            contenido = "No hay tareas por vencer en los proximos 3 dias";
+        }
+
+        if (flag) {
+            for (String email : emails) {
+                for (EmailListener listener : emailListeners) {
+                    listener.EnviarEmail(contenido, email, "Tareas pendientes");
+                }
+            }
+        }
+    }
+
     public void addEmail(String email) {
         /** chequeamos si email es valido **/
         /** http://stackoverflow.com/questions/153716/verify-email-in-java **/
