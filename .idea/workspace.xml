@@ -6,14 +6,7 @@
       <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\miscelaneo.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\qwerty.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\lucas\Documents\MATERIAL U\2015-1\ING SOFTWARE\Sprint 3\IIC2143\testt.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestor_tareas/Application.class" afterPath="$PROJECT_DIR$/out/production/Gestor_tareas/Application.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestor_tareas/Model/Model.class" afterPath="$PROJECT_DIR$/out/production/Gestor_tareas/Model/Model.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestor_tareas/View/View.class" afterPath="$PROJECT_DIR$/out/production/Gestor_tareas/View/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gestor_tareas/Controller/Xml.class" afterPath="$PROJECT_DIR$/out/production/Gestor_tareas/Controller/Xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Application.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/session.xml" afterPath="$PROJECT_DIR$/session.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" afterPath="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
     </list>
     <ignored path="IIC2143.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45085803">
-              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -117,12 +110,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Xml.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Xml.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="218" column="29" selection-start-line="218" selection-start-column="29" selection-end-line="218" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.8300781">
+              <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#exportarProyecto#0;class#Xml#0" expanded="false" />
                 <element signature="method#exportarSesion#0;class#Xml#0" expanded="false" />
               </folding>
@@ -216,10 +210,10 @@
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/VistaSemanal.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/VistaResumen.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/VistaExportarImportar.java" />
-        <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Model/Model.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/View/View.java" />
         <option value="$PROJECT_DIR$/Gestor_tareas/src/Application.java" />
+        <option value="$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java" />
       </list>
     </option>
   </component>
@@ -593,7 +587,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.49356914" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884902" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19282511" sideWeight="0.48638427" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19282511" sideWeight="0.48638427" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26606876" sideWeight="0.49394855" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22390318" sideWeight="0.49496403" order="0" side_tool="false" content_ui="combo" />
@@ -1042,17 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="218" column="29" selection-start-line="218" selection-start-column="29" selection-end-line="218" selection-end-column="29" />
-          <folding>
-            <element signature="method#exportarProyecto#0;class#Xml#0" expanded="false" />
-            <element signature="method#exportarSesion#0;class#Xml#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/View/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1069,9 +1052,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45085803">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gestor_tareas/src/Controller/Xml.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8300781">
+          <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#exportarProyecto#0;class#Xml#0" expanded="false" />
+            <element signature="method#exportarSesion#0;class#Xml#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

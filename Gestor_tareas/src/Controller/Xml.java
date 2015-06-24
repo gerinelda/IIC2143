@@ -74,16 +74,16 @@ public class Xml {
 			String estado = raiz.getAttribute("estado");
 			p = new Proyecto(Integer.parseInt(id), nombre, Estado.valueOf(estado));
 			/** si ya existe */
+			boolean existe = false;
 			for (Proyecto proy : model.getProyectos()) {
 				if (proy.getNombre().equals(nombre)) {
+					existe = true;
 					p = proy;
 				}
 			}
-			if (p.getNombre().equals("miscelaneo")) {
-				p = model.getProyecto(8080);
+			if (!existe) {
+				model.agregarProyecto(p);
 			}
-			System.out.println("id: "+id+", nombre: "+nombre+", estado: "+estado);
-			model.agregarProyecto(p);
 			NodeList tareas = raiz.getElementsByTagName("tarea");
 			int largo = tareas.getLength();
 			for (int i = 0; i < tareas.getLength(); i++) {
@@ -101,16 +101,16 @@ public class Xml {
 				String contexto = nnm.getNamedItem("contexto").getNodeValue();
 				/** evitamos crear contextos miscelaneos */
 				Contexto tempContexto = null;
-				if (contexto.equals("miscelaneo")) {
-					for (Contexto c : model.getContextos()) {
-						if (c.getNombre().equals("miscelaneo")) {
-							tempContexto = c;
-							break;
-						}
+				existe = false;
+				for (Contexto c : model.getContextos()) {
+					if (c.getNombre().equals(contexto)) {
+						existe = true;
+						tempContexto = c;
 					}
 				}
-				else {
+				if (!existe) {
 					tempContexto = new Contexto(contexto);
+					model.agregarContexto(tempContexto);
 				}
 
 				Tarea t = new Tarea(Integer.parseInt(id_tarea), nombre_tarea, new Fecha(fi), new Fecha(ff), new Hora(hi), new Hora(hf), descripcion, tempContexto);
@@ -202,7 +202,7 @@ public class Xml {
 				String contexto = contextos.item(i).getAttributes().getNamedItem("nombre").getNodeValue();
 				boolean flag = false;
 				/** evitamos crear contextos miscelaneos */
-				Contexto c_actual = null;
+				Contexto c_actual;
 				for (Contexto c : modelo.getContextos()) {
 					if (c.getNombre().equals(contexto)) {
 						flag = true;

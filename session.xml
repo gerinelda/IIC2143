@@ -2,11 +2,13 @@
 <sesion>
   <correo correo="lfpose@uc.cl" />
   <contexto nombre="miscelaneo" />
-  <proyecto id="0" nombre="miscelaneo" estado="activo">
-    <tarea id="0" nombre="dsa" fi="24/06/20" ff="26/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
-    <tarea id="1" nombre="asda" fi="24/06/20" ff="25/07/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
-    <tarea id="2" nombre="jhghj" fi="24/06/20" ff="11/11/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
-    <tarea id="3" nombre="jhjk" fi="24/06/20" ff="11/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="miscelaneo" />
-    <tarea id="4" nombre="asdasd" fi="24/06/2015" ff="25/06/2015" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="miscelaneo" />
+  <contexto nombre="Universidad" />
+  <proyecto id="0" nombre="miscelaneo" estado="activo" />
+  <proyecto id="2" nombre="Ingenieria de software" estado="activo">
+    <tarea id="0" nombre="Presentacion final" fi="24/06/20" ff="24/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="expirado" contexto="Universidad" />
+    <tarea id="1" nombre="Examen" fi="24/06/20" ff="26/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="activo" contexto="Universidad" />
+    <tarea id="2" nombre="Interrogacion 1" fi="24/06/20" ff="15/04/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
+    <tarea id="3" nombre="Interrogacion 2" fi="24/06/20" ff="08/05/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
+    <tarea id="4" nombre="Interrogacion 3" fi="24/06/20" ff="04/06/20" hi="12:00:00" hf="12:00:00" descripcion="" estado="terminado" contexto="Universidad" />
   </proyecto>
 </sesion>
